@@ -5,16 +5,16 @@
                 v-model="queryinput.title"
                 class="input-with-select"
                 @change="querydemo"
-                placeholder="请输入内容,目前支持标题--序号--配音--美工搜索(╯°Д°)╯︵┻━┻">
+                placeholder="请输入内容,目前支持测试搜索(╯°Д°)╯︵┻━┻">
                 <el-select
                     slot="prepend"
                     v-model="select"
                     class="el-selectdemo"
                     placeholder="请选择">
-                    <el-option label="文稿标题title" value="1"></el-option>
-                    <el-option label="稿件序号keyword" value="2"></el-option>
-                    <el-option label="配音人员audioid" value="3"></el-option>
-                    <el-option label="美工coverdesignerid" value="4"></el-option>
+                    <el-option label="title" value="1"></el-option>
+                    <el-option label="keyword" value="2"></el-option>
+                    <el-option label="audioid" value="3"></el-option>
+                    <el-option label="coverdesignerid" value="4"></el-option>
                 </el-select>
                 <el-button slot="append" icon="el-icon-search" @click="querydemo"></el-button>
             </el-input>
@@ -499,21 +499,19 @@
                 :before-close="handleClose"
                 :direction="direction"
                 :visible.sync="drawer"
-                title="更新记录，2021年8月24日12:47:28"
+                title="更新记录，2021年12月24日18:04:03"
             >
                 <!--                <span>还没搞定，嘻嘻!</span>-->
                 <pre>
    -------------------------------
    ---------平台更新提醒---------
    -------------------------------
-   版本号：2021-08-24.01
-   停机时间：2021年8月24日12：00-12：10
-   停机时长：10分钟
+   版本号：2021-12-24
+   停机时间：2021年12月24日18:03:07
+   停机时长：1分钟
    更新内容：
-   1.修复图文和视文列表中，无法自动显示汽车
-   稿件的bug
-   2.修复视频列表，已通过图文，已通过视文的
-   三个页面中，没有汽车栏目的bug
+   1.完成项目的初始化
+   2.修改了基本信息
    -------------------------------
    -------------------------------
    -------------------------------
