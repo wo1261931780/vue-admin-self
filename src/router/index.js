@@ -155,10 +155,71 @@ export const constantRoutes = [
       {
         path: 'index',
         component: () => import('@/views/videolistdemo/index'),
-        meta: { title: 'videolistdemo2', icon: 'form' }
+        meta: { title: 'videolist_index', icon: 'form' }
       }
     ]
   },
+  // 2021年12月24日13:33:32
+  // 需要说明的是：
+  // 这里的index包含了所有的查询条件，只需要单个页面即可
+  // 后续的videolist+audio、coverdesigner+cutter+publish+reviews都是删减部分功能的页面
+  // 如果需要控制页面的功能展示，
+  // 直接在页面中加入权限控制即可，不需要做太多的重复页面
+  {
+    path: '/videolistdemo',
+    component: Layout,
+    children: [
+      {
+        path: 'videolist_audio',
+        component: () => import('@/views/videolistdemo/videolist_audio'),
+        meta: { title: 'videolist_audio', icon: 'form' }
+      }
+    ]
+  },
+  // {
+  //   path: '/videolistdemo',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'videolist_coverdesigner',
+  //       component: () => import('@/views/videolistdemo/videolist_coverdesigner'),
+  //       meta: { title: 'videolist_coverdesigner', icon: 'form' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/videolistdemo',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'videolist_cutter',
+  //       component: () => import('@/views/videolistdemo/videolist_cutter'),
+  //       meta: { title: 'videolist_cutter', icon: 'form' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/videolistdemo',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'videolist_publish',
+  //       component: () => import('@/views/videolistdemo/videolist_publish'),
+  //       meta: { title: 'videolist_publish', icon: 'form' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/videolistdemo',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'videolist_reviews',
+  //       component: () => import('@/views/videolistdemo/videolist_reviews'),
+  //       meta: { title: 'videolist_reviews', icon: 'form' }
+  //     }
+  //   ]
+  // },
   {
     path: 'external-link',
     component: Layout,

@@ -882,7 +882,7 @@ import request from "@/utils/request";
 export default {
     name: "videolistdemo",
     // computed: {},
-    components: {Treeselect},
+    // components: {Treeselect},
     data() {
         return {
             formLabelWidth: '200px',

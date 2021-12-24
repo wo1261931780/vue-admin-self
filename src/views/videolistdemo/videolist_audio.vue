@@ -226,8 +226,8 @@
 </template>
 
 <script>
-import {userRequest, videolistRequest} from "@/api/system";
-import Treeselect from "@riophae/vue-treeselect";
+// import {userRequest, videolistRequest} from "@/api/system";
+// import Treeselect from "@riophae/vue-treeselect";
 import request from "@/utils/request";
 
 export default {
@@ -236,7 +236,7 @@ export default {
     },
     name: "videolistdemo",
     // computed: {},
-    components: {Treeselect},
+    // components: {Treeselect},
     data() {
         return {
             formLabelWidth: '200px',
