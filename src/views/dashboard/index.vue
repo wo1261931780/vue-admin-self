@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-12-23 23:46:29
- * @LastEditTime: 2021-12-25 23:45:28
+ * @LastEditTime: 2021-12-26 00:11:43
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\dashboard\index.vue
@@ -40,7 +40,13 @@ export default {
   },
   methods: {
     open() {
-      this.$message("普通消息提示");
+    //     ElMessage({
+    //     message: 'Congrats, this is a success message.',
+    //     type: 'success',
+    //   })
+    // this.$message("普通消息提示");
+      this.$message.success("普通消息提示");
+    //   type:'success'
     },
   },
 };
