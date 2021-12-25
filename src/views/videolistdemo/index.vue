@@ -915,7 +915,7 @@
 <script>
 // import {contentCheckRequest} from "@/api/content";
 
-const cuttercontrol = "disabled";
+// const cuttercontrol = 'disabled'
 // if (videoid.equals("") || videoid.equals(null) ) {
 //     cuttercontrol = "";
 // }
@@ -1115,7 +1115,7 @@ export default {
       };
       contentCheckRequest.fastFind(con).then((xx1) => {
         console.log(xx1);
-        if (res.code == 200) {
+        if (res.code === 200) {
           this.reviewcodes = res.data;
         } else {
           this.$message.err(res.msg);
@@ -1136,7 +1136,7 @@ export default {
       // 加了这一条会导致无结果
       videolistRequest.querydemo(con).then((res) => {
         debugger;
-        if (res.code == 200) {
+        if (res.code === 200) {
           this.videolistData = res.data;
           // 将查询出来的数据转换成树形结构
           // this.videolistData = this.dataChangeToTree(res.data);
@@ -1154,13 +1154,13 @@ export default {
       videolistRequest
         .querydemo(con)
         .then((res) => {
-          if (res.code == 200) {
+          if (res.code === 200) {
             this.authorselectoptions = res.data;
           } else {
             this.$message.error(res.msg);
           }
         })
-        .catch((error) => {
+        .catch(() => {
           this.$message({
             message: "作者查询无结果，请将此信息截图发送给技术",
             type: "warning",
@@ -1175,13 +1175,13 @@ export default {
       videolistRequest
         .querydemo(con)
         .then((res) => {
-          if (res.code == 200) {
+          if (res.code === 200) {
             this.videoselectoptions = res.data;
           } else {
             this.$message.error(res.msg);
           }
         })
-        .catch((error) => {
+        .catch(() => {
           this.$message({
             message: "作者查询无结果，请将此信息截图发送给技术",
             type: "warning",
@@ -1202,7 +1202,7 @@ export default {
             this.$message.error(res.msg);
           }
         })
-        .catch((error) => {
+        .catch(() => {
           this.$message({
             message: "主题查询无结果，请将此信息截图发送给技术",
             type: "warning",
@@ -1223,7 +1223,7 @@ export default {
             this.$message.error(res.msg);
           }
         })
-        .catch((error) => {
+        .catch(() => {
           this.$message({
             message: "状态查询无结果，请将此信息截图发送给技术",
             type: "warning",
@@ -1244,7 +1244,7 @@ export default {
             this.$message.error(res.msg);
           }
         })
-        .catch((error) => {
+        .catch(() => {
           this.$message({
             message: "配音员查询无结果，请将此信息截图发送给技术",
             type: "warning",
@@ -1365,7 +1365,7 @@ export default {
         } 个文件`
       );
     },
-    beforeRemove(file, fileList) {
+    beforeRemove(file) {
       return this.$confirm(`确定移除 ${file.name}？`);
     },
     // indexMethod(index) {
@@ -1406,7 +1406,7 @@ export default {
     clearFilter() {
       this.$refs.filterTable.clearFilter();
     },
-    formatter(row, column) {
+    formatter(row) {
       return row.title;
     },
     filterprovince(value, row) {
