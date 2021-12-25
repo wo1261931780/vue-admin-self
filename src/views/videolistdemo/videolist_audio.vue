@@ -149,9 +149,9 @@
           prop="content"
           width="150px"
         >
-          <template slot-scope="scope">
+          <!-- <template slot-scope="scope">
             <el-button size="mini">文档下载</el-button>
-          </template>
+          </template> -->
         </el-table-column>
         <el-table-column
           align="center"
@@ -261,7 +261,7 @@
 <script>
 // import {userRequest, videolistRequest} from "@/api/system";
 // import Treeselect from "@riophae/vue-treeselect";
-import request from '@/utils/request'
+// import request from '@/utils/request'
 
 export default {
   state: {
@@ -309,12 +309,12 @@ export default {
         requirement: '' //
       },
       pager: { currentPage: 1, pageSize: 20, total: 0, rows: [] }, // 分页参数
-      videolistData: new Array(), // 查询数据机构数据
-      authorselectoptions: new Array(), // 作者下拉框
-      themeselectoptions: new Array(), // 主题下拉框
-      statusselectoptions: new Array(), // 状态下拉框
-      audiocreatorselectoptions: new Array(), // 配音下拉框
-      tagdemo: new Array(), // 配音下拉框
+      //   videolistData: new Array(), // 查询数据机构数据
+      //   authorselectoptions: new Array(), // 作者下拉框
+      //   themeselectoptions: new Array(), // 主题下拉框
+      //   statusselectoptions: new Array(), // 状态下拉框
+      //   audiocreatorselectoptions: new Array(), // 配音下拉框
+      //   tagdemo: new Array(), // 配音下拉框
       currentRow: null,
       queryinput: {
         // 查询条件
@@ -343,7 +343,7 @@ export default {
   },
   methods: {
     changecolor() {
-      type = 'danger'
+    //   type = 'danger'
     },
     // 解决索引只排序当前页的问题,增加函数自定义索引序号
     indexMethod(index) {
@@ -353,120 +353,120 @@ export default {
     //     return request.post(videolistRequest.commonPath+"querydemo",con);
     // }
     querydemo() {
-      let con = {
-        columns:
-          'id,title,subtitle,author,iscooperation,coauthor,keyword,contentsource,theme,priority,content,creator,createtime,updmperson,updmtime,status,audiocreator,audioid,audiotime'
-      }
-      if (this.queryinput != null) {
-        con = Object.assign(con, this.queryinput)
-      }
+    //   let con = {
+    //     columns:
+    //       'id,title,subtitle,author,iscooperation,coauthor,keyword,contentsource,theme,priority,content,creator,createtime,updmperson,updmtime,status,audiocreator,audioid,audiotime'
+    //   }
+    //   if (this.queryinput != null) {
+    //     con = Object.assign(con, this.queryinput)
+    //   }
       debugger
-      videolistRequest.querydemo(con).then((res) => {
-        debugger
-        if (res.code === 200) {
-          this.videolistData = res.data
-          // 将查询出来的数据转换成树形结构
-          // this.videolistData = this.dataChangeToTree(res.data);
-        } else {
-          this.$message.error(res.msg)
-          this.videolistData = new Array()
-        }
-      })
+    //   videolistRequest.querydemo(con).then((res) => {
+    //     debugger
+    //     if (res.code === 200) {
+    //       this.videolistData = res.data
+    //       // 将查询出来的数据转换成树形结构
+    //       // this.videolistData = this.dataChangeToTree(res.data);
+    //     } else {
+    //       this.$message.error(res.msg)
+    //     //   this.videolistData = new Array()
+    //     }
+    //   })
     },
     // 查询作者，合作问题，暂不清楚
-    authorquery() {
-      debugger
-      const con = {
-        columns: 'id,title,subtitle,author'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          debugger
-          if (res.code === 200) {
-            this.authorselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch((error) => {
-          this.$message({
-            message: '作者查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // authorquery() {
+    //   debugger
+    //   const con = {
+    //     columns: 'id,title,subtitle,author'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       debugger
+    //       if (res.code === 200) {
+    //         this.authorselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       this.$message({
+    //         message: '作者查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // 主题搜索,themeselectoptions
-    themequery() {
-      debugger
-      const con = {
-        columns: 'id,theme'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          debugger
-          if (res.code === 200) {
-            this.themeselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch((error) => {
-          this.$message({
-            message: '主题查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // themequery() {
+    //   debugger
+    //   const con = {
+    //     columns: 'id,theme'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       debugger
+    //       if (res.code === 200) {
+    //         this.themeselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       this.$message({
+    //         message: '主题查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // 状态搜索，statusselectoptions
-    statusquery() {
-      debugger
-      const con = {
-        columns: 'id,status'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          debugger
-          if (res.code === 200) {
-            this.statusselectoptions = res.data
-            // tagdemo
-            this.tagdemo = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch((error) => {
-          this.$message({
-            message: '状态查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // statusquery() {
+    //   debugger
+    //   const con = {
+    //     columns: 'id,status'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       debugger
+    //       if (res.code === 200) {
+    //         this.statusselectoptions = res.data
+    //         // tagdemo
+    //         this.tagdemo = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       this.$message({
+    //         message: '状态查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // 配音员搜索，audiocreatorselectoptions
-    audiocreatorquery() {
-      debugger
-      const con = {
-        columns: 'id,audiocreator'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          debugger
-          if (res.code === 200) {
-            this.audiocreatorselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch((error) => {
-          this.$message({
-            message: '配音员查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // audiocreatorquery() {
+    //   debugger
+    //   const con = {
+    //     columns: 'id,audiocreator'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       debugger
+    //       if (res.code === 200) {
+    //         this.audiocreatorselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       this.$message({
+    //         message: '配音员查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // tagdemo
 
     submitForm(formName) {

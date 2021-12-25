@@ -1,3 +1,5 @@
+/* eslint-disable no-array-constructor */
+/* eslint-disable no-array-constructor */
 <template>
   <div class="dashboard-container">
     <div style="margin-top: 40px">
@@ -1058,13 +1060,13 @@ export default {
         requirement: '' //
       },
       pager: { currentPage4: 1, pageSize: 20, total: 0, rows: [] }, // 分页参数
-      videolistData: new Array(), // 表格数据
-      authorselectoptions: new Array(), // 作者下拉框
-      videoselectoptions: new Array(), // 剪辑下拉框
-      themeselectoptions: new Array(), // 主题下拉框
-      statusselectoptions: new Array(), // 状态下拉框
-      audiocreatorselectoptions: new Array(), // 配音下拉框
-      reviewcodes: new Array(), // 审核记录
+      //   videolistData: new Array(), // 表格数据
+      //   authorselectoptions: new Array(), // 作者下拉框
+      //   videoselectoptions: new Array(), // 剪辑下拉框
+      //   themeselectoptions: new Array(), // 主题下拉框
+      //   statusselectoptions: new Array(), // 状态下拉框
+      //   audiocreatorselectoptions: new Array(), // 配音下拉框
+      //   reviewcodes: new Array(), // 审核记录
       currentRow: null,
       queryinput: {
         // 输入框查询条件
@@ -1129,151 +1131,151 @@ export default {
     //     return request.post(videolistRequest.commonPath+"querydemo",con);
     // }
     // 2021年8月27日17:16:57，查询审核
-    reviewsprogressquery() {
-      const con = {
-        // current_status: '1',
-        // obj_id,check_time,check_user,opinion,check_result,current_status,machine_report
-        columns:
-          'id,obj_id,check_time,check_user,opinion,check_result,current_status,machine_report'
-      }
-      contentCheckRequest.fastFind(con).then((xx1) => {
-        console.log(xx1)
-        if (res.code === 200) {
-          this.reviewcodes = res.data
-        } else {
-          this.$message.err(res.msg)
-          this.reviewcodes = new Array()
-        }
-      })
-    },
-    querydemo() {
-      debugger
+    // reviewsprogressquery() {
+    //   const con = {
+    //     // current_status: '1',
+    //     // obj_id,check_time,check_user,opinion,check_result,current_status,machine_report
+    //     columns:
+    //       'id,obj_id,check_time,check_user,opinion,check_result,current_status,machine_report'
+    //   }
+    //   contentCheckRequest.fastFind(con).then((xx1) => {
+    //     console.log(xx1)
+    //     if (res.code === 200) {
+    //       this.reviewcodes = res.data
+    //     } else {
+    //       this.$message.err(res.msg)
+    //       this.reviewcodes = new Array()
+    //     }
+    //   })
+    // },
+    // querydemo() {
+    //   debugger
 
-      let con = {
-        columns:
-          'id,title,subtitle,author,iscooperation,coauthor,keyword,contentsource,theme,priority,content,creator,createtime,updmperson,updmtime,status,videoid,videocreator,videotime,audiocreator,audioid,audiotime,coverdesignerid,pubtime,pubperson,pubplateform,isdel,requirement'
-      }
-      if (this.queryinput != null) {
-        con = Object.assign(con, this.queryinput)
-      }
-      // 加了这一条会导致无结果
-      videolistRequest.querydemo(con).then((res) => {
-        debugger
-        if (res.code === 200) {
-          this.videolistData = res.data
-          // 将查询出来的数据转换成树形结构
-          // this.videolistData = this.dataChangeToTree(res.data);
-        } else {
-          this.$message.error(res.msg)
-          this.videolistData = new Array()
-        }
-      })
-    },
+    //   let con = {
+    //     columns:
+    //       'id,title,subtitle,author,iscooperation,coauthor,keyword,contentsource,theme,priority,content,creator,createtime,updmperson,updmtime,status,videoid,videocreator,videotime,audiocreator,audioid,audiotime,coverdesignerid,pubtime,pubperson,pubplateform,isdel,requirement'
+    //   }
+    //   if (this.queryinput != null) {
+    //     con = Object.assign(con, this.queryinput)
+    //   }
+    // 加了这一条会导致无结果
+    //   videolistRequest.querydemo(con).then((res) => {
+    //     debugger
+    //     if (res.code === 200) {
+    //       this.videolistData = res.data
+    //       // 将查询出来的数据转换成树形结构
+    //       // this.videolistData = this.dataChangeToTree(res.data);
+    //     } else {
+    //       this.$message.error(res.msg)
+    //       this.videolistData = new Array()
+    //     }
+    //   })
+    // },
     // 查询作者，合作问题，暂不清楚
-    authorquery() {
-      const con = {
-        columns: 'id,title,subtitle,author'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          if (res.code === 200) {
-            this.authorselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch(() => {
-          this.$message({
-            message: '作者查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // authorquery() {
+    //   const con = {
+    //     columns: 'id,title,subtitle,author'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       if (res.code === 200) {
+    //         this.authorselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         message: '作者查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // 剪辑搜索,videoselectoptions
-    videocutterquery() {
-      const con = {
-        columns: 'id,videoid,videocreator'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          if (res.code === 200) {
-            this.videoselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch(() => {
-          this.$message({
-            message: '作者查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // videocutterquery() {
+    //   const con = {
+    //     columns: 'id,videoid,videocreator'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       if (res.code === 200) {
+    //         this.videoselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         message: '作者查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // 主题搜索,themeselectoptions
-    themequery() {
-      const con = {
-        columns: 'id,theme'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          if (res.code === 200) {
-            this.themeselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch(() => {
-          this.$message({
-            message: '主题查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // themequery() {
+    //   const con = {
+    //     columns: 'id,theme'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       if (res.code === 200) {
+    //         this.themeselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         message: '主题查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // 状态搜索，statusselectoptions
-    statusquery() {
-      const con = {
-        columns: 'id,status'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          if (res.code === 200) {
-            this.statusselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch(() => {
-          this.$message({
-            message: '状态查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
-    // 配音员搜索，audiocreatorselectoptions
-    audiocreatorquery() {
-      const con = {
-        columns: 'id,audiocreator'
-      }
-      videolistRequest
-        .querydemo(con)
-        .then((res) => {
-          if (res.code === 200) {
-            this.audiocreatorselectoptions = res.data
-          } else {
-            this.$message.error(res.msg)
-          }
-        })
-        .catch(() => {
-          this.$message({
-            message: '配音员查询无结果，请将此信息截图发送给技术',
-            type: 'warning'
-          })
-        })
-    },
+    // statusquery() {
+    //   const con = {
+    //     columns: 'id,status'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       if (res.code === 200) {
+    //         this.statusselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         message: '状态查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
+    // // 配音员搜索，audiocreatorselectoptions
+    // audiocreatorquery() {
+    //   const con = {
+    //     columns: 'id,audiocreator'
+    //   }
+    //   videolistRequest
+    //     .querydemo(con)
+    //     .then((res) => {
+    //       if (res.code === 200) {
+    //         this.audiocreatorselectoptions = res.data
+    //       } else {
+    //         this.$message.error(res.msg)
+    //       }
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         message: '配音员查询无结果，请将此信息截图发送给技术',
+    //         type: 'warning'
+    //       })
+    //     })
+    // },
     // querydemo() {
     //     debugger
     //     let that = this;
