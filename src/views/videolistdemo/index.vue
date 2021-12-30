@@ -16,12 +16,12 @@
           class="el-selectdemo"
           placeholder="请选择"
         >
-          <el-option label="title" value="1" />
-          <el-option label="keyword" value="2" />
-          <el-option label="audioid" value="3" />
-          <el-option label="coverdesignerid" value="4" />
+          <el-option label="title" value="1"/>
+          <el-option label="keyword" value="2"/>
+          <el-option label="audioid" value="3"/>
+          <el-option label="coverdesignerid" value="4"/>
         </el-select>
-        <el-button slot="append" icon="el-icon-search" @click="querydemo" />
+        <el-button slot="append" icon="el-icon-search" @click="querydemo"/>
       </el-input>
       <el-header>
         <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
@@ -109,7 +109,12 @@
                 @click="drawer = true"
               >更新记录
               </el-button>
-              <el-button size="mini" @click="setCurrent()">取消选择</el-button>
+              <el-button
+                size="mini"
+                @click="setCurrent()"
+
+              >取消选择
+              </el-button>
             </el-form>
           </el-col>
         </el-form>
@@ -207,7 +212,8 @@
             <el-button
               size="small"
               @click="dialogVisible8 = true"
-            >上传封面</el-button>
+            >上传封面
+            </el-button>
           </template>
         </el-table-column>
         <!--                <el-table-column label="用稿人+通过时间videotime" prop="videotime" width="120">-->
@@ -269,7 +275,8 @@
             <el-button
               size="mini"
               @click="dialogVisible9 = true"
-            >配音修改</el-button>
+            >配音修改
+            </el-button>
             <br>
             <div v-if="(fileList = null)">
               <el-button size="mini" disabled>配音下载</el-button>
@@ -396,7 +403,8 @@
             <el-button
               size="mini"
               @click="dialogVisible12 = true"
-            >分配剪辑</el-button>
+            >分配剪辑
+            </el-button>
           </template>
         </el-table-column>
         <el-table-column
@@ -515,7 +523,7 @@
         >
           <template slot-scope="scope">
             <!--这里要用遍历替换所有字符串，同时设置相关格式-->
-            {{ scope.row.requirement.replace("/", "\r\n") }}
+            {{ scope.row.requirement.replace('/', '\r\n') }}
             <br>
             <el-button
               plain
@@ -656,23 +664,23 @@
       >
         <el-form :inline="true">
           <el-form-item label="机审状态：">
-            <el-input v-model="input" :disabled="true" />
+            <el-input v-model="input" :disabled="true"/>
           </el-form-item>
 
           <el-form-item label="机审时间：">
-            <el-input v-model="input" :disabled="true" />
+            <el-input v-model="input" :disabled="true"/>
           </el-form-item>
           <el-form-item label="机审结果：">
-            <el-input v-model="input" :disabled="true" />
+            <el-input v-model="input" :disabled="true"/>
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-table :data="pager.rows">
-            <el-table-column label="风险类型" property="date" width="150" />
-            <el-table-column label="出现时间" property="name" width="200" />
-            <el-table-column label="是否违规" property="title" />
-            <el-table-column label="文字识别" property="title" />
-            <el-table-column label="图片链接" property="title" />
+            <el-table-column label="风险类型" property="date" width="150"/>
+            <el-table-column label="出现时间" property="name" width="200"/>
+            <el-table-column label="是否违规" property="title"/>
+            <el-table-column label="文字识别" property="title"/>
+            <el-table-column label="图片链接" property="title"/>
           </el-table>
           <div>
             <el-footer>
@@ -713,13 +721,13 @@
             label-width="100px"
           >
             <el-form-item label="头条" prop="theme1">
-              <el-input v-model="pager.rows.theme" />
+              <el-input v-model="pager.rows.theme"/>
             </el-form-item>
             <el-form-item label="企鹅" prop="theme1">
-              <el-input v-model="pager.rows.theme" />
+              <el-input v-model="pager.rows.theme"/>
             </el-form-item>
             <el-form-item label="百家" prop="theme1">
-              <el-input v-model="pager.rows.theme" />
+              <el-input v-model="pager.rows.theme"/>
             </el-form-item>
           </el-form>
         </span>
@@ -864,7 +872,7 @@
         append-to-body
         width="40%"
       >
-        <div style="margin: 20px 0" />
+        <div style="margin: 20px 0"/>
         <el-input
           v-model="textarea"
           type="textarea"
@@ -872,7 +880,7 @@
           maxlength="30"
           show-word-limit
         />
-        <span class="el-dialog__body" />
+        <span class="el-dialog__body"/>
         <span slot="footer" class="dialog-footer">
           <el-button
             type="primary"
@@ -889,7 +897,7 @@
         append-to-body
         width="40%"
       >
-        <div style="margin: 20px 0" />
+        <div style="margin: 20px 0"/>
         <el-input
           v-model="textarea"
           type="textarea"
@@ -897,7 +905,7 @@
           maxlength="30"
           show-word-limit
         />
-        <span class="el-dialog__body" />
+        <span class="el-dialog__body"/>
         <span slot="footer" class="dialog-footer">
           <el-button
             type="primary"
@@ -926,7 +934,7 @@
           </el-form-item>
         </el-form>
 
-        <span class="el-dialog__body" />
+        <span class="el-dialog__body"/>
         <span slot="footer" class="dialog-footer">
           <el-button
             type="primary"
@@ -1331,7 +1339,8 @@ export default {
         .then((_) => {
           done()
         })
-        .catch((_) => {})
+        .catch((_) => {
+        })
     },
     // 二审提示
     handleClose2(done) {
@@ -1339,28 +1348,32 @@ export default {
         .then((_) => {
           done()
         })
-        .catch((_) => {})
+        .catch((_) => {
+        })
     },
     handleClose3(done) {
       this.$confirm('确认关闭三审？')
         .then((_) => {
           done()
         })
-        .catch((_) => {})
+        .catch((_) => {
+        })
     },
     handleClose4(done) {
       this.$confirm('确认关闭发送机审？')
         .then((_) => {
           done()
         })
-        .catch((_) => {})
+        .catch((_) => {
+        })
     },
     handleClose5(done) {
       this.$confirm('确认关闭机审详情？')
         .then((_) => {
           done()
         })
-        .catch((_) => {})
+        .catch((_) => {
+        })
     },
     // handleClose6(done) {
     //   this.$confirm('确认发布视频？')
@@ -1429,6 +1442,7 @@ export default {
     },
     setCurrent(row) {
       this.$refs.singleTable.setCurrentRow(row)
+      this.$message.warning('取消成功')
     },
     resetDateFilter() {
       this.$refs.filterTable.clearFilter('date')
