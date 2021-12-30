@@ -3,30 +3,29 @@
 <template>
   <div class="dashboard-container">
     <div style="margin-top: 40px">
-      <el-header>
 
-        <el-input
-          v-model="queryinput.title"
-          class="input-with-select"
-          placeholder="请输入内容,目前支持测试搜索(╯°Д°)╯︵┻━┻"
-          @change="querydemo"
+      <el-input
+        v-model="queryinput.title"
+        class="input-with-select"
+        placeholder="请输入内容,目前支持测试搜索(╯°Д°)╯︵┻━┻"
+        @change="querydemo"
+      >
+        <el-select
+          slot="prepend"
+          v-model="select"
+          class="el-selectdemo"
+          placeholder="请选择"
         >
-          <el-select
-            slot="prepend"
-            v-model="select"
-            class="el-selectdemo"
-            placeholder="请选择"
-          >
-            <el-option label="title" value="1" />
-            <el-option label="keyword" value="2" />
-            <el-option label="audioid" value="3" />
-            <el-option label="coverdesignerid" value="4" />
-          </el-select>
-          <el-button slot="append" icon="el-icon-search" @click="querydemo" />
-        </el-input>
-
+          <el-option label="title" value="1" />
+          <el-option label="keyword" value="2" />
+          <el-option label="audioid" value="3" />
+          <el-option label="coverdesignerid" value="4" />
+        </el-select>
+        <el-button slot="append" icon="el-icon-search" @click="querydemo" />
+      </el-input>
+      <el-header>
         <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
-        <br>
+
         <el-form :inline="true">
           <el-col :span="5">
             <el-form-item label="author：">
