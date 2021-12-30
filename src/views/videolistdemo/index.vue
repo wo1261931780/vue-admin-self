@@ -3,36 +3,39 @@
 <template>
   <div class="dashboard-container">
     <div style="margin-top: 40px">
-      <el-input
-        v-model="queryinput.title"
-        class="input-with-select"
-        placeholder="请输入内容,目前支持测试搜索(╯°Д°)╯︵┻━┻"
-        @change="querydemo"
-      >
-        <el-select
-          slot="prepend"
-          v-model="select"
-          class="el-selectdemo"
-          placeholder="请选择"
+      <el-header>
+
+        <el-input
+          v-model="queryinput.title"
+          class="input-with-select"
+          placeholder="请输入内容,目前支持测试搜索(╯°Д°)╯︵┻━┻"
+          @change="querydemo"
         >
-          <el-option label="title" value="1" />
-          <el-option label="keyword" value="2" />
-          <el-option label="audioid" value="3" />
-          <el-option label="coverdesignerid" value="4" />
-        </el-select>
-        <el-button slot="append" icon="el-icon-search" @click="querydemo" />
-      </el-input>
+          <el-select
+            slot="prepend"
+            v-model="select"
+            class="el-selectdemo"
+            placeholder="请选择"
+          >
+            <el-option label="title" value="1" />
+            <el-option label="keyword" value="2" />
+            <el-option label="audioid" value="3" />
+            <el-option label="coverdesignerid" value="4" />
+          </el-select>
+          <el-button slot="append" icon="el-icon-search" @click="querydemo" />
+        </el-input>
+      </el-header>
     </div>
     <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
     <br>
     <el-form :inline="true">
       <el-col :span="5">
-        <el-form-item label="作者：">
+        <el-form-item label="author：">
           <el-select
             v-model="queryinput.author"
             filterable
             clearable
-            placeholder="请选择作者"
+            placeholder="请选择author"
             @change="authorquery"
           >
             <!--    2021年8月27日16:32:05下拉框应设置为多选，但是会导致查询条件为一个数组，需要在query中修改-->
@@ -46,12 +49,12 @@
         </el-form-item>
       </el-col>
       <el-col :span="5">
-        <el-form-item label="剪辑：">
+        <el-form-item label="videocutter：">
           <el-select
             v-model="queryinput.videocreator"
             filterable
             clearable
-            placeholder="请选择剪辑"
+            placeholder="请选择videocutter"
             @change="videocutterquery"
           >
             <el-option
@@ -64,12 +67,12 @@
         </el-form-item>
       </el-col>
       <el-col :span="5">
-        <el-form-item label="主题：">
+        <el-form-item label="theme：">
           <el-select
             v-model="queryinput.theme"
             filterable
             clearable
-            placeholder="请选择主题"
+            placeholder="请选择theme"
             @change="themequery"
           >
             <el-option
@@ -82,12 +85,12 @@
         </el-form-item>
       </el-col>
       <el-col :span="9">
-        <el-form-item label="状态：">
+        <el-form-item label="status：">
           <el-select
             v-model="queryinput.status"
             filterable
             clearable
-            placeholder="请选择状态"
+            placeholder="请选择status"
             @change="statusquery"
           >
             <el-option
