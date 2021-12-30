@@ -24,95 +24,98 @@
           </el-select>
           <el-button slot="append" icon="el-icon-search" @click="querydemo" />
         </el-input>
+
+        <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
+        <br>
+        <el-form :inline="true">
+          <el-col :span="5">
+            <el-form-item label="author：">
+              <el-select
+                v-model="queryinput.author"
+                filterable
+                clearable
+                placeholder="请选择author"
+                @change="authorquery"
+              >
+                <!--    2021年8月27日16:32:05下拉框应设置为多选，但是会导致查询条件为一个数组，需要在query中修改-->
+                <el-option
+                  v-for="item in authorselectoptions"
+                  :key="item.id"
+                  :label="item.author"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5">
+            <el-form-item label="videocutter：">
+              <el-select
+                v-model="queryinput.videocreator"
+                filterable
+                clearable
+                placeholder="请选择videocutter"
+                @change="videocutterquery"
+              >
+                <el-option
+                  v-for="item in videoselectoptions"
+                  :key="item.id"
+                  :label="item.videocreator"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5">
+            <el-form-item label="theme：">
+              <el-select
+                v-model="queryinput.theme"
+                filterable
+                clearable
+                placeholder="请选择theme"
+                @change="themequery"
+              >
+                <el-option
+                  v-for="item in themeselectoptions"
+                  :key="item.id"
+                  :label="item.theme"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="9">
+            <el-form-item label="status：">
+              <el-select
+                v-model="queryinput.status"
+                filterable
+                clearable
+                placeholder="请选择status"
+                @change="statusquery"
+              >
+                <el-option
+                  v-for="item in statusselectoptions"
+                  :key="item.id"
+                  :label="item.status"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form>
+              <el-button size="mini" @click="querydemo">查询</el-button>
+              <el-button
+                icon="el-icon-link"
+                plain
+                type="primary"
+                size="mini"
+                @click="drawer = true"
+              >更新记录
+              </el-button>
+              <el-button size="mini" @click="setCurrent()">取消选择</el-button>
+            </el-form>
+          </el-col>
+        </el-form>
       </el-header>
     </div>
-    <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
-    <br>
-    <el-form :inline="true">
-      <el-col :span="5">
-        <el-form-item label="author：">
-          <el-select
-            v-model="queryinput.author"
-            filterable
-            clearable
-            placeholder="请选择author"
-            @change="authorquery"
-          >
-            <!--    2021年8月27日16:32:05下拉框应设置为多选，但是会导致查询条件为一个数组，需要在query中修改-->
-            <el-option
-              v-for="item in authorselectoptions"
-              :key="item.id"
-              :label="item.author"
-              :value="item.id"
-            />
-          </el-select>
-        </el-form-item>
-      </el-col>
-      <el-col :span="5">
-        <el-form-item label="videocutter：">
-          <el-select
-            v-model="queryinput.videocreator"
-            filterable
-            clearable
-            placeholder="请选择videocutter"
-            @change="videocutterquery"
-          >
-            <el-option
-              v-for="item in videoselectoptions"
-              :key="item.id"
-              :label="item.videocreator"
-              :value="item.id"
-            />
-          </el-select>
-        </el-form-item>
-      </el-col>
-      <el-col :span="5">
-        <el-form-item label="theme：">
-          <el-select
-            v-model="queryinput.theme"
-            filterable
-            clearable
-            placeholder="请选择theme"
-            @change="themequery"
-          >
-            <el-option
-              v-for="item in themeselectoptions"
-              :key="item.id"
-              :label="item.theme"
-              :value="item.id"
-            />
-          </el-select>
-        </el-form-item>
-      </el-col>
-      <el-col :span="9">
-        <el-form-item label="status：">
-          <el-select
-            v-model="queryinput.status"
-            filterable
-            clearable
-            placeholder="请选择status"
-            @change="statusquery"
-          >
-            <el-option
-              v-for="item in statusselectoptions"
-              :key="item.id"
-              :label="item.status"
-              :value="item.id"
-            />
-          </el-select>
-        </el-form-item>
-        <el-button size="mini" @click="querydemo">查询</el-button>
-        <el-button
-          icon="el-icon-link"
-          plain
-          type="primary"
-          size="mini"
-          @click="drawer = true"
-        >更新记录
-        </el-button>
-        <el-button size="mini" @click="setCurrent()">取消选择</el-button>
-      </el-col>
-    </el-form>
 
     <!--    <el-form>-->
     <!--                :data="tableData"-->
@@ -153,7 +156,7 @@
         >
           <template slot-scope="scope">
             <!--点击一次加急，点击两次取消加急-->
-            <!--                        点击事件，需要修改数据库，需要后台变动-->
+            <!--点击事件，需要修改数据库，需要后台变动-->
             <el-button
               :type="scope.row.priority === 1 ? 'danger' : ''"
               size="mini"
@@ -161,7 +164,7 @@
             >
               <div v-if="scope.row.priority === 1">优先</div>
               <div v-else>
-                <!--                                {{ scope.row.priority }}-->
+                <!--        {{ scope.row.priority }}-->
                 普通
               </div>
             </el-button>
@@ -186,11 +189,11 @@
         <!--                    width="120"-->
         <!--                >-->
         <!--                    <template slot-scope="scope">-->
-        <!--                        <el-tag-->
-        <!--                            :type="scope.row.status === '状态1' ? 'primary' : 'success' && scope.row.status === '状态2' ? 'danger' : 'success'"-->
-        <!--                            disable-transitions>-->
-        <!--                            {{ scope.row.status }}-->
-        <!--                        </el-tag>-->
+        <!--<el-tag-->
+        <!--    :type="scope.row.status === '状态1' ? 'primary' : 'success' && scope.row.status === '状态2' ? 'danger' : 'success'"-->
+        <!--    disable-transitions>-->
+        <!--    {{ scope.row.status }}-->
+        <!--</el-tag>-->
         <!--                    </template>-->
         <!--                </el-table-column>-->
         <el-table-column
@@ -210,8 +213,8 @@
         </el-table-column>
         <!--                <el-table-column label="用稿人+通过时间videotime" prop="videotime" width="120">-->
         <!--                    <template slot-scope="scope">-->
-        <!--                        &lt;!&ndash;                        {{scope.row.author+"&#10;"+scope.row.createtime}}&ndash;&gt;-->
-        <!--                        {{ scope.row.updmperson }}<br/>{{ scope.row.videotime }}-->
+        <!--&lt;!&ndash;{{scope.row.author+"&#10;"+scope.row.createtime}}&ndash;&gt;-->
+        <!--{{ scope.row.updmperson }}<br/>{{ scope.row.videotime }}-->
         <!--                    </template>-->
         <!--                </el-table-column>-->
         <!--                <el-table-column-->
@@ -237,7 +240,7 @@
           align="center"
         >
           <template slot-scope="scope">
-            <!--                        {{scope.row.author+"&#10;"+scope.row.createtime}}-->
+            <!--{{scope.row.author+"&#10;"+scope.row.createtime}}-->
             {{ scope.row.author }}<br>{{ scope.row.createtime }}
           </template>
           <!--                    <el-tooltip class="item" effect="dark" content="Top Center 提示文字" placement="top">-->
@@ -261,8 +264,8 @@
         >
           <template slot-scope="scope">
             {{ scope.row.audioid }}
-            <!--                        <br>-->
-            <!--                        <el-button size="small" @click="dialogVisible9 = true">上传配音</el-button>-->
+            <!--<br>-->
+            <!--<el-button size="small" @click="dialogVisible9 = true">上传配音</el-button>-->
             <br>
             <el-button
               size="mini"
@@ -276,29 +279,29 @@
               <el-button size="mini">配音下载</el-button>
             </div>
 
-            <!--                        <br/>-->
-            <!--                        <el-button size="mini">保存修改</el-button>-->
+            <!--<br/>-->
+            <!--<el-button size="mini">保存修改</el-button>-->
           </template>
-          <!--                        <el-select-->
-          <!--                            v-model="value"-->
-          <!--                            filterable-->
-          <!--                            placeholder="请选择配音"-->
-          <!--                            size="mini"-->
-          <!--                        >-->
-          <!--                            <el-option-->
-          <!--                                v-for="item in audiooptions"-->
-          <!--                                :key="item.value"-->
-          <!--                                :label="item.label"-->
-          <!--                                :value="item.value"-->
-          <!--                            >-->
-          <!--                            </el-option>-->
-          <!--                        </el-select>-->
-          <!--                        <el-select style="width: 100%;" v-model="findConObj.dicType" value-key="id" size="small" filterable clearable placeholder="请选择字典类型">-->
-          <!--                            <el-option v-for="item in $store.getters['system/filterDictByType'](accordingToTypeReturnDictId('字典类型'))"-->
-          <!--                                       :key="item.id"-->
-          <!--                                       :label="item.dicText"-->
-          <!--                                       :value="item.id"></el-option>-->
-          <!--                        </el-select>-->
+          <!--<el-select-->
+          <!--    v-model="value"-->
+          <!--    filterable-->
+          <!--    placeholder="请选择配音"-->
+          <!--    size="mini"-->
+          <!-- >-->
+          <!--    <el-option-->
+          <!--        v-for="item in audiooptions"-->
+          <!--        :key="item.value"-->
+          <!--        :label="item.label"-->
+          <!--        :value="item.value"-->
+          <!--    >-->
+          <!--    </el-option>-->
+          <!--</el-select>-->
+          <!--<el-select style="width: 100%;" v-model="findConObj.dicType" value-key="id" size="small" filterable clearable placeholder="请选择字典类型">-->
+          <!--    <el-option v-for="item in $store.getters['system/filterDictByType'](accordingToTypeReturnDictId('字典类型'))"-->
+          <!--               :key="item.id"-->
+          <!--               :label="item.dicText"-->
+          <!--               :value="item.id"></el-option>-->
+          <!--</el-select>-->
         </el-table-column>
         <!--                <el-table-column-->
         <!--                    align="center"-->
@@ -307,24 +310,24 @@
         <!--                    width="120"-->
         <!--                >-->
         <!--                    <template slot-scope="scope">-->
-        <!--                        <el-upload-->
-        <!--                            :before-remove="beforeRemove"-->
-        <!--                            :file-list="fileList"-->
-        <!--                            :limit="3"-->
-        <!--                            :on-exceed="handleExceed"-->
-        <!--                            :on-preview="handlePreview"-->
-        <!--                            :on-remove="handleRemove"-->
-        <!--                            action=""-->
-        <!--                            class="upload-demo"-->
-        <!--                            multiple>-->
-        <!--                            <el-button size="mini" type="primary">上传配音</el-button>-->
-        <!--                            &lt;!&ndash;              <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>&ndash;&gt;-->
-        <!--                        </el-upload>-->
-        <!--                        <el-button size="mini">配音下载</el-button>-->
-        <!--                        <br/>-->
-        <!--                        <el-button size="mini">配音修改</el-button>-->
-        <!--                        <br/>-->
-        <!--                        <el-button size="mini">保存修改</el-button>-->
+        <!--<el-upload-->
+        <!--    :before-remove="beforeRemove"-->
+        <!--    :file-list="fileList"-->
+        <!--    :limit="3"-->
+        <!--    :on-exceed="handleExceed"-->
+        <!--    :on-preview="handlePreview"-->
+        <!--    :on-remove="handleRemove"-->
+        <!--    action=""-->
+        <!--    class="upload-demo"-->
+        <!--    multiple>-->
+        <!--    <el-button size="mini" type="primary">上传配音</el-button>-->
+        <!--    &lt;!&ndash;              <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>&ndash;&gt;-->
+        <!--</el-upload>-->
+        <!--<el-button size="mini">配音下载</el-button>-->
+        <!--<br/>-->
+        <!--<el-button size="mini">配音修改</el-button>-->
+        <!--<br/>-->
+        <!--<el-button size="mini">保存修改</el-button>-->
         <!--                    </template>-->
         <!--                </el-table-column>-->
         <el-table-column
@@ -363,8 +366,8 @@
             <div v-if="(fileList = null)">
               <el-button size="mini" disabled>剪辑下载</el-button>
 
-              <!--                        <br>-->
-              <!--                        <el-button size="mini">审核建议</el-button>-->
+              <!--<br>-->
+              <!--<el-button size="mini">审核建议</el-button>-->
               <br>
               <el-tooltip
                 class="item"
@@ -378,8 +381,8 @@
             <div v-else>
               <el-button size="mini">剪辑下载</el-button>
 
-              <!--                        <br>-->
-              <!--                        <el-button size="mini">审核建议</el-button>-->
+              <!--<br>-->
+              <!--<el-button size="mini">审核建议</el-button>-->
               <br>
               <el-tooltip
                 class="item"
@@ -407,20 +410,20 @@
             <div>
               {{ scope.row.check_user }}<br>{{ scope.row.opinion }}<br>
             </div>
-            <!--                        prop="content"-->
-            <!--                        obj_id: "",-->
-            <!--                        // 审核时间-->
-            <!--                        check_time: "",-->
-            <!--                        // 审核人-->
-            <!--                        check_user: "",-->
-            <!--                        // 审核意见，中文结果-->
-            <!--                        opinion: "",-->
-            <!--                        // 审核结果，不通过1，通过2-->
-            <!--                        check_result: "",-->
-            <!--                        // 审核进度-->
-            <!--                        current_status: "",-->
-            <!--                        // 机审报告-->
-            <!--                        machine_report: ""-->
+            <!--prop="content"-->
+            <!--obj_id: "",-->
+            <!--// 审核时间-->
+            <!--check_time: "",-->
+            <!--// 审核人-->
+            <!--check_user: "",-->
+            <!--// 审核意见，中文结果-->
+            <!--opinion: "",-->
+            <!--// 审核结果，不通过1，通过2-->
+            <!--check_result: "",-->
+            <!--// 审核进度-->
+            <!--current_status: "",-->
+            <!--// 机审报告-->
+            <!--machine_report: ""-->
           </template>
         </el-table-column>
         <el-table-column
@@ -478,10 +481,10 @@
         <!--                    prop="content"-->
         <!--                    width="120">-->
         <!--                    <el-button-->
-        <!--                        plain-->
-        <!--                        size="mini"-->
-        <!--                        type="primary"-->
-        <!--                        @click="dialogVisible3 = true">三次审核-->
+        <!--plain-->
+        <!--size="mini"-->
+        <!--type="primary"-->
+        <!--@click="dialogVisible3 = true">三次审核-->
         <!--                    </el-button>-->
         <!--                </el-table-column>-->
         <!--                <el-table-column-->
@@ -491,18 +494,18 @@
         <!--                    sortable-->
         <!--                    width="120">-->
         <!--                    <el-button-->
-        <!--                        plain-->
-        <!--                        size="mini"-->
-        <!--                        type="primary"-->
-        <!--                        @click="dialogVisible4 = true">发送机审-->
+        <!--plain-->
+        <!--size="mini"-->
+        <!--type="primary"-->
+        <!--@click="dialogVisible4 = true">发送机审-->
         <!--                    </el-button-->
         <!--                    >-->
         <!--                    <br/>-->
         <!--                    <el-button-->
-        <!--                        plain-->
-        <!--                        size="mini"-->
-        <!--                        type="primary"-->
-        <!--                        @click="dialogVisible5 = true">机审情况-->
+        <!--plain-->
+        <!--size="mini"-->
+        <!--type="primary"-->
+        <!--@click="dialogVisible5 = true">机审情况-->
         <!--                    </el-button>-->
         <!--                </el-table-column>-->
         <el-table-column
@@ -512,7 +515,7 @@
           align="center"
         >
           <template slot-scope="scope">
-            <!--                        这里要用遍历替换所有字符串，同时设置相关格式-->
+            <!--这里要用遍历替换所有字符串，同时设置相关格式-->
             {{ scope.row.requirement.replace("/", "\r\n") }}
             <br>
             <el-button
