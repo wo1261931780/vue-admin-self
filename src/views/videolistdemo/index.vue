@@ -1129,6 +1129,9 @@ export default {
     this.reviewsprogressquery()
   },
   methods: {
+    querydemo() {
+      this.$message.warning('search')
+    },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`)
     },
@@ -1442,7 +1445,7 @@ export default {
     },
     setCurrent(row) {
       this.$refs.singleTable.setCurrentRow(row)
-      this.$message.warning('取消成功')
+      this.$message.error('取消成功')
     },
     resetDateFilter() {
       this.$refs.filterTable.clearFilter('date')
