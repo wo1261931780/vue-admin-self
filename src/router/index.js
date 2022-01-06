@@ -149,6 +149,7 @@ export const constantRoutes = [
     ]
   },
   {
+    // 2022年1月6日21:36:26，防止报错
     path: '/videolistdemo',
     component: Layout,
     children: [
@@ -166,13 +167,13 @@ export const constantRoutes = [
   // 如果需要控制页面的功能展示，
   // 直接在页面中加入权限控制即可，不需要做太多的重复页面
   {
-    path: '/videolistdemo',
+    path: '/showdemo',
     component: Layout,
     children: [
       {
-        path: 'videolist_audio',
-        component: () => import('@/views/videolistdemo/videolist_audio'),
-        meta: { title: 'videolist_audio', icon: 'form' }
+        path: 'showdemo',
+        component: () => import('@/views/showdemo/demo'),
+        meta: { title: 'demo页面', icon: 'form' }
       }
     ]
   },

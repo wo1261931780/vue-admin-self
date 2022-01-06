@@ -8,7 +8,6 @@
         v-model="queryinput.title"
         class="input-with-select"
         placeholder="请输入内容,目前支持测试搜索(╯°Д°)╯︵┻━┻"
-        @change="querydemo"
       >
         <el-select
           slot="prepend"
@@ -21,7 +20,7 @@
           <el-option label="audioid" value="3" />
           <el-option label="coverdesignerid" value="4" />
         </el-select>
-        <el-button slot="append" icon="el-icon-search" @click="querydemo" />
+        <el-button slot="append" icon="el-icon-search" />
       </el-input>
       <el-header>
         <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
@@ -34,7 +33,6 @@
                 filterable
                 clearable
                 placeholder="请选择author"
-                @change="authorquery"
               >
                 <!--    2021年8月27日16:32:05下拉框应设置为多选，但是会导致查询条件为一个数组，需要在query中修改-->
                 <el-option
@@ -53,7 +51,6 @@
                 filterable
                 clearable
                 placeholder="请选择videocutter"
-                @change="videocutterquery"
               >
                 <el-option
                   v-for="item in videoselectoptions"
@@ -71,7 +68,6 @@
                 filterable
                 clearable
                 placeholder="请选择theme"
-                @change="themequery"
               >
                 <el-option
                   v-for="item in themeselectoptions"
@@ -89,7 +85,6 @@
                 filterable
                 clearable
                 placeholder="请选择status"
-                @change="statusquery"
               >
                 <el-option
                   v-for="item in statusselectoptions"
@@ -100,7 +95,7 @@
               </el-select>
             </el-form-item>
             <el-form>
-              <el-button size="mini" @click="querydemo">查询</el-button>
+              <el-button size="mini">查询</el-button>
               <el-button
                 icon="el-icon-link"
                 plain
@@ -123,7 +118,7 @@
       <el-table
         ref="singleTable"
         :data="videolistData"
-        :summary-method="getScummaries"
+
         border
         height="500"
         highlight-current-row
@@ -563,7 +558,6 @@
         </el-table-column>
       </el-table>
       <el-drawer
-        :before-close="handleClose"
         :direction="direction"
         :visible.sync="drawer"
         title="更新记录，2021年12月24日18:04:03"
@@ -585,7 +579,6 @@
                 </pre>
       </el-drawer>
       <el-dialog
-        :before-close="handleClose1"
         :visible.sync="dialogVisible"
         title="一次审核"
         width="30%"
@@ -601,7 +594,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose2"
         :visible.sync="dialogVisible2"
         title="二次审核"
         width="30%"
@@ -617,7 +609,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose3"
         :visible.sync="dialogVisible3"
         title="三次审核"
         width="30%"
@@ -633,7 +624,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose4"
         :visible.sync="dialogVisible4"
         title="发送机审"
         width="30%"
@@ -649,7 +639,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose5"
         :visible.sync="dialogVisible5"
         title="机审情况"
         width="60%"
@@ -698,7 +687,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose6"
         :visible.sync="dialogVisible6"
         title="视频发布"
         width="80%"
@@ -741,7 +729,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose7"
         :visible.sync="dialogVisible7"
         title="修改二审状态"
         width="40%"
@@ -769,7 +756,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose8"
         :visible.sync="dialogVisible8"
         title="稿件封面上传"
         width="40%"
@@ -804,7 +790,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose9"
         :visible.sync="dialogVisible9"
         title="上传配音"
         width="40%"
@@ -858,7 +843,6 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose10"
         :visible.sync="dialogVisible10"
         title="一审不通过，反馈意见"
         append-to-body
@@ -866,8 +850,6 @@
       >
         <div style="margin: 20px 0" />
         <el-input
-          v-model="textarea"
-          type="textarea"
           placeholder="请输入内容"
           maxlength="30"
           show-word-limit
@@ -883,7 +865,7 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose11"
+
         :visible.sync="dialogVisible11"
         title="*审不通过，反馈意见"
         append-to-body
@@ -891,8 +873,6 @@
       >
         <div style="margin: 20px 0" />
         <el-input
-          v-model="textarea"
-          type="textarea"
           placeholder="请输入内容"
           maxlength="30"
           show-word-limit
@@ -908,7 +888,7 @@
         </span>
       </el-dialog>
       <el-dialog
-        :before-close="handleClose12"
+
         :visible.sync="dialogVisible12"
         title="分配剪辑"
         width="40%"
@@ -1110,16 +1090,16 @@ export default {
       top_mix_query: ''
     }
   },
-  mounted() {
-    this.querydemo()
-    this.authorquery()
-    this.videocutterquery()
-    this.themequery()
-    this.statusquery()
-    this.audiocreatorquery()
-    // 2021年8月27日17:16:24，这里是状态查询
-    this.reviewsprogressquery()
-  },
+  //   mounted() {
+  //     this.querydemo()
+  //     this.authorquery()
+  //     this.videocutterquery()
+  //     this.themequery()
+  //     this.statusquery()
+  //     this.audiocreatorquery()
+  //     // 2021年8月27日17:16:24，这里是状态查询
+  //     this.reviewsprogressquery()
+  //   },
   methods: {
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`)
