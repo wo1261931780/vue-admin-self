@@ -15,16 +15,16 @@
           class="el-selectdemo"
           placeholder="请选择"
         >
-          <el-option label="title" value="1"/>
-          <el-option label="keyword" value="2"/>
-          <el-option label="audioid" value="3"/>
-          <el-option label="coverdesignerid" value="4"/>
+          <el-option label="title" value="1" />
+          <el-option label="keyword" value="2" />
+          <el-option label="audioid" value="3" />
+          <el-option label="coverdesignerid" value="4" />
         </el-select>
-<<<<<<< HEAD
+        <<<<<<< HEAD
         <el-button slot="append" icon="el-icon-search" />
-=======
-        <el-button slot="append" icon="el-icon-search" @click="querydemo"/>
->>>>>>> e9c2463628da8699d5a7b44a909db65e45cd8840
+        =======
+        <el-button slot="append" icon="el-icon-search" @click="querydemo" />
+        >>>>>>> e9c2463628da8699d5a7b44a909db65e45cd8840
       </el-input>
       <el-header>
         <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
@@ -111,7 +111,6 @@
               <el-button
                 size="mini"
                 @click="setCurrent()"
-
               >取消选择
               </el-button>
             </el-form>
@@ -657,23 +656,23 @@
       >
         <el-form :inline="true">
           <el-form-item label="机审状态：">
-            <el-input v-model="input" :disabled="true"/>
+            <el-input v-model="input" :disabled="true" />
           </el-form-item>
 
           <el-form-item label="机审时间：">
-            <el-input v-model="input" :disabled="true"/>
+            <el-input v-model="input" :disabled="true" />
           </el-form-item>
           <el-form-item label="机审结果：">
-            <el-input v-model="input" :disabled="true"/>
+            <el-input v-model="input" :disabled="true" />
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-table :data="pager.rows">
-            <el-table-column label="风险类型" property="date" width="150"/>
-            <el-table-column label="出现时间" property="name" width="200"/>
-            <el-table-column label="是否违规" property="title"/>
-            <el-table-column label="文字识别" property="title"/>
-            <el-table-column label="图片链接" property="title"/>
+            <el-table-column label="风险类型" property="date" width="150" />
+            <el-table-column label="出现时间" property="name" width="200" />
+            <el-table-column label="是否违规" property="title" />
+            <el-table-column label="文字识别" property="title" />
+            <el-table-column label="图片链接" property="title" />
           </el-table>
           <div>
             <el-footer>
@@ -713,13 +712,13 @@
             label-width="100px"
           >
             <el-form-item label="头条" prop="theme1">
-              <el-input v-model="pager.rows.theme"/>
+              <el-input v-model="pager.rows.theme" />
             </el-form-item>
             <el-form-item label="企鹅" prop="theme1">
-              <el-input v-model="pager.rows.theme"/>
+              <el-input v-model="pager.rows.theme" />
             </el-form-item>
             <el-form-item label="百家" prop="theme1">
-              <el-input v-model="pager.rows.theme"/>
+              <el-input v-model="pager.rows.theme" />
             </el-form-item>
           </el-form>
         </span>
@@ -860,13 +859,13 @@
         append-to-body
         width="40%"
       >
-        <div style="margin: 20px 0"/>
+        <div style="margin: 20px 0" />
         <el-input
           placeholder="请输入内容"
           maxlength="30"
           show-word-limit
         />
-        <span class="el-dialog__body"/>
+        <span class="el-dialog__body" />
         <span slot="footer" class="dialog-footer">
           <el-button
             type="primary"
@@ -883,13 +882,13 @@
         append-to-body
         width="40%"
       >
-        <div style="margin: 20px 0"/>
+        <div style="margin: 20px 0" />
         <el-input
           placeholder="请输入内容"
           maxlength="30"
           show-word-limit
         />
-        <span class="el-dialog__body"/>
+        <span class="el-dialog__body" />
         <span slot="footer" class="dialog-footer">
           <el-button
             type="primary"
@@ -918,7 +917,7 @@
           </el-form-item>
         </el-form>
 
-        <span class="el-dialog__body"/>
+        <span class="el-dialog__body" />
         <span slot="footer" class="dialog-footer">
           <el-button
             type="primary"
