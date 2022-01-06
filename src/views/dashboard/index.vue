@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-12-23 23:46:29
- * @LastEditTime: 2021-12-26 00:11:43
+ * @LastEditTime: 2022-01-06 23:15:06
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\dashboard\index.vue
@@ -12,19 +12,7 @@
     <div>show me somthing</div>
     <!-- <el-alert :closable="false" title="menu 1-1" type="success"> </el-alert> -->
     <el-button :plain="true" class="s1" @click="open"> show me </el-button>
-    <el-input
-      class="input-with-select"
-      change="querydemo"
-      placeholder="请输入内容,目前支持测试测试搜索(╯°Д°)╯︵┻━┻"
-    >
-      <el-select slot="prepend" class="el-selectdemo" placeholder="请选择">
-        <el-option label="title" value="1" />
-        <el-option label="keyword" value="2" />
-        <el-option label="audioid" value="3" />
-        <el-option label="coverdesignerid" value="4" />
-      </el-select>
-      <el-button slot="append" icon="el-icon-search" click="querydemo" />
-    </el-input>
+
   </div>
 </template>
 <script src="//cdn.jsdelivr.net/npm/element-plus"></script>
