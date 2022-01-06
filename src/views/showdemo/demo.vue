@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 20:30:01
- * @LastEditTime: 2022-01-06 23:28:52
+ * @LastEditTime: 2022-01-06 23:53:21
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\showdemo\demo.vue
@@ -19,7 +19,7 @@
             <el-option label="label2" value="2" />
             <el-option label="label3" value="3" />
           </el-select>
-          <el-button slot="append" icon="el-icon-search" @click="open" />
+          <el-button slot="append" icon="el-icon-search" @click="query" />
         </el-input>
         <!-- </div> -->
       </el-header>
@@ -51,7 +51,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button>查询</el-button>
+            <el-button @click="query">查询</el-button>
 
             <el-button plain type="primary">更新记录</el-button>
 
@@ -63,7 +63,22 @@
           <el-table-column fixed prop="table_index" label="序号index" width="150px" align="center" sortable />
           <!-- 这里只需要设置一次fix固定左边即可
           后续会默认设置 -->
-          <el-table-column prop="table_priority" label="优先级priority" width="150px" align="center" sortable />
+          <el-table-column
+            prop="table_priority"
+            label="优先级priority"
+            width="150px"
+            align="center"
+            sortable
+            :filters="[{text:'优先',value:'priority'},{text:'普通',value:'normal'}]"
+            :filter-method="prioritytag"
+          ><template slot-scope="scope">
+            <el-tag :type="scope.row.tag==='priority'?'error':'primary'" disable-transitions>
+              {{ scope.row.tag }}
+
+            </el-tag>
+          </template>
+            <!-- 1 -->
+          </el-table-column>
           <el-table-column prop="table_date" label="日期date" width="150px" align="center" sortable />
           <el-table-column prop="table_title" label="标题title" width="150px" align="center" />
           <el-table-column prop="table_author" label="作者author" width="150px" align="center" />
@@ -76,7 +91,7 @@
           <el-table-column fixed="right" label="发布release" width="150px" align="center">
             <!-- 但是在fix到右边，就必须设置好对应关键词 -->
             <template>
-              <el-button type="primary" plain @click="table_info">测试</el-button>
+              <el-button type="primary" plain @click="table_query">测试</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -101,7 +116,7 @@ export default {
       },
       tabledata: [{
         table_index: 'table_index',
-        table_priority: 'table_priority',
+        table_priority: 'priority',
         table_date: 'table_date',
         table_title: 'table_title',
         table_author: 'table_author',
@@ -113,7 +128,7 @@ export default {
         table_plateform: 'table_plateform'
       }, {
         table_index: 'table_index2',
-        table_priority: 'table_priority2',
+        table_priority: 'normal',
         table_date: 'table_date2',
         table_title: 'table_title2',
         table_author: 'table_author2',
@@ -127,11 +142,14 @@ export default {
     }
   },
   methods: {
-    open() {
-      this.$message.success('搜索')
+    query() {
+      this.$message.success('query')
     },
-    table_info() {
-      this.$message.error('ceshi')
+    table_query() {
+      this.$message.error('table_query')
+    },
+    prioritytag(value, row) {
+      return row.tag === value
     }
   }
 }
