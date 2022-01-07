@@ -20,11 +20,11 @@
           <el-option label="audioid" value="3" />
           <el-option label="coverdesignerid" value="4" />
         </el-select>
-        <<<<<<< HEAD
-        <el-button slot="append" icon="el-icon-search" />
-        =======
-        <el-button slot="append" icon="el-icon-search" @click="querydemo" />
-        >>>>>>> e9c2463628da8699d5a7b44a909db65e45cd8840
+        <!-- <<<<<<< HEAD -->
+        <!-- <el-button slot="append" icon="el-icon-search" /> -->
+        <!-- ======= -->
+        <!-- <el-button slot="append" icon="el-icon-search" @click="querydemo" /> -->
+        <!-- >>>>>>> e9c2463628da8699d5a7b44a909db65e45cd8840 -->
       </el-input>
       <el-header>
         <!--        <el-button size="small" type="primary" @click="querydemo">查询</el-button>-->
@@ -1025,6 +1025,10 @@ export default {
       //         articleauthor: 'articleauthor',
       //     }
       // ],
+
+      videolistData: [{
+
+      }],
       model: {
         id: '',
         title: '', //

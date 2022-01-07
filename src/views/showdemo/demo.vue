@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 20:30:01
- * @LastEditTime: 2022-01-06 23:53:21
+ * @LastEditTime: 2022-01-07 17:10:17
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\showdemo\demo.vue
@@ -53,14 +53,32 @@
           <el-form-item>
             <el-button @click="query">查询</el-button>
 
-            <el-button plain type="primary">更新记录</el-button>
+            <el-button
+              plain
+              type="primary"
+              style="margin-left:16px;"
+              @click="drawer=true"
+            >更新记录</el-button>
 
-            <el-button>取消选择</el-button>
+            <el-button @click="reset_choice">取消选择</el-button>
           </el-form-item>
         </el-form>
 
-        <el-table :data="tabledata" style="width:100%">
-          <el-table-column fixed prop="table_index" label="序号index" width="150px" align="center" sortable />
+        <el-table
+          :data="tabledata"
+          style="width:100%"
+          stripe
+        >
+          <el-table-column
+            fixed
+            type="index"
+            :index-method="table_index"
+            label="序号index"
+            width="150px"
+            align="center"
+            sortable
+          />
+          <!-- <el-table-column fixed prop="table_index" label="序号index" width="150px" align="center" sortable /> -->
           <!-- 这里只需要设置一次fix固定左边即可
           后续会默认设置 -->
           <el-table-column
@@ -69,12 +87,11 @@
             width="150px"
             align="center"
             sortable
-            :filters="[{text:'优先',value:'priority'},{text:'普通',value:'normal'}]"
+            :filters="[{text:'优先',value:'priority'},{text:'正常',value:'normal'}]"
             :filter-method="prioritytag"
           ><template slot-scope="scope">
-            <el-tag :type="scope.row.tag==='priority'?'error':'primary'" disable-transitions>
-              {{ scope.row.tag }}
-
+            <el-tag :type="scope.row.table_priority==='normal'?'danger':'primary'" disable-transitions>
+              {{ scope.row.table_priority }}
             </el-tag>
           </template>
             <!-- 1 -->
@@ -82,12 +99,87 @@
           <el-table-column prop="table_date" label="日期date" width="150px" align="center" sortable />
           <el-table-column prop="table_title" label="标题title" width="150px" align="center" />
           <el-table-column prop="table_author" label="作者author" width="150px" align="center" />
-          <el-table-column prop="table_upload" label="上传文件upload" width="150px" align="center" />
-          <el-table-column prop="table_audio" label="配音audio" width="150px" align="center" />
-          <el-table-column prop="table_cutter" label="剪辑cutter" width="150px" align="center" />
-          <el-table-column prop="table_reviews" label="人工审核reviews" width="150px" align="center" />
-          <el-table-column prop="table_machine_reviews" label="机器审核machine_reviews" width="150px" align="center" />
-          <el-table-column prop="table_plateform" label="平台选择plateform" width="150px" align="center" />
+          <el-table-column
+            prop="table_upload"
+            label="上传文件upload"
+            width="150px"
+            align="center"
+          >
+            <template>
+              <el-button size="mini" @click="article_download">文本下载</el-button>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="table_audio"
+            label="配音audio"
+            width="150px"
+            align="center"
+          >
+            <template>
+              <el-button-group>
+                <!-- <el-button size="mini">上传</el-button> -->
+                <el-button size="mini">配音修改</el-button>
+                <el-button
+                  size="mini"
+                  @click="audio_download"
+                >配音下载</el-button>
+              </el-button-group>
+            </template>
+          </el-table-column>
+          <el-table-column prop="table_cutter" label="剪辑cutter" width="150px" align="center">
+            <template>
+              <el-button-group>
+                <el-button size="mini">剪辑修改</el-button>
+                <el-button
+                  size="mini"
+                  @click="video_download"
+                >剪辑下载</el-button>
+              </el-button-group>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="table_reviews"
+            label="人工审核reviews"
+            width="150px"
+            align="center"
+          >
+            <template>
+              <el-button-group>
+                <el-button size="mini" @click="dialogFormVisible =true">人工审核</el-button>
+                <!-- <el-button size="mini">剪辑下载</el-button> -->
+              </el-button-group>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="table_machine_reviews"
+            label="机器审核machine_reviews"
+            width="150px"
+            align="center"
+          ><template>
+            <el-button-group>
+              <el-button
+                size="mini"
+                @click="machine_reviews_result=true"
+              >机器审核</el-button>
+              <!-- <el-button size="mini">剪辑下载</el-button> -->
+            </el-button-group>
+          </template>
+          </el-table-column>
+          <el-table-column
+            prop="table_plateform"
+            label="平台选择plateform"
+            width="150px"
+            align="center"
+          ><template>
+            <el-button-group>
+              <el-button
+                size="mini"
+                @click="choose_plateform=true"
+              >平台选择</el-button>
+              <!-- <el-button size="mini">剪辑下载</el-button> -->
+            </el-button-group>
+          </template>
+          </el-table-column>
           <el-table-column fixed="right" label="发布release" width="150px" align="center">
             <!-- 但是在fix到右边，就必须设置好对应关键词 -->
             <template>
@@ -95,6 +187,70 @@
             </template>
           </el-table-column>
         </el-table>
+        <el-dialog
+          title="人工审核"
+          :visible.sync="dialogFormVisible"
+        >
+          <el-table
+            :data="reviews_table_data"
+          >
+            <el-table-column
+              label="人工审核进度"
+              property="reviews_table_info"
+            />
+            <el-table-column
+              label="审核时间"
+              property="reviews_table_time"
+            /><el-table-column
+              label="审核人"
+              property="reviews_table_name"
+            />
+            <el-table-column
+              label="审核意见"
+              property="reviews_table_point"
+            />
+            <el-table-column
+              label="操作"
+              property="reviews_table_operate"
+            />
+          </el-table>
+        </el-dialog>
+        <el-dialog
+          title="机器审核"
+          :visible.sync="machine_reviews_result"
+        ><div>暂无结果</div>
+          <el-button>发送机审</el-button>
+          <el-button>给出终审意见</el-button>
+          <el-form>
+            <el-radio-button>ceshi </el-radio-button>
+          </el-form>
+        </el-dialog>
+        <el-dialog
+          title="平台选择"
+          :visible.sync="choose_plateform"
+        >
+          <!-- <div>请选择</div> -->
+          <el-form>
+            <el-form-item
+              label="待选平台"
+            >
+              <!-- 2022年1月7日17:04:47，这里的复选框没有展示出来 -->
+              <el-checkbox-group>
+                <el-checkbox label="dayu" />
+                <el-checkbox label="dayu" />
+                <el-checkbox label="dayu" />
+              </el-checkbox-group>
+            </el-form-item>
+          </el-form>
+        </el-dialog>
+
+        <el-drawer
+          title="我是更新记录"
+          :visible.sync="drawer"
+          :with-header="false"
+        >
+          <span>我是更新记录</span>
+        </el-drawer>
       </el-main>
       <el-footer>Footer</el-footer>
     </el-container>
@@ -102,6 +258,7 @@
 </template>
 
 <script>
+// import { title } from '@/settings'
 export default {
 
   data() {
@@ -114,6 +271,32 @@ export default {
         user: '',
         region: ''
       },
+      drawer: false,
+      dialogFormVisible: false,
+      machine_reviews_result: false,
+      choose_plateform: false,
+      reviews_table_data: [{
+        reviews_table_info: '一次审核reviews_table_info',
+        reviews_table_name: 'reviews_table_name',
+        reviews_table_time: 'reviews_table_time',
+        reviews_table_point: 'reviews_table_point',
+        reviews_table_operate: 'reviews_table_operate'
+      },
+      {
+        reviews_table_info: '二次审核reviews_table_info2',
+        reviews_table_name: 'reviews_table_name2',
+        reviews_table_time: 'reviews_table_time2',
+        reviews_table_point: 'reviews_table_point2',
+        reviews_table_operate: 'reviews_table_operate2'
+      },
+      {
+        reviews_table_info: '三次审核reviews_table_info3',
+        reviews_table_name: 'reviews_table_name3',
+        reviews_table_time: 'reviews_table_time3',
+        reviews_table_point: 'reviews_table_point3',
+        reviews_table_operate: 'reviews_table_operate3'
+      }],
+
       tabledata: [{
         table_index: 'table_index',
         table_priority: 'priority',
@@ -138,6 +321,54 @@ export default {
         table_reviews: 'table_reviews2',
         table_machine_reviews: 'table_machine_reviews2',
         table_plateform: 'table_plateform2'
+      }, {
+        table_index: 'table_index3',
+        table_priority: 'normal',
+        table_date: 'table_date3',
+        table_title: 'table_title3',
+        table_author: 'table_author3',
+        table_upload: 'table_upload3',
+        table_audio: 'table_audio3',
+        table_cutter: 'table_cutter3',
+        table_reviews: 'table_reviews3',
+        table_machine_reviews: 'table_machine_reviews3',
+        table_plateform: 'table_plateform3'
+      }, {
+        table_index: 'table_index4',
+        table_priority: 'priority',
+        table_date: 'table_date4',
+        table_title: 'table_title4',
+        table_author: 'table_author4',
+        table_upload: 'table_upload4',
+        table_audio: 'table_audio4',
+        table_cutter: 'table_cutter4',
+        table_reviews: 'table_reviews4',
+        table_machine_reviews: 'table_machine_reviews4',
+        table_plateform: 'table_plateform4'
+      }, {
+        table_index: 'table_index5',
+        table_priority: 'normal',
+        table_date: 'table_date5',
+        table_title: 'table_title5',
+        table_author: 'table_author5',
+        table_upload: 'table_upload5',
+        table_audio: 'table_audio5',
+        table_cutter: 'table_cutter5',
+        table_reviews: 'table_reviews5',
+        table_machine_reviews: 'table_machine_reviews5',
+        table_plateform: 'table_plateform5'
+      }, {
+        table_index: 'table_index6',
+        table_priority: 'normal',
+        table_date: 'table_date6',
+        table_title: 'table_title6',
+        table_author: 'table_author6',
+        table_upload: 'table_upload6',
+        table_audio: 'table_audio6',
+        table_cutter: 'table_cutter6',
+        table_reviews: 'table_reviews6',
+        table_machine_reviews: 'table_machine_reviews6',
+        table_plateform: 'table_plateform6'
       }]
     }
   },
@@ -148,8 +379,23 @@ export default {
     table_query() {
       this.$message.error('table_query')
     },
+    article_download() {
+      this.$message.warning('article_download')
+    },
+    audio_download() {
+      this.$message.warning('audio_download')
+    },
+    video_download() {
+      this.$message.warning('video_download')
+    },
+    reset_choice() {
+      this.$message.warning('reset_choice')
+    },
     prioritytag(value, row) {
       return row.tag === value
+    },
+    table_index(index) {
+      return index
     }
   }
 }
