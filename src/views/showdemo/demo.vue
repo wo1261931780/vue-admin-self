@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 20:30:01
- * @LastEditTime: 2022-01-11 17:05:15
+ * @LastEditTime: 2022-01-11 19:43:34
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\showdemo\demo.vue
@@ -108,19 +108,25 @@
             align="center"
           >
             <template>
+              <el-button size="mini" @click="cover_dialog=true">修改封面</el-button>
+              <br>
               <el-button size="mini" @click="article_download">文本下载</el-button>
             </template>
           </el-table-column>
           <el-table-column
             prop="table_audio"
             label="配音audio"
-            width="180px"
+            width="150px"
             align="center"
           >
             <template>
               <el-button-group>
                 <!-- <el-button size="mini">上传</el-button> -->
-                <el-button size="mini">配音修改</el-button>
+                <el-button
+                  size="mini"
+                  @click="audio_dialog=true"
+                >配音修改</el-button>
+                <br>
                 <el-button
                   size="mini"
                   @click="audio_download"
@@ -131,12 +137,16 @@
           <el-table-column
             prop="table_cutter"
             label="剪辑cutter"
-            width="180px"
+            width="150px"
             align="center"
           >
             <template>
               <el-button-group>
-                <el-button size="mini">剪辑修改</el-button>
+                <el-button
+                  size="mini"
+                  @click="cutter_dialog=true"
+                >剪辑修改</el-button>
+                <br>
                 <el-button
                   size="mini"
                   @click="video_download"
@@ -190,13 +200,111 @@
             </el-button-group>
           </template>
           </el-table-column>
-          <el-table-column fixed="right" label="发布release" width="150px" align="center">
+          <el-table-column
+            fixed="right"
+            label="发布release"
+            width="200px"
+            align="center"
+          >
             <!-- 但是在fix到右边，就必须设置好对应关键词 -->
             <template>
-              <el-button type="primary" plain @click="table_query">测试</el-button>
+              <!-- <el-button type="small" plain>一键上传视频</el-button>
+              <br> -->
+              <el-button type="primary" plain @click="table_query">发布视频</el-button>
             </template>
           </el-table-column>
+
         </el-table>
+        <el-pagination
+          :current-page="current_page"
+          :page-sizes="[50,100,200]"
+          :page-size="1000"
+          layout="total,sizes,prev,pager,next,jumper"
+          :total="1000"
+          @size-change="get_page_size"
+          @current-change="get_page_change"
+        />
+        <el-dialog
+          title="修改封面"
+          :visible.sync="cover_dialog"
+        >
+
+          <el-form>
+            <el-form-item label="当前设计师：">
+              <el-select filterable>
+                <el-option
+                  v-for="item in tabledata"
+                  :label="item.table_audio"
+                  :value="item.table_audio"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="修改封面文件：">
+              <el-button disabled>文件信息xxxxxxxxx </el-button>
+
+              <el-button>上传封面文件 </el-button>
+            </el-form-item>
+            <el-form-item label="封面相关修改：">
+              <el-button>提交封面修改 </el-button>
+
+              <el-button>取消操作 </el-button>
+            </el-form-item>
+          </el-form>
+        </el-dialog>
+        <el-dialog
+          title="配音修改"
+          :visible.sync="audio_dialog"
+        >
+          <el-form>
+            <el-form-item label="当前配音">
+              <el-select filterable>
+                <el-option
+                  v-for="item in tabledata"
+                  :label="item.table_audio"
+                  :value="item.table_audio"
+                />
+                <!-- 2022年1月11日17:33:03，这里需要一个v-bind指令，但是没搞清楚在哪里用 -->
+              </el-select>
+            </el-form-item>
+            <el-form-item label="修改配音文件">
+              <el-button disabled>文件信息xxxxxxxxx </el-button>
+
+              <el-button>上传配音文件 </el-button>
+            </el-form-item>
+            <el-form-item label="配音相关修改">
+              <el-button>提交配音修改 </el-button>
+
+              <el-button>取消操作 </el-button>
+            </el-form-item>
+          </el-form>
+        </el-dialog>
+        <el-dialog
+          title="剪辑修改"
+          :visible.sync="cutter_dialog"
+        >
+          <el-form>
+            <el-form-item label="当前剪辑：">
+              <el-select filterable>
+                <el-option
+                  v-for="item in tabledata"
+                  :label="item.table_audio"
+                  :value="item.table_audio"
+                />
+                <!-- 2022年1月11日17:33:03，这里需要一个v-bind指令，但是没搞清楚在哪里用 -->
+              </el-select>
+            </el-form-item>
+            <el-form-item label="修改剪辑文件：">
+              <el-button disabled>文件信息xxxxxxxxx </el-button>
+
+              <el-button>上传视频文件 </el-button>
+            </el-form-item>
+            <el-form-item label="剪辑相关修改：">
+              <el-button>提交剪辑修改 </el-button>
+
+              <el-button>取消操作 </el-button>
+            </el-form-item>
+          </el-form>
+        </el-dialog>
         <el-dialog
           title="人工审核"
           :visible.sync="reviews_dialog"
@@ -301,7 +409,7 @@
           <span>我是更新记录</span>
         </el-drawer>
       </el-main>
-      <el-footer>Footer</el-footer>
+      <!-- <el-footer>Footer</el-footer> -->
     </el-container>
   </div>
 </template>
@@ -321,9 +429,13 @@ export default {
         region: ''
       },
       drawer: false,
+      cover_dialog: false,
+      audio_dialog: false,
+      cutter_dialog: false,
       reviews_dialog: false,
       machine_reviews_result: false,
       choose_plateform: false,
+      current_page: 10,
       reviews_table_data: [{
         reviews_table_info: '一次审核reviews_table_info',
         reviews_table_name: 'reviews_table_name',
@@ -442,6 +554,12 @@ export default {
     },
     prioritytag(table_priority, row) {
       return row.table_priority === table_priority
+    },
+    get_page_size(val) {
+      console.log('每页${val}条')
+    },
+    get_page_change(val) {
+      console.log('当前页：${val}')
     },
     // 2022年1月11日15:53:04，这里一开始设置的是value和tag，需要针对修改，从而实现筛选
     table_index(index) {
