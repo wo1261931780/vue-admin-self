@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 20:30:01
- * @LastEditTime: 2022-01-07 17:10:17
+ * @LastEditTime: 2022-01-11 17:05:15
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\showdemo\demo.vue
@@ -74,7 +74,7 @@
             type="index"
             :index-method="table_index"
             label="序号index"
-            width="150px"
+            width="90px"
             align="center"
             sortable
           />
@@ -90,7 +90,9 @@
             :filters="[{text:'优先',value:'priority'},{text:'正常',value:'normal'}]"
             :filter-method="prioritytag"
           ><template slot-scope="scope">
-            <el-tag :type="scope.row.table_priority==='normal'?'danger':'primary'" disable-transitions>
+            <el-tag
+              :type="scope.row.table_priority==='normal'?'primary':'danger'"
+            >
               {{ scope.row.table_priority }}
             </el-tag>
           </template>
@@ -112,7 +114,7 @@
           <el-table-column
             prop="table_audio"
             label="配音audio"
-            width="150px"
+            width="180px"
             align="center"
           >
             <template>
@@ -126,7 +128,12 @@
               </el-button-group>
             </template>
           </el-table-column>
-          <el-table-column prop="table_cutter" label="剪辑cutter" width="150px" align="center">
+          <el-table-column
+            prop="table_cutter"
+            label="剪辑cutter"
+            width="180px"
+            align="center"
+          >
             <template>
               <el-button-group>
                 <el-button size="mini">剪辑修改</el-button>
@@ -145,7 +152,10 @@
           >
             <template>
               <el-button-group>
-                <el-button size="mini" @click="dialogFormVisible =true">人工审核</el-button>
+                <el-button
+                  size="mini"
+                  @click="reviews_dialog =true"
+                >人工审核</el-button>
                 <!-- <el-button size="mini">剪辑下载</el-button> -->
               </el-button-group>
             </template>
@@ -189,7 +199,7 @@
         </el-table>
         <el-dialog
           title="人工审核"
-          :visible.sync="dialogFormVisible"
+          :visible.sync="reviews_dialog"
         >
           <el-table
             :data="reviews_table_data"
@@ -218,11 +228,32 @@
         <el-dialog
           title="机器审核"
           :visible.sync="machine_reviews_result"
-        ><div>暂无结果</div>
-          <el-button>发送机审</el-button>
-          <el-button>给出终审意见</el-button>
+        >
           <el-form>
-            <el-radio-button>ceshi </el-radio-button>
+            <el-form-item label="机审操作：">
+              <el-button>发送机审</el-button>
+              <el-button>刷新机审结果 </el-button>
+            </el-form-item>
+            <el-form-item label="机审时间：">
+              <el-input placeholder="2022年1月11日16:27:04，不能选择" disabled class="machine_input" />
+            </el-form-item>
+            <el-form-item label="机审结果：">
+              <el-input placeholder="未通过，疑似xx，违规xx" disabled class="machine_input" />
+            </el-form-item>
+            <el-form-item label="机审详情：">
+              <el-input placeholder="未通过，疑似xx，违规xx" type="textarea" />
+            </el-form-item>
+
+            <el-form-item label="终审意见：">
+
+              <el-radio-group>
+                <el-radio label="通过" name="" />
+                <el-radio label="不通过" name="" />
+                <el-button>给出终审意见</el-button>
+              </el-radio-group>
+              <el-input placeholder="不限制字符数" />
+            </el-form-item>
+
           </el-form>
         </el-dialog>
         <el-dialog
@@ -232,15 +263,33 @@
           <!-- <div>请选择</div> -->
           <el-form>
             <el-form-item
-              label="待选平台"
+              label="平台选择"
             >
-              <!-- 2022年1月7日17:04:47，这里的复选框没有展示出来 -->
-              <el-checkbox-group>
-                <el-checkbox label="dayu" />
-                <el-checkbox label="dayu" />
-                <el-checkbox label="dayu" />
-              </el-checkbox-group>
+              <!-- <el-checkbox-group>
+                <el-checkbox label="测试" />
+                <el-checkbox label="测试" />
+                <el-checkbox label="测试" />
+              </el-checkbox-group> 这里没有绑定数据，先修改为单选-->
+              <el-radio-group>
+                <el-radio label="待选平台" />
+                <el-radio label="待选平台2" />
+                <el-radio label="待选平台3" />
+                <el-radio label="待选平台4" />
+                <el-radio label="待选平台5" />
+              </el-radio-group>
             </el-form-item>
+            <el-form-item
+              label="平台选择2"
+            >
+              <el-radio-group>
+                <el-radio label="待选平台" />
+                <el-radio label="待选平台2" />
+                <el-radio label="待选平台3" />
+              </el-radio-group>
+            </el-form-item>
+            <el-button type="primary" plain>提交</el-button>
+            <el-button type="danger" plain>取消选择</el-button>
+            <el-button>重置选择</el-button>
           </el-form>
         </el-dialog>
 
@@ -272,7 +321,7 @@ export default {
         region: ''
       },
       drawer: false,
-      dialogFormVisible: false,
+      reviews_dialog: false,
       machine_reviews_result: false,
       choose_plateform: false,
       reviews_table_data: [{
@@ -391,9 +440,10 @@ export default {
     reset_choice() {
       this.$message.warning('reset_choice')
     },
-    prioritytag(value, row) {
-      return row.tag === value
+    prioritytag(table_priority, row) {
+      return row.table_priority === table_priority
     },
+    // 2022年1月11日15:53:04，这里一开始设置的是value和tag，需要针对修改，从而实现筛选
     table_index(index) {
       return index
     }
@@ -413,6 +463,9 @@ width: 130px;
     color: #333;
     text-align: center;
     /* line-height: 60px; */
+  }
+  .machine_input{
+      width: 500px;
   }
   .el-main {
     background-color: #E9EEF3;
