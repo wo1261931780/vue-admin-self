@@ -160,6 +160,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    // 2022年1月6日21:36:26，防止报错
+    path: '/jixiao',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/jixiao/jixiao'),
+        meta: { title: '绩效demo', icon: 'form' }
+      }
+    ]
+  },
   // 2021年12月24日13:33:32
   // 需要说明的是：
   // 这里的index包含了所有的查询条件，只需要单个页面即可
