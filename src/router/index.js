@@ -148,18 +148,18 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    // 2022年1月6日21:36:26，防止报错
-    path: '/videolistdemo',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/videolistdemo/index'),
-        meta: { title: 'videolist_index', icon: 'form' }
-      }
-    ]
-  },
+  // {
+  //   // 2022年1月6日21:36:26，防止报错
+  //   path: '/videolistdemo',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/videolistdemo/index'),
+  //       meta: { title: 'videolist_index', icon: 'form' }
+  //     }
+  //   ]
+  // },
   {
     // 2022年1月6日21:36:26，防止报错
     path: '/jixiao',

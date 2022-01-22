@@ -10,7 +10,8 @@
   <div>
     <el-container>
       <el-header>Header
-
+        <div>自动获取employee的token，然后获得相应岗位下的数据</div>
+        <div>根据数据查询</div>
       </el-header>
       <el-main>
 
@@ -97,28 +98,12 @@
             align="center"
             sortable
           />
-          <el-table-column
-            prop="table_priority"
-            label="稿件数量"
-            width="150px"
-            align="center"
-            sortable
-            :filters="[{text:'优先',value:'priority'},{text:'正常',value:'normal'}]"
-            :filter-method="prioritytag"
-          ><template slot-scope="scope">
-            <el-tag
-              :type="scope.row.table_priority==='normal'?'primary':'danger'"
-            >
-              {{ scope.row.table_priority }}
-            </el-tag>
-          </template>
-
-          </el-table-column>
+          <el-table-column prop="table_article_num" label="稿件数量table_article_num" width="150px" align="center" sortable />
           <el-table-column prop="total_fl" label="总流量total_fl" width="150px" align="center" sortable />
-          <el-table-column prop="average_each_p" label="平均流量/篇" width="150px" align="center" />
-          <el-table-column prop="average_each_d" label="平均流量/日" width="150px" align="center" />
+          <el-table-column prop="average_each_p" label="平均流量/篇average_each_p" width="150px" align="center" />
+          <el-table-column prop="average_each_d" label="平均流量/日average_each_d" width="150px" align="center" />
           <el-table-column
-            prop="table_upload"
+            prop="article_pass"
             label="稿件通过数"
             width="150px"
             align="center"
@@ -135,18 +120,42 @@
             width="150px"
             align="center"
           />
+
           <el-table-column
-            prop="table_reviews"
-            label="所在部门"
+            prop="table_office"
+            label="所在部门table_office"
             width="150px"
             align="center"
-          />
+            sortable
+            :filters="[{text:'内容部门',value:'contains'},{text:'海外部门',value:'overboards'}]"
+            :filter-method="prioritytag"
+          ><template slot-scope="scope">
+            <el-tag
+              :type="scope.row.table_office==='contains'?'primary':'danger'"
+            >
+              {{ scope.row.table_office }}
+            </el-tag>
+          </template>
+
+          </el-table-column>
+
           <el-table-column
-            prop="table_reviews_machine"
-            label="部门主管"
+            prop="table_manager"
+            label="部门主管table_manager"
             width="150px"
             align="center"
-          />
+            sortable
+            :filters="[{text:'刘1',value:'liu1'},{text:'刘2',value:'liu2'}]"
+            :filter-method="prioritytag"
+          ><template slot-scope="scope">
+            <el-tag
+              :type="scope.row.table_manager==='liu1'?'primary':'danger'"
+            >
+              {{ scope.row.table_manager }}
+            </el-tag>
+          </template>
+
+          </el-table-column>
           <el-table-column
             fixed="right"
             label="个人绩效分析"
@@ -467,11 +476,13 @@ export default {
 
       tabledata: [{
         table_index: 'table_index',
-        table_priority: 'priority',
-        total_fl: 'total_fl',
+        table_article_num: '102',
+        table_office: 'overboards',
+        table_manager: 'liu1',
+        total_fl: '2013.41',
         average_each_p: 'average_each_p',
         average_each_d: 'average_each_d',
-        table_upload: 'table_upload',
+        article_pass: '1234',
         table_designer: 'table_designer',
         table_audio: 'table_audio',
         table_audio_url: 'table_audio_url',
@@ -491,11 +502,14 @@ export default {
         table_plateform: 'table_plateform'
       }, {
         table_index: 'table_index2',
-        table_priority: 'normal',
-        total_fl: 'total_fl2',
+        table_article_num: '110',
+        table_office: 'overboards',
+        table_manager: 'liu2',
+
+        total_fl: '1895.23',
         average_each_p: 'average_each_p2',
         average_each_d: 'average_each_d2',
-        table_upload: 'table_upload2',
+        article_pass: '345',
         table_designer: 'table_designer2',
         table_audio: 'table_audio2',
         table_audio_url: 'table_audio_url2',
@@ -515,11 +529,14 @@ export default {
         table_plateform: 'table_plateform2'
       }, {
         table_index: 'table_index3',
-        table_priority: 'normal',
-        total_fl: 'total_fl3',
+        table_article_num: '104',
+        table_office: 'contains',
+        table_manager: 'liu1',
+
+        total_fl: '2342.23',
         average_each_p: 'average_each_p3',
         average_each_d: 'average_each_d3',
-        table_upload: 'table_upload3',
+        article_pass: '231',
         table_designer: 'table_designer3',
         table_audio: 'table_audio3',
         table_audio_url: 'table_audio_url3',
@@ -539,11 +556,14 @@ export default {
         table_plateform: 'table_plateform3'
       }, {
         table_index: 'table_index4',
-        table_priority: 'priority',
-        total_fl: 'total_fl4',
+        table_article_num: '74',
+        table_office: 'contains',
+        table_manager: 'liu2',
+
+        total_fl: '2346.67',
         average_each_p: 'average_each_p4',
         average_each_d: 'average_each_d4',
-        table_upload: 'table_upload4',
+        article_pass: '1234',
         table_designer: 'table_designer4',
         table_audio: 'table_audio4',
         table_audio_url: 'table_audio_url4',
@@ -563,11 +583,14 @@ export default {
         table_plateform: 'table_plateform4'
       }, {
         table_index: 'table_index5',
-        table_priority: 'normal',
-        total_fl: 'total_fl5',
+        table_article_num: '66',
+        table_office: 'overboards',
+        table_manager: 'liu1',
+
+        total_fl: '1252.23',
         average_each_p: 'average_each_p5',
         average_each_d: 'average_each_d5',
-        table_upload: 'table_upload5',
+        article_pass: '123',
         table_designer: 'table_designer5',
         table_audio: 'table_audio5',
         table_audio_url: 'table_audio_url5',
@@ -587,11 +610,14 @@ export default {
         table_plateform: 'table_plateform5'
       }, {
         table_index: 'table_index6',
-        table_priority: 'normal',
-        total_fl: 'total_fl6',
+        table_article_num: '87',
+        table_office: 'contains',
+        table_manager: 'liu1',
+
+        total_fl: '1980.33',
         average_each_p: 'average_each_p6',
         average_each_d: 'average_each_d6',
-        table_upload: 'table_upload6',
+        article_pass: '534',
         table_designer: 'table_designer6',
         table_audio: 'table_audio6',
         table_audio_url: 'table_audio_url6',
@@ -644,8 +670,8 @@ export default {
     reset_choice() {
       this.$message.warning('reset_choice')
     },
-    prioritytag(table_priority, row) {
-      return row.table_priority === table_priority
+    prioritytag(table_article_num, row) {
+      return row.table_article_num === table_article_num
     },
     get_page_size(val) {
       console.log('每页${val}条')

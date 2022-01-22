@@ -338,7 +338,7 @@
             </el-form-item>
             <hr>
             <el-form-item label="封面相关修改：">
-              <el-button>提交封面修改 </el-button>
+              <el-button @click="cover_change">提交封面修改 </el-button>
 
               <el-button>取消操作 </el-button>
             </el-form-item>
@@ -373,7 +373,7 @@
               </el-upload>
             </el-form-item>
             <el-form-item label="配音相关修改">
-              <el-button>提交配音修改 </el-button>
+              <el-button @click="audiopeople_change">提交配音修改 </el-button>
 
               <el-button>取消操作 </el-button>
             </el-form-item>
@@ -407,7 +407,7 @@
               </el-upload>
             </el-form-item>
             <el-form-item label="剪辑相关修改：">
-              <el-button>提交剪辑修改 </el-button>
+              <el-button @click="cutter_change">提交剪辑修改 </el-button>
 
               <el-button>取消操作 </el-button>
             </el-form-item>
@@ -472,8 +472,8 @@
         >
           <el-form>
             <el-form-item label="机审操作：">
-              <el-button>发送机审</el-button>
-              <el-button>刷新机审结果 </el-button>
+              <el-button @click="send_machine_apply">发送机审</el-button>
+              <el-button @click="refresh_machine_result">刷新机审结果 </el-button>
             </el-form-item>
             <el-form-item label="机审时间：">
               <el-input placeholder="2022年1月11日16:27:04，不能选择" disabled class="machine_input" />
@@ -490,7 +490,7 @@
               <el-radio-group>
                 <el-radio label="通过" name="" />
                 <el-radio label="不通过" name="" />
-                <el-button>给出终审意见</el-button>
+                <el-button @click="give_final_advertise">给出终审意见</el-button>
               </el-radio-group>
               <el-input placeholder="不限制字符数" />
             </el-form-item>
@@ -528,7 +528,7 @@
                 <el-radio label="待选平台3" />
               </el-radio-group>
             </el-form-item>
-            <el-button type="primary" plain>提交</el-button>
+            <el-button type="primary" plain @click="check_plate_choose">提交</el-button>
             <el-button type="danger" plain>取消选择</el-button>
             <el-button>重置选择</el-button>
           </el-form>
@@ -776,7 +776,18 @@ export default {
     video_change(File, video_fileist) {
       this.video_fileist = video_fileist.slice(-3)
     },
-
+    send_machine_apply() {
+      this.$message.success('send_machine_apply')
+    },
+    refresh_machine_result() {
+      this.$message.success('refresh_machine_result')
+    },
+    give_final_advertise() {
+      this.$message.success('give_final_advertise')
+    },
+    check_plate_choose() {
+      this.$message.success('check_plate_choose')
+    },
     article_download() {
       this.$message.warning('article_download')
     },
@@ -788,6 +799,15 @@ export default {
     },
     reset_choice() {
       this.$message.warning('reset_choice')
+    },
+    cover_change() {
+      this.$message.success('cover_change')
+    },
+    audiopeople_change() {
+      this.$message.success('audiopeople_change')
+    },
+    cutter_change() {
+      this.$message.success('cutter_change')
     },
     prioritytag(table_priority, row) {
       return row.table_priority === table_priority
