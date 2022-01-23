@@ -264,8 +264,6 @@
                 :file-list="video_fileist"
                 :on-change="video_change"
               >
-                <!-- <el-button disabled>文件信息xxxxxxxxx </el-button> -->
-
                 <el-button>上传视频文件 </el-button>
                 <div slot="tip" class="el-upload__tip">只能上传mp4文件，且不超过1Gb</div>
               </el-upload>
@@ -303,23 +301,7 @@
                 <el-button size="mini">通过</el-button>
                 <br>
                 <el-button size="mini">不通过</el-button>
-                <!-- <el-popover
-                  trigger="hover"
-                  placement="top"
-                >
-                  <p>审核人：{{ tabledata.row.reviews_table_name }}</p>
-                  <p>审核时间：{{ tabledata.row.reviews_table_time }}</p>
-                  <div
-                    slot="reference"
-                    class="name-wrapper"
-                  >
-                    <el-button size="mini">通过</el-button>
-                    <br>
-                    <el-button size="mini">不通过</el-button>
-                  </div>
-                </el-popover> -->
               </template></el-table-column>
-
             <el-table-column
               label="操作"
               property="reviews_table_operate"
@@ -365,23 +347,16 @@
           title="平台选择"
           :visible.sync="choose_plateform"
         >
-          <!-- <div>请选择</div> -->
           <el-form>
             <el-form-item
               label="平台选择"
-            >
-              <!-- <el-checkbox-group>
-                <el-checkbox label="测试" />
-                <el-checkbox label="测试" />
-                <el-checkbox label="测试" />
-              </el-checkbox-group> 这里没有绑定数据，先修改为单选-->
-              <el-radio-group>
-                <el-radio label="待选平台" />
-                <el-radio label="待选平台2" />
-                <el-radio label="待选平台3" />
-                <el-radio label="待选平台4" />
-                <el-radio label="待选平台5" />
-              </el-radio-group>
+            > <el-radio-group>
+              <el-radio label="待选平台" />
+              <el-radio label="待选平台2" />
+              <el-radio label="待选平台3" />
+              <el-radio label="待选平台4" />
+              <el-radio label="待选平台5" />
+            </el-radio-group>
             </el-form-item>
             <el-form-item
               label="平台选择2"
@@ -406,7 +381,6 @@
           <span>我是更新记录</span>
         </el-drawer>
       </el-main>
-      <!-- <el-footer>Footer</el-footer> -->
     </el-container>
   </div>
 </template>
