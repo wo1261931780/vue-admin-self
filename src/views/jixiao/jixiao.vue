@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 20:30:01
- * @LastEditTime: 2022-01-13 17:30:29
+ * @LastEditTime: 2022-01-25 21:40:28
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\showdemo\demo.vue
@@ -69,9 +69,9 @@
           </el-form-item>
           <el-form-item>
             <el-button @click="query">查询</el-button>
-            <el-button @click="query">30天</el-button>
-            <el-button @click="query">当月</el-button>
-            <el-button @click="query">全年</el-button>
+            <el-button @click="query_30">30天</el-button>
+            <el-button @click="query_month">当月</el-button>
+            <el-button @click="query_year">全年</el-button>
 
             <el-button
               plain
@@ -613,6 +613,16 @@ export default {
     query() {
       this.$message.success('query')
     },
+    query_30() {
+      this.$message.success('query_30')
+    },
+    query_month() {
+      this.$message.success('query_month')
+    },
+    query_year() {
+      this.$message.success('query_year')
+    },
+
     table_query() {
       this.$message.error('table_query')
     },
