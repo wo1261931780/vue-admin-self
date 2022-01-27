@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-27 10:40:23
- * @LastEditTime: 2022-01-27 18:16:23
+ * @LastEditTime: 2022-01-27 20:26:27
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\register_form\index.vue
@@ -117,7 +117,7 @@
         </el-checkbox-group>
       </el-form-item>
       <br>
-      <el-button @click="jiixao">点击查看绩效</el-button>
+      <el-button @click="class_manage=true">点击查看绩效</el-button>
       <hr>
       <el-form-item label="备注：">
         <el-input v-model="teacher_data.desc" type="textarea" placeholder="备注可以不填写" />
@@ -126,16 +126,27 @@
     <el-button type="primary">提交</el-button>
     <el-button>取消</el-button>
     <hr>
-    <el-table
-      :data="teacher_info"
-      style="width:100%"
-      stripe
-    >
-      <el-table-column label="demo1" width="150px" align="center" prop="demo1" />
-      <el-table-column label="demo1" width="150px" align="center" prop="demo1" />
-      <el-table-column label="demo1" width="150px" align="center" prop="demo1" />
 
-    </el-table>
+    <el-dialog
+      title="排课情况"
+      :visible.sync="class_manage"
+    >
+      <el-table
+        :data="teacher_info"
+        style="width:100%"
+        stripe
+        border
+        show-summary="true"
+        height="500px"
+        :summary-method="total_line"
+      >
+        <el-table-column label="时间" width="150px" align="center" prop="demo1" fixed />
+        <el-table-column label="科目" width="150px" align="center" prop="demo1" />
+        <el-table-column label="学生姓名" width="150px" align="center" prop="demo1" />
+        <el-table-column label="时长" width="150px" align="center" prop="demo1" />
+        <el-table-column label="课时" width="150px" align="center" prop="demo1" />
+
+      </el-table></el-dialog>
   </div>
 </template>
 
@@ -143,6 +154,7 @@
 export default {
   data() {
     return {
+      class_manage: false,
       teacher_data: {
         demo1: '1111',
         name_input: '',
@@ -177,7 +189,9 @@ export default {
         school_input: [{ required: true, message: '请输入院校', trigger: 'change' }],
         degree_input: [{ required: true, message: '请输入学历', trigger: 'change' }]
       },
-      teacher_info: [{ demo1: '1111' }, { demo1: '1111' }, { demo1: '1111' }]
+      teacher_info: [{ demo1: '1111' },
+        { demo1: '1111' }, { demo1: '1111' },
+        { demo1: '1111' }, { demo1: '1111' }, { demo1: '1111' }, { demo1: '1111' }]
     }
   },
   methods: {
@@ -195,4 +209,5 @@ export default {
 .el-input{
     width: 200px;
 }
+
 </style>
