@@ -167,7 +167,40 @@ export const constantRoutes = [
       {
         path: 'index',
         component: () => import('@/views/register_form/index'),
-        meta: { title: '注册页面register_form', icon: 'form' }
+        meta: { title: '老师注册register_form', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/st_register_form',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/st_register_form/index'),
+        meta: { title: '学生注册st_register_form', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/info_change_form',
+    component: Layout,
+    children: [
+      {
+        path: 'teacher_info',
+        component: () => import('@/views/info_change_form/teacher_info'),
+        meta: { title: '老师修改teacher_info', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path: '/info_change_form',
+    component: Layout,
+    children: [
+      {
+        path: 'st_info',
+        component: () => import('@/views/info_change_form/st_info'),
+        meta: { title: '学生修改st_info', icon: 'form' }
       }
     ]
   },

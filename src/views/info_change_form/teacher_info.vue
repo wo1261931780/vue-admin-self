@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-27 10:40:23
- * @LastEditTime: 2022-01-27 15:01:49
+ * @LastEditTime: 2022-01-27 16:23:17
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\register_form\index.vue
@@ -44,6 +44,16 @@
           maxlength="50"
           show-word-limit
           clearable
+        />
+      </el-form-item>
+
+      <el-form-item
+        label="address_area"
+      >
+        <el-input
+          v-model="teacher_data.address_area"
+          placeholder="账号注册时间"
+          disabled
         />
       </el-form-item>
       <br>
@@ -115,6 +125,16 @@
     </el-form>
     <el-button type="primary">提交</el-button>
     <el-button>取消</el-button>
+    <hr>
+    <el-table
+      :data="teacher_data"
+      style="width:100%"
+      stripe
+    >
+      <el-table-column label="demo1" width="150px" align="center" prop="demo1" />
+      </el-table-column>
+
+    </el-table>
   </div>
 </template>
 
@@ -123,6 +143,7 @@ export default {
   data() {
     return {
       teacher_data: {
+        demo1: '1111',
         name_input: '',
         subject_checkbox: [],
         sex: '',
