@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-27 10:40:23
- * @LastEditTime: 2022-01-27 20:26:27
+ * @LastEditTime: 2022-01-27 21:38:14
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\register_form\index.vue
@@ -79,16 +79,36 @@
         label="degree_input"
         prop="degree_input"
       >
-        <el-input
+        <el-select
           v-model="teacher_data.degree_input"
-          placeholder="学历,应该是select"
-        />
+          clearable
+          filterable
+          placeholder="学历，可以搜索的select"
+        >
+          <el-option
+            v-for="item in degree_op"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+
+        </el-select>
       </el-form-item>
       <el-form-item label="school">
-        <el-input
+        <el-select
           v-model="teacher_data.school_input"
+          clearable
+          filterable
           placeholder="学校，可以搜索的select"
-        />
+        >
+          <el-option
+            v-for="item in school_op"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+
+        </el-select>
       </el-form-item>
       <br>
 
@@ -123,7 +143,7 @@
         <el-input v-model="teacher_data.desc" type="textarea" placeholder="备注可以不填写" />
       </el-form-item>
     </el-form>
-    <el-button type="primary">提交</el-button>
+    <el-button type="primary" @click="submit_info">提交信息修改</el-button>
     <el-button>取消</el-button>
     <hr>
 
@@ -137,15 +157,42 @@
         stripe
         border
         show-summary="true"
-        height="500px"
-        :summary-method="total_line"
+        height="400px"
       >
-        <el-table-column label="时间" width="150px" align="center" prop="demo1" fixed />
-        <el-table-column label="科目" width="150px" align="center" prop="demo1" />
-        <el-table-column label="学生姓名" width="150px" align="center" prop="demo1" />
-        <el-table-column label="时长" width="150px" align="center" prop="demo1" />
-        <el-table-column label="课时" width="150px" align="center" prop="demo1" />
-
+        <el-table-column label="时间" width="200px" align="center" prop="info_class_time" fixed />
+        <el-table-column
+          label="科目"
+          width="150px"
+          align="center"
+          prop="info_subject"
+          sortable
+          :filters="[{text:'数学',value:'math'},{text:'语文',value:'Chinese'}]"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.info_subject==='math'?'primary':'danger'"
+            >
+              {{ scope.row.info_subject }}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="学生姓名"
+          width="150px"
+          align="center"
+          prop="info_st_name"
+          sortable
+          :filters="[{text:'张三',value:'张三'},{text:'赵四',value:'赵四'}]"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.info_st_name==='张三'?'primary':'success'"
+            >
+              {{ scope.row.info_st_name }}
+            </el-tag>
+          </template></el-table-column>
+        <el-table-column label="时长" width="150px" align="center" prop="info_profit" />
+        <el-table-column label="课时" width="150px" align="center" prop="info_profit" />
       </el-table></el-dialog>
   </div>
 </template>
@@ -169,6 +216,26 @@ export default {
         school_input: '',
         degree_input: ''
       },
+      degree_op: [{
+        value: 'benke',
+        label: '本科'
+      }, {
+        value: 'shuoshi',
+        label: '硕士'
+      }, {
+        value: 'boshi',
+        label: '博士'
+      }],
+      school_op: [{
+        value: 'qju',
+        label: '清华大学'
+      }, {
+        value: 'bju',
+        label: '北京大学'
+      }, {
+        value: 'nju',
+        label: '南京大学'
+      }],
       teacher_rule: {
         name_input: [
           { required: true, message: '请输入姓名', trigger: 'change' },
@@ -189,14 +256,21 @@ export default {
         school_input: [{ required: true, message: '请输入院校', trigger: 'change' }],
         degree_input: [{ required: true, message: '请输入学历', trigger: 'change' }]
       },
-      teacher_info: [{ demo1: '1111' },
-        { demo1: '1111' }, { demo1: '1111' },
-        { demo1: '1111' }, { demo1: '1111' }, { demo1: '1111' }, { demo1: '1111' }]
+      teacher_info: [{ info_class_time: '2022年1月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '1.5' },
+        { info_class_time: '2022年8月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '2' },
+        { info_class_time: '2022年2月27日20:40:31', info_subject: 'Chinese', info_st_name: '赵四', info_profit: '1' },
+        { info_class_time: '2022年5月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '2' },
+        { info_class_time: '2022年4月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '1' },
+        { info_class_time: '2021年1月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '2' },
+        { info_class_time: '2022年3月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '1' }]
     }
   },
   methods: {
     jixiao() {
       this.$message.success('绩效页面')
+    },
+    submit_info() {
+      this.$message.success('提交成功')
     }
   }
 }

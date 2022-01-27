@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-27 10:40:23
- * @LastEditTime: 2022-01-27 18:03:59
+ * @LastEditTime: 2022-01-27 21:11:45
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\register_form\index.vue
@@ -120,6 +120,7 @@
         </el-checkbox-group>
       </el-form-item>
       <br>
+      <el-button @click="history_info=true">点击查看课程记录</el-button>
       <hr>
       <el-form-item label="备注：">
         <el-input v-model="student_data.desc" type="textarea" placeholder="备注可以不填写" />
@@ -127,6 +128,61 @@
     </el-form>
     <el-button type="primary">提交</el-button>
     <el-button>取消</el-button>
+
+    <el-dialog
+      title="排课情况"
+      :visible.sync="history_info"
+    >
+      <el-table
+        :data="st_history_info"
+        style="width:100%"
+        stripe
+        border
+        show-summary="true"
+        height="400px"
+      >
+        <el-table-column
+          label="时间"
+          width="200px"
+          align="center"
+          prop="st_info_class_time"
+          fixed
+          sortable
+        />
+        <el-table-column
+          label="科目"
+          width="150px"
+          align="center"
+          prop="st_info_subject"
+          sortable
+          :filters="[{text:'数学',value:'math'},{text:'语文',value:'Chinese'}]"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.st_info_subject==='math'?'primary':'danger'"
+            >
+              {{ scope.row.st_info_subject }}
+            </el-tag>
+          </template></el-table-column>
+        <el-table-column
+          label="老师姓名"
+          width="150px"
+          align="center"
+          prop="info_teacher_name"
+          sortable
+          :filters="[{text:'杜老师',value:'杜老师'},{text:'刘老师',value:'刘老师'}]"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.info_teacher_name==='杜老师'?'primary':'success'"
+            >
+              {{ scope.row.info_teacher_name }}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="时长" width="150px" align="center" prop="st_info_profit" />
+        <el-table-column label="课时" width="150px" align="center" prop="st_info_profit" />
+      </el-table></el-dialog>
   </div>
 </template>
 
@@ -134,6 +190,7 @@
 export default {
   data() {
     return {
+      history_info: false,
       student_data: {
         name_input: '',
         subject_checkbox: [],
@@ -147,6 +204,13 @@ export default {
         school_input: '',
         class_input: ''
       },
+      st_history_info: [{ st_info_class_time: '2022年1月27日20:40:31', st_info_subject: 'math', info_teacher_name: '杜老师', st_info_profit: '1.5' },
+        { st_info_class_time: '2022年8月27日20:40:31', st_info_subject: 'Chinese', info_teacher_name: '杜老师', st_info_profit: '2' },
+        { st_info_class_time: '2022年2月27日20:40:31', st_info_subject: 'math', info_teacher_name: '刘老师', st_info_profit: '1' },
+        { st_info_class_time: '2022年5月27日20:40:31', st_info_subject: 'math', info_teacher_name: '刘老师', st_info_profit: '2' },
+        { st_info_class_time: '2022年4月27日20:40:31', st_info_subject: 'Chinese', info_teacher_name: '杜老师', st_info_profit: '1' },
+        { st_info_class_time: '2021年1月27日20:40:31', st_info_subject: 'math', info_teacher_name: '杜老师', st_info_profit: '2' },
+        { st_info_class_time: '2022年3月27日20:40:31', st_info_subject: 'Chinese', info_teacher_name: '杜老师', st_info_profit: '1' }],
       teacher_rule: {
         name_input: [
           { required: true, message: '请输入姓名', trigger: 'change' },

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-27 10:40:23
- * @LastEditTime: 2022-01-27 15:01:49
+ * @LastEditTime: 2022-01-27 21:36:01
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\register_form\index.vue
@@ -70,16 +70,38 @@
         label="degree_input"
         prop="degree_input"
       >
-        <el-input
+
+        <el-select
           v-model="teacher_data.degree_input"
-          placeholder="学历,应该是select"
-        />
+          clearable
+          filterable
+          placeholder="学历，可以搜索的select"
+        >
+          <el-option
+            v-for="item in degree_op"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+
+        </el-select>
       </el-form-item>
       <el-form-item label="school">
-        <el-input
+
+        <el-select
           v-model="teacher_data.school_input"
+          clearable
+          filterable
           placeholder="学校，可以搜索的select"
-        />
+        >
+          <el-option
+            v-for="item in school_op"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+
+        </el-select>
       </el-form-item>
       <br>
 
@@ -134,6 +156,27 @@ export default {
         school_input: '',
         degree_input: ''
       },
+      degree_op: [{
+        value: 'benke',
+        label: '本科'
+      }, {
+        value: 'shuoshi',
+        label: '硕士'
+      }, {
+        value: 'boshi',
+        label: '博士'
+      }],
+      school_op: [{
+        value: 'qju',
+        label: '清华大学'
+      }, {
+        value: 'bju',
+        label: '北京大学'
+      }, {
+        value: 'nju',
+        label: '南京大学'
+      }],
+      degree_model: '',
       teacher_rule: {
         name_input: [
           { required: true, message: '请输入姓名', trigger: 'change' },

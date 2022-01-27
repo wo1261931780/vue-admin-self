@@ -165,9 +165,9 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/register_form/index'),
-        meta: { title: '老师注册register_form', icon: 'form' }
+        path: 'te_register_form',
+        component: () => import('@/views/register_form/te_register_form'),
+        meta: { title: '老师注册te_register_form', icon: 'form' }
       }
     ]
   },
@@ -176,8 +176,8 @@ export const constantRoutes = [
     component: Layout,
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/st_register_form/index'),
+        path: 'st_register_form',
+        component: () => import('@/views/register_form/st_register_form'),
         meta: { title: '学生注册st_register_form', icon: 'form' }
       }
     ]
@@ -212,7 +212,7 @@ export const constantRoutes = [
       {
         path: 'index',
         component: () => import('@/views/jixiao/jixiao'),
-        meta: { title: '绩效demo', icon: 'form' }
+        meta: { title: '视频列表绩效demo', icon: 'form' }
       }
     ]
   },
@@ -229,7 +229,7 @@ export const constantRoutes = [
       {
         path: 'showdemo',
         component: () => import('@/views/showdemo/demo'),
-        meta: { title: 'demo页面', icon: 'form' }
+        meta: { title: '视频列表demo', icon: 'form' }
       }
     ]
   },
