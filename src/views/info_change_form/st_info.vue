@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-27 10:40:23
- * @LastEditTime: 2022-01-27 15:19:21
+ * @LastEditTime: 2022-01-27 18:03:59
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\register_form\index.vue
@@ -42,6 +42,15 @@
           maxlength="50"
           show-word-limit
           clearable
+        />
+      </el-form-item>
+      <el-form-item
+        label="register_time"
+      >
+        <el-input
+          v-model="student_data.register_time"
+          placeholder="账号注册时间"
+          disabled
         />
       </el-form-item>
       <br>
@@ -132,6 +141,7 @@ export default {
         teach_input: [],
         desc: '',
         address_area: '',
+        register_time: '2022-1-27 18:03:57',
         tel_input: '',
         wechat_input: '',
         school_input: '',
