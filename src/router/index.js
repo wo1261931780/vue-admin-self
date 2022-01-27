@@ -161,6 +161,17 @@ export const constantRoutes = [
   //   ]
   // },
   {
+    path: '/register_form',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/register_form/index'),
+        meta: { title: '注册页面register_form', icon: 'form' }
+      }
+    ]
+  },
+  {
     // 2022年1月6日21:36:26，防止报错
     path: '/jixiao',
     component: Layout,
