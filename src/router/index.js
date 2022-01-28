@@ -161,6 +161,17 @@ export const constantRoutes = [
   //   ]
   // },
   {
+    path: '/class_system',
+    component: Layout,
+    children: [
+      {
+        path: 'class_system',
+        component: () => import('@/views/class_system/index'),
+        meta: { title: '教学管理系统', icon: 'form' }
+      }
+    ]
+  },
+  {
     path: '/register_form',
     component: Layout,
     children: [
