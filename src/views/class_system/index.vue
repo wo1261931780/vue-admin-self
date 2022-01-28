@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-28 09:30:20
- * @LastEditTime: 2022-01-28 10:58:44
+ * @LastEditTime: 2022-01-28 14:43:05
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\class_system\index.vue
@@ -20,6 +20,9 @@
           <el-button
             @click="charge_info=true"
           >账单弹出框</el-button>
+          <el-button
+            @click="add_class=true"
+          >课程弹出框</el-button>
         </el-header>
         <el-table
           border
@@ -138,13 +141,7 @@
         <el-form-item
           label="姓名："
         >
-          <el-input placeholder="张三" />
-        </el-form-item>
-
-        <el-form-item
-          label="老师："
-        >
-          <el-input placeholder="杜老师" />
+          <el-input placeholder="张辰洋" />
         </el-form-item>
 
         <el-form-item
@@ -152,6 +149,22 @@
         >
           <el-input placeholder="12345678" />
         </el-form-item>
+        <br>
+        <el-form-item
+          label="老师："
+        >
+
+          <el-button
+            type="text"
+            @click="teacher_info_drawer=true"
+          >杜teacher（math）</el-button>
+
+          <el-button
+            type="text"
+            @click="teacher_info_drawer=true"
+          >刘teacher（English）</el-button>
+        </el-form-item>
+
         <br>
         <el-form-item
           label="费用："
@@ -172,8 +185,7 @@
     <el-dialog
       title="账单弹出框"
       :visible.sync="charge_info"
-    ><div>测试
-     </div>
+    >
       <el-table
         :data="class_data"
         stripe
@@ -182,12 +194,12 @@
           label="学生"
           property="st_name"
           :filter-method="st_filter"
-          :filters="[{text:'222',value:'222'},
-                     {text:'111',value:'111'},{text:'333',value:'333'},]"
+          :filters="[{text:'王凯硕',value:'王凯硕'},
+                     {text:'张辰洋',value:'张辰洋'},{text:'赵玉松',value:'赵玉松'},]"
         >
           <template slot-scope="scope">
             <el-tag
-              :type="scope.row.st_name==='222'?'success':'primary'"
+              :type="scope.row.st_name==='张辰洋'?'success':'primary'"
             >
               {{ scope.row.st_name }}
             </el-tag>
@@ -197,14 +209,28 @@
         <el-table-column
           label="老师姓名"
           property="teacher_name"
-        />
+          sortable
+          :filter-method="teacher_filter"
+          :filters="[{text:'刘佳珺',value:'刘佳珺'},{text:'杜雨菲',value:'杜雨菲'},]"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.teacher_name==='刘老师'?'success':'primary'"
+            >
+              {{ scope.row.teacher_name }}
+            </el-tag>
+          </template>
+
+        </el-table-column>
         <el-table-column
           label="缴费时间"
           property="cz_time"
+          sortable
         />
         <el-table-column
           label="缴纳额度"
           property="cz_free"
+          sortable
         />
       </el-table>
       <span>1</span>
@@ -237,6 +263,84 @@
       </el-table>
 
     </el-dialog>
+    <el-dialog
+      title="教室管理"
+      :visible.sync="add_class"
+    >
+      <el-form
+        inline
+      >
+        <el-form-item
+          label="学生姓名："
+          prop="st_name"
+        >
+
+          <el-select
+            v-model="class_data.st_name"
+            clearable
+            filterable
+            placeholder="学生select，可以搜索的select"
+          >
+            <el-option
+              v-for="item in st_name_op"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+
+          </el-select>
+        </el-form-item>
+
+        <el-form-item
+          label="学科选择："
+          prop="st_subject"
+        >
+
+          <el-select
+            v-model="class_data.st_subject"
+            clearable
+            filterable
+            placeholder="学科select，可以搜索的select"
+          >
+            <el-option
+              v-for="item in subject_op"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+
+          </el-select>
+        </el-form-item>
+        <br>
+        <el-form-item
+          label="课时进度："
+        >
+          <el-input placeholder="5/10" />
+        </el-form-item>
+        <el-form-item
+          label="老师姓名："
+          prop="teacher_name"
+        >
+          <el-select
+            v-model="class_data.teacher_name"
+            clearable
+            filterable
+            placeholder="老师select，可以搜索的select"
+          >
+            <el-option
+              v-for="item in teacher_op"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+
+        <br>
+        <el-button type="primary" @click="class_arrange">提交</el-button>
+        <el-button>取消</el-button>
+      </el-form>
+    </el-dialog>
     <el-drawer
       title="老师信息"
       :visible.sync="teacher_info_drawer"
@@ -250,7 +354,7 @@
         <el-form-item
           label="姓名："
         >
-          <el-input placeholder="杜老师" />
+          <el-input placeholder="杜雨菲(员工)" />
         </el-form-item>
         <el-form-item
           label="微信："
@@ -285,24 +389,37 @@ export default {
       st_info: false,
       teacher_info_drawer: false,
       charge_info: false,
+      add_class: false,
       income_data: [{
         income_real: '3000',
         staff_num: '2',
         income_zz: '14000',
         income_yj: '7000'
       }],
+      st_name_op: [{ value: 'zds', label: '张德帅' },
+        { value: 'wks', label: '王凯硕' },
+        { value: 'zcy', label: '张辰洋' },
+        { value: 'zys', label: '赵玉松' }],
+
+      subject_op: [{ value: 'math', label: '数学' },
+        { value: 'creature', label: '生物' },
+        { value: 'physical', label: '物理' },
+        { value: 'chemistry', label: '化学' }],
+
+      teacher_op: [{ value: 'dyf', label: '杜雨菲' },
+        { value: 'wks', label: '刘佳珺' }],
       class_data: [{
-        st_name: '222',
+        st_name: '张德帅',
         st_subject: 'math',
-        teacher_name: 'du',
+        teacher_name: '杜老师',
         class_time: '8:00-10:00',
         cz_time: '2022-1-28 10:39:00',
         cz_free: '2000'
       },
       {
-        st_name: '111',
-        st_subject: 'math',
-        teacher_name: 'du',
+        st_name: '王凯硕',
+        st_subject: 'chemistry',
+        teacher_name: '杜老师',
         class_time: '10:00-12:00',
         cz_time: '2020-12-28 10:39:00',
         cz_free: '4000'
@@ -316,17 +433,17 @@ export default {
         cz_free: '3000'
       },
       {
-        st_name: '333',
-        st_subject: 'math',
-        teacher_name: 'du',
+        st_name: '张辰洋',
+        st_subject: 'English',
+        teacher_name: '刘老师',
         class_time: '14:00-16:00',
         cz_time: '2021-2-28 10:39:00',
         cz_free: '1200'
       },
       {
-        st_name: '222',
-        st_subject: 'math',
-        teacher_name: 'du',
+        st_name: '赵玉松',
+        st_subject: 'creature',
+        teacher_name: '刘老师',
         class_time: '16:00-18:00',
         cz_time: '2021-3-28 10:39:00',
         cz_free: '3000'
@@ -337,6 +454,12 @@ export default {
   methods: {
     st_filter(st_name, row) {
       return row.st_name === st_name
+    },
+    teacher_filter(teacher_name, row) {
+      return row.teacher_name === teacher_name
+    },
+    class_arrange() {
+      this.$message.success('提交成功，返回主页')
     }
   }
 }
