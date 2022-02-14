@@ -17,6 +17,15 @@ const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
+/* vue-cli2的时候才会使用这个
+  build: {
+    index: path.resolve(__dirname, 'dist/index.html'),
+    assetsRoot: path.resolve(__dirname, 'dist'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './',
+    productionSourceMap: true
+  },*/
+
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
    * for example GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/,
@@ -24,7 +33,11 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
+<<<<<<< HEAD
   publicPath: '../',
+=======
+  publicPath: './',
+>>>>>>> f11bdd538f1ce5403e8e2a58c6af7a79884cd3d5
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
