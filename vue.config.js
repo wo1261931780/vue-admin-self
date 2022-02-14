@@ -33,11 +33,7 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-<<<<<<< HEAD
   publicPath: '../',
-=======
-  publicPath: './',
->>>>>>> f11bdd538f1ce5403e8e2a58c6af7a79884cd3d5
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
