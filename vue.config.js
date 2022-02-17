@@ -24,7 +24,9 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
     productionSourceMap: true
-  },*/
+  },
+  publicPath: './',
+  */
 
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
@@ -33,9 +35,9 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: './',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : './',
   outputDir: 'dist',
-  assetsDir: 'static',
+  assetsDir: './static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
