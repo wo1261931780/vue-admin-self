@@ -466,9 +466,10 @@ export default {
 </script>
 <style>
 .el-input{
-    width: 270px;
+    width: 300px;
 }
-@media screen and (max-width: 500px) {
+
+/* @media screen and (max-width: 500px) {
     .el-message {
       min-width: 300px !important;
     }
@@ -504,6 +505,6 @@ export default {
       }
     }
 
-}
+} */
 
 </style>
