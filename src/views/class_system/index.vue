@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-28 09:30:20
- * @LastEditTime: 2022-01-28 14:43:05
+ * @LastEditTime: 2022-02-22 11:34:32
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: \vue-admin-self\src\views\class_system\index.vue
@@ -466,7 +466,44 @@ export default {
 </script>
 <style>
 .el-input{
-    width: 300px;
+    width: 270px;
 }
-</style>
+@media screen and (max-width: 500px) {
+    .el-message {
+      min-width: 300px !important;
+    }
+    .el-input {
+      min-width: 68px !important;
+    }
+    .el-drawer {
+      min-width: 300px !important;
+    }
 
+    .el-form {
+      min-width: 300px !important;
+      .el-form__body{
+        padding: 10px 20px!important;
+
+      .el-form-item__label{
+        width: 68px!important;
+      }
+      .el-select,.el-input{
+        width: 180px!important;
+      }}
+    }
+   .el-dialog__wrapper .el-dialog {
+      width: 300px !important;
+      .el-dialog__body{
+        padding: 10px 20px!important;
+        .el-form-item__label{
+          width: 68px!important;
+        }
+        .el-select,.el-input{
+          width: 180px!important;
+        }
+      }
+    }
+
+}
+
+</style>

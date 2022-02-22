@@ -38,6 +38,12 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? './' : './',
   outputDir: 'dist',
   assetsDir: './static',
+  // 做几点说明，
+  // 首先vue-cli4.40版本中，不需要配置百度中说明的autopath，直接导出即可。
+  // 但是在服务器端，还是会出现403资.css" failed (13: Permission denied),源加载失败的问题
+  // 这是由于Nginx没有权限访问资源导致的
+  // 在宝塔中查看报错信息，发现.css" failed (13: Permission denied),
+  // 找到Nginx.conf，修改第一行代码为user root即可解决。
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
