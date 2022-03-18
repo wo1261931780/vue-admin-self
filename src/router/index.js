@@ -255,6 +255,17 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/class_system2',
+    component: Layout,
+    children: [
+      {
+        path: 'class_system2',
+        component: () => import('@/views/class_system2/class_system2'),
+        meta: { title: '导入class_system2', icon: 'form' }
+      }
+    ]
+  },
   // {
   //   path: '/videolistdemo',
   //   component: Layout,
