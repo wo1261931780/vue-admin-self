@@ -217,12 +217,12 @@ export const constantRoutes = [
   },
   {
     // 2022年1月6日21:36:26，防止报错
-    path: '/jixiao',
+    path: '/video_list_achievements',
     component: Layout,
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/jixiao/jixiao'),
+        path: 'video_list_achievements',
+        component: () => import('@/views/video_list_achievements/video_list_achievements'),
         meta: { title: '视频列表绩效demo', icon: 'form' }
       }
     ]
@@ -234,27 +234,27 @@ export const constantRoutes = [
   // 如果需要控制页面的功能展示，
   // 直接在页面中加入权限控制即可，不需要做太多的重复页面
   {
-    path: '/showdemo',
+    path: '/video_list_manage',
     component: Layout,
     children: [
       {
-        path: 'showdemo',
-        component: () => import('@/views/showdemo/demo'),
+        path: 'video_list_manage',
+        component: () => import('@/views/video_list_manage/video_list_manage'),
         meta: { title: '视频列表demo', icon: 'form' }
       }
     ]
   },
-  // {
-  //   path: '/videolistdemo',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'videolist_coverdesigner',
-  //       component: () => import('@/views/videolistdemo/videolist_coverdesigner'),
-  //       meta: { title: 'videolist_coverdesigner', icon: 'form' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/demonstration',
+    component: Layout,
+    children: [
+      {
+        path: 'demonstration',
+        component: () => import('@/views/demonstration/demonstration'),
+        meta: { title: '演示demonstration', icon: 'form' }
+      }
+    ]
+  },
   // {
   //   path: '/videolistdemo',
   //   component: Layout,
