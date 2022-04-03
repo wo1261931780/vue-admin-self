@@ -23,7 +23,8 @@
                 :key="index"
                 :label="item.value"
                 :disabled="item.disabled"
-              >{{ item.label }}</el-radio-button>
+              >{{ item.label }}
+              </el-radio-button>
             </el-radio-group>
           </el-form-item>
         </el-col>
@@ -62,7 +63,14 @@
               filterable
               clearable
               :style="{width: '100%'}"
-            />
+            >
+              <el-option
+                v-for="item in field110"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -73,7 +81,14 @@
               filterable
               clearable
               :style="{width: '100%'}"
-            />
+            >
+              <el-option
+                v-for="item in field111"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
           </el-form-item>
         </el-col>
       </el-row>
@@ -86,7 +101,8 @@
                 :key="index"
                 :label="item.value"
                 :disabled="item.disabled"
-              >{{ item.label }}</el-checkbox-button>
+              >{{ item.label }}
+              </el-checkbox-button>
             </el-checkbox-group>
           </el-form-item>
         </el-col>
@@ -98,7 +114,8 @@
                 :key="index"
                 :label="item.value"
                 :disabled="item.disabled"
-              >{{ item.label }}</el-checkbox-button>
+              >{{ item.label }}
+              </el-checkbox-button>
             </el-checkbox-group>
           </el-form-item>
         </el-col>
@@ -193,6 +210,11 @@ export default {
           trigger: 'blur'
         }]
       },
+      field110: [{ value: 'zk', label: '专科' }, { value: 'dyf', label: '本科' },
+        { value: 'wks', label: '研究生' }],
+      field111: [{ value: 'zk', label: '清华大学' },
+        { value: 'dyf', label: '北京大学' },
+        { value: 'wks', label: '厦门大学' }],
       field127Options: [{
         'label': '女',
         'value': 1
@@ -227,8 +249,10 @@ export default {
   },
   computed: {},
   watch: {},
-  created() {},
-  mounted() {},
+  created() {
+  },
+  mounted() {
+  },
   methods: {
     submitForm() {
       this.$refs['sex'].validate(valid => {

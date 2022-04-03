@@ -87,7 +87,13 @@
               filterable
               clearable
               :style="{width: '100%'}"
-            />
+            >
+              <el-option
+                v-for="item in field111"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              /></el-select>
           </el-form-item>
         </el-col>
         <el-col :span="12">
@@ -98,8 +104,14 @@
               filterable
               clearable
               :style="{width: '100%'}"
-            />
-          </el-form-item>
+            >
+              <el-option
+                v-for="item in field148"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select></el-form-item>
         </el-col>
       </el-row>
       <el-row>
@@ -159,8 +171,14 @@
               filterable
               clearable
               :style="{width: '100%'}"
-            />
-          </el-form-item>
+            >
+              <el-option
+                v-for="item in field134"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select></el-form-item>
         </el-col>
       </el-row>
       <el-row>
@@ -274,6 +292,13 @@ export default {
         field146: undefined,
         field147: undefined
       },
+      field111: [{ value: 'zk', label: '专科' }, { value: 'dyf', label: '本科' },
+        { value: 'wks', label: '研究生' }],
+      field148: [{ value: 'zk', label: '清华大学' },
+        { value: 'dyf', label: '北京大学' },
+        { value: 'wks', label: '厦门大学' }], field134: [{ value: 'zk', label: '学生1' },
+        { value: 'dyf', label: '学生2' },
+        { value: 'wks', label: '学生3' }],
       rules: {
         name_input: [{
           required: true,

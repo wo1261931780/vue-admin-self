@@ -62,8 +62,14 @@
               filterable
               clearable
               :style="{width: '100%'}"
-            />
-          </el-form-item>
+            >
+              <el-option
+                v-for="item in field111"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select></el-form-item>
         </el-col>
       </el-row>
       <el-row>
@@ -123,8 +129,14 @@
               filterable
               clearable
               :style="{width: '100%'}"
-            />
-          </el-form-item>
+            >
+              <el-option
+                v-for="item in field134"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select></el-form-item>
         </el-col>
       </el-row>
       <el-row>
@@ -229,6 +241,12 @@ export default {
           trigger: 'blur'
         }]
       },
+      field111: [{ value: 'zk', label: '清华大学' },
+        { value: 'dyf', label: '北京大学' },
+        { value: 'wks', label: '厦门大学' }],
+      field134: [{ value: 'zk', label: '刘佳珺' },
+        { value: 'dyf', label: '杜雨菲' },
+        { value: 'wks', label: '刘佳珺2' }],
       field127Options: [{
         'label': '女',
         'value': 1
