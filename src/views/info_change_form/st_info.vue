@@ -1,134 +1,199 @@
-<!--
- * @Author: your name
- * @Date: 2022-01-27 10:40:23
- * @LastEditTime: 2022-01-27 21:11:45
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \vue-admin-self\src\views\register_form\index.vue
--->
 <template>
   <div class="app-container">
-    <el-form
-      ref="student_data"
-      :model="student_data"
-      inline="true"
-      label-position="left"
-      label-width="120px"
-      :rules="teacher_rule"
-    >
-      <el-form-item
-        label="name_input"
-        prop="name_input"
-      >
-        <el-input
-          v-model="student_data.name_input"
-          placeholder="请输入姓名"
-          maxlength="5"
-          show-word-limit
-          clearable
-        />
-      </el-form-item>
-      <el-form-item label="请选择性别">
-        <el-radio-group v-model="student_data.sex">
-          <el-radio label="male" />
-          <el-radio label="female" /></el-radio-group>
-      </el-form-item>
-      <br>
-      <el-form-item
-        label="address_area"
-      >
-        <el-input
-          placeholder="学生住址不强制"
-          maxlength="50"
-          show-word-limit
-          clearable
-        />
-      </el-form-item>
-      <el-form-item
-        label="register_time"
-      >
-        <el-input
-          v-model="student_data.register_time"
-          placeholder="账号注册时间"
-          disabled
-        />
-      </el-form-item>
-      <br>
-      <el-form-item
-        label="tel_input"
-        prop="tel_input"
-      >
-        <el-input
-          v-model="student_data.tel_input"
-          placeholder="电话"
-          maxlength="11"
-          show-word-limit
-          clearable
-        />
-      </el-form-item>
-      <el-form-item label="wechat">
-        <el-input
-          v-model="student_data.wechat_input"
-          placeholder="微信"
-        />
-      </el-form-item>
-      <br>
-
-      <el-form-item label="school">
-        <el-input
-          v-model="student_data.school_input"
-          placeholder="学校，可以搜索的select"
-        />
-      </el-form-item>
-
-      <br>
-
-      <el-form-item
-        label="teach_input"
-        prop="teach_input"
-      >
-        <el-checkbox-group v-model="student_data.teach_input">
-          <el-checkbox label="小学" />
-          <el-checkbox label="初中" />
-          <el-checkbox label="高中" />
-        </el-checkbox-group>
-      </el-form-item>
-
-      <br>
-
-      <el-form-item
-        label="class_input"
-        prop="class_input"
-      >
-        <el-input
-          v-model="student_data.class_input"
-          placeholder="年级,应该是select"
-        />
-      </el-form-item>
-
-      <br>
-      <el-form-item
-        label="请选择科目："
-        prop="subject_checkbox"
-      >
-        <el-checkbox-group v-model="student_data.subject_checkbox">
-          <el-checkbox label="math" />
-          <el-checkbox label="chine" />
-          <el-checkbox label="eng" />
-          <el-checkbox label="pych" />
-          <el-checkbox label="ches" />
-        </el-checkbox-group>
-      </el-form-item>
-      <br>
-      <el-button @click="history_info=true">点击查看课程记录</el-button>
-      <hr>
-      <el-form-item label="备注：">
-        <el-input v-model="student_data.desc" type="textarea" placeholder="备注可以不填写" />
+    <el-form ref="sex" :model="formData" :rules="rules" size="medium" label-width="110px">
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="姓名" prop="name_input">
+            <el-input
+              v-model="formData.name_input"
+              placeholder="请输入姓名"
+              :maxlength="5"
+              show-word-limit
+              clearable
+              prefix-icon="el-icon-user-solid"
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="性别" prop="field127">
+            <el-radio-group v-model="formData.field127" size="medium">
+              <el-radio-button
+                v-for="(item, index) in field127Options"
+                :key="index"
+                :label="item.value"
+                :disabled="item.disabled"
+              >{{ item.label }}</el-radio-button>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="注册时间" prop="field105">
+            <el-input
+              v-model="formData.field105"
+              placeholder="请输入注册时间"
+              :maxlength="50"
+              show-word-limit
+              :disabled="true"
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="注册员工" prop="field144">
+            <el-input
+              v-model="formData.field144"
+              placeholder="请输入注册员工"
+              :maxlength="50"
+              show-word-limit
+              :disabled="true"
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+        <el-form-item label="地址" prop="field143">
+          <el-input
+            v-model="formData.field143"
+            placeholder="请输入地址"
+            :maxlength="50"
+            show-word-limit
+            clearable
+            :style="{width: '100%'}"
+          />
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="电话" prop="field108">
+            <el-input
+              v-model="formData.field108"
+              placeholder="请输入电话"
+              :maxlength="11"
+              show-word-limit
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="微信" prop="field109">
+            <el-input
+              v-model="formData.field109"
+              placeholder="请输入微信"
+              show-word-limit
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="学校" prop="field111">
+            <el-select
+              v-model="formData.field111"
+              placeholder="请输入学校"
+              filterable
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="授课等级" prop="field138">
+            <el-radio-group v-model="formData.field138" size="medium">
+              <el-radio
+                v-for="(item, index) in field138Options"
+                :key="index"
+                :label="item.value"
+                :disabled="item.disabled"
+              >{{ item.label }}</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="所在年级" prop="field139">
+            <el-radio-group v-model="formData.field139" size="medium">
+              <el-radio
+                v-for="(item, index) in field139Options"
+                :key="index"
+                :label="item.value"
+                :disabled="item.disabled"
+              >{{ item.label }}</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
+        <el-form-item label="授课科目" prop="field140">
+          <el-checkbox-group v-model="formData.field140" :min="1" :max="5" size="medium">
+            <el-checkbox-button
+              v-for="(item, index) in field140Options"
+              :key="index"
+              :label="item.value"
+              :disabled="item.disabled"
+            >{{ item.label }}</el-checkbox-button>
+          </el-checkbox-group>
+        </el-form-item>
+      </el-row>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label-width="120px" label="是否指定老师" prop="field136">
+            <el-radio-group v-model="formData.field136" size="medium">
+              <el-radio
+                v-for="(item, index) in field136Options"
+                :key="index"
+                :label="item.value"
+                :disabled="item.disabled"
+              >{{ item.label }}</el-radio>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="指定老师" prop="field134">
+            <el-select
+              v-model="formData.field134"
+              placeholder="请输入指定老师"
+              filterable
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-form-item label="备注：" prop="field114">
+          <el-input
+            v-model="formData.field114"
+            type="textarea"
+            placeholder="请输入备注："
+            :maxlength="200"
+            show-word-limit
+            :autosize="{minRows: 4, maxRows: 4}"
+            :style="{width: '100%'}"
+          />
+        </el-form-item>
+        <el-col :span="7">
+          <el-form-item label="" prop="field146">
+            <el-button type="primary" icon="el-icon-search" size="medium"> 查看课程记录 </el-button>
+            <el-button @click="history_info=true">点击查看课程记录</el-button>
+          </el-form-item>
+        </el-col>
+        <el-col :span="7">
+          <el-form-item label="" prop="field147">
+            <el-button type="primary" icon="el-icon-search" size="medium"> 修改课时费 </el-button>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-form-item size="large">
+        <el-button type="primary" @click="submitForm">提交</el-button>
+        <el-button @click="resetForm">重置</el-button>
       </el-form-item>
     </el-form>
-    <el-button type="primary">提交</el-button>
-    <el-button>取消</el-button>
-
     <el-dialog
       title="排课情况"
       :visible.sync="history_info"
@@ -185,25 +250,13 @@
       </el-table></el-dialog>
   </div>
 </template>
-
 <script>
 export default {
+  components: {},
+  props: [],
   data() {
     return {
       history_info: false,
-      student_data: {
-        name_input: '',
-        subject_checkbox: [],
-        sex: '',
-        teach_input: [],
-        desc: '',
-        address_area: '',
-        register_time: '2022-1-27 18:03:57',
-        tel_input: '',
-        wechat_input: '',
-        school_input: '',
-        class_input: ''
-      },
       st_history_info: [{ st_info_class_time: '2022年1月27日20:40:31', st_info_subject: 'math', info_teacher_name: '杜老师', st_info_profit: '1.5' },
         { st_info_class_time: '2022年8月27日20:40:31', st_info_subject: 'Chinese', info_teacher_name: '杜老师', st_info_profit: '2' },
         { st_info_class_time: '2022年2月27日20:40:31', st_info_subject: 'math', info_teacher_name: '刘老师', st_info_profit: '1' },
@@ -211,37 +264,148 @@ export default {
         { st_info_class_time: '2022年4月27日20:40:31', st_info_subject: 'Chinese', info_teacher_name: '杜老师', st_info_profit: '1' },
         { st_info_class_time: '2021年1月27日20:40:31', st_info_subject: 'math', info_teacher_name: '杜老师', st_info_profit: '2' },
         { st_info_class_time: '2022年3月27日20:40:31', st_info_subject: 'Chinese', info_teacher_name: '杜老师', st_info_profit: '1' }],
-      teacher_rule: {
-        name_input: [
-          { required: true, message: '请输入姓名', trigger: 'change' },
-          { min: 2, max: 5, message: '最少2个字', trigger: 'change' }
-        ],
-        teach_input: [{ type: 'array', required: true, message: '请选择授课级别', trigger: 'change' }],
-        subject_checkbox: [
-          { type: 'array', required: true, message: '请至少选择一个', trigger: 'change' }
-        ],
-        sex: [],
-        desc: [],
-        address_area: [],
-        tel_input: [
-          { required: true, message: '请输入电话', trigger: 'change' },
-          { min: 8, max: 11, message: '号码8-11位', trigger: 'change' }
-        ],
-        wechat_input: [],
-        school_input: [{ required: true, message: '请输入院校', trigger: 'change' }],
-        class_input: [{ required: true, message: '请输入学历', trigger: 'change' }]
-      }
+      formData: {
+        name_input: undefined,
+        field127: undefined,
+        field105: undefined,
+        field144: undefined,
+        field143: undefined,
+        field108: undefined,
+        field109: undefined,
+        field111: '',
+        field138: '',
+        field139: '',
+        field140: [''],
+        field136: [],
+        field134: '',
+        field114: undefined,
+        field146: undefined,
+        field147: undefined
+      },
+      rules: {
+        name_input: [{
+          required: true,
+          message: '请输入姓名',
+          trigger: 'blur'
+        }],
+        field127: [{
+          required: true,
+          message: '性别不能为空',
+          trigger: 'change'
+        }],
+        field105: [],
+        field144: [],
+        field143: [],
+        field108: [{
+          required: true,
+          message: '请输入电话',
+          trigger: 'blur'
+        }],
+        field109: [],
+        field111: [{
+          required: true,
+          message: '请输入学校',
+          trigger: 'change'
+        }],
+        field138: [{
+          required: true,
+          message: '授课等级不能为空',
+          trigger: 'change'
+        }],
+        field139: [{
+          required: true,
+          message: '所在年级不能为空',
+          trigger: 'change'
+        }],
+        field140: [{
+          required: true,
+          type: 'array',
+          message: '请至少选择一个授课科目',
+          trigger: 'change'
+        }],
+        field136: [{
+          required: true,
+          type: 'array',
+          message: '请至少选择一个是否指定老师',
+          trigger: 'change'
+        }],
+        field134: [{
+          required: true,
+          message: '请输入指定老师',
+          trigger: 'change'
+        }],
+        field114: [{
+          required: true,
+          message: '请输入备注：',
+          trigger: 'blur'
+        }]
+      },
+      field127Options: [{
+        'label': '女',
+        'value': 1
+      }, {
+        'label': '男',
+        'value': 2
+      }],
+      field138Options: [{
+        'label': '初中',
+        'value': 1
+      }, {
+        'label': '高中',
+        'value': 2
+      }],
+      field139Options: [{
+        'label': '一年级',
+        'value': 1
+      }, {
+        'label': '二年级',
+        'value': 2
+      }, {
+        'label': '三年级',
+        'value': 3
+      }],
+      field140Options: [{
+        'label': '数学',
+        'value': 1
+      }, {
+        'label': '英语',
+        'value': 2
+      }, {
+        'label': '物理',
+        'value': 3
+      }, {
+        'label': '化学',
+        'value': 4
+      }, {
+        'label': '语文',
+        'value': 5
+      }],
+      field136Options: [{
+        'label': '是',
+        'value': 1
+      }, {
+        'label': '否',
+        'value': 2
+      }]
     }
   },
-  methods: {}
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {
+    submitForm() {
+      this.$refs['sex'].validate(valid => {
+        if (!valid) return
+        // TODO 提交表单
+      })
+    },
+    resetForm() {
+      this.$refs['sex'].resetFields()
+    }
+  }
 }
-</script>
 
-<style scoped>
-.line {
-  text-align: center;
-}
-.el-input{
-    width: 200px;
-}
+</script>
+<style>
 </style>

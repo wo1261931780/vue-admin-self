@@ -7,7 +7,7 @@
  * @FilePath: \vue-admin-self\src\views\class_system\index.vue
 -->
 <template>
-  <div>
+  <div class="app-container">
     <h1>课表</h1>
     <h1>账单</h1>
     <el-container>

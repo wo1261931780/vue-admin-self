@@ -1,14 +1,6 @@
 <template>
-  <div>
-
-    <el-form
-      ref="sex"
-      :model="formData"
-      :rules="rules"
-      size="medium"
-      label-width="100px"
-      label-position="left"
-    >
+  <div class="app-container">
+    <el-form ref="sex" :model="formData" :rules="rules" size="medium" label-width="100px">
       <el-row>
         <el-col :span="12">
           <el-form-item label="姓名" prop="name_input">
@@ -23,8 +15,6 @@
             />
           </el-form-item>
         </el-col>
-      </el-row>
-      <el-row>
         <el-col :span="12">
           <el-form-item label="性别" prop="field127">
             <el-radio-group v-model="formData.field127" size="medium">
@@ -51,14 +41,14 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-form-item label="地址：" prop="field105">
+        <el-form-item label="地址" prop="field105">
           <el-input
             v-model="formData.field105"
-            placeholder="请输入地址："
+            type="textarea"
+            placeholder="请输入地址"
             :maxlength="50"
             show-word-limit
-            clearable
-            prefix-icon="el-icon-info"
+            :autosize="{minRows: 4, maxRows: 4}"
             :style="{width: '100%'}"
           />
         </el-form-item>
@@ -87,48 +77,42 @@
           </el-form-item>
         </el-col>
       </el-row>
-      <el-form-item label="授课等级：" prop="field116">
-        <el-checkbox-group v-model="formData.field116" :min="1" :max="2" size="medium">
-          <el-checkbox-button
-            v-for="(item, index) in field116Options"
-            :key="index"
-            :label="item.value"
-            :disabled="item.disabled"
-          >{{ item.label }}</el-checkbox-button>
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="授课科目：" prop="field122">
-        <el-checkbox-group v-model="formData.field122" :min="1" :max="5" size="medium">
-          <el-checkbox-button
-            v-for="(item, index) in field122Options"
-            :key="index"
-            :label="item.value"
-            :disabled="item.disabled"
-          >{{ item.label }}</el-checkbox-button>
-        </el-checkbox-group>
-      </el-form-item>
-      <el-form-item label="备注：" prop="field114">
-        <el-input
-          v-model="formData.field114"
-          type="textarea"
-          placeholder="请输入备注："
-          :maxlength="200"
-          show-word-limit
-          :autosize="{minRows: 4, maxRows: 4}"
-          :style="{width: '100%'}"
-        />
-      </el-form-item>
       <el-row>
-        <el-col :span="6">
-          <el-form-item label="" prop="field113">
-            <el-button type="primary" icon="el-icon-search" size="medium"> 取消 </el-button>
+        <el-col :span="12">
+          <el-form-item label="授课等级：" prop="field116">
+            <el-checkbox-group v-model="formData.field116" :min="1" :max="2" size="medium">
+              <el-checkbox-button
+                v-for="(item, index) in field116Options"
+                :key="index"
+                :label="item.value"
+                :disabled="item.disabled"
+              >{{ item.label }}</el-checkbox-button>
+            </el-checkbox-group>
           </el-form-item>
         </el-col>
-        <el-col :span="6">
-          <el-form-item label="" prop="field112">
-            <el-button type="primary" icon="el-icon-search" size="medium"> 确认 </el-button>
+        <el-col :span="12">
+          <el-form-item label="授课科目：" prop="field122">
+            <el-checkbox-group v-model="formData.field122" :min="1" :max="5" size="medium">
+              <el-checkbox-button
+                v-for="(item, index) in field122Options"
+                :key="index"
+                :label="item.value"
+                :disabled="item.disabled"
+              >{{ item.label }}</el-checkbox-button>
+            </el-checkbox-group>
           </el-form-item>
         </el-col>
+        <el-form-item label="备注：" prop="field114">
+          <el-input
+            v-model="formData.field114"
+            type="textarea"
+            placeholder="请输入备注："
+            :maxlength="200"
+            show-word-limit
+            :autosize="{minRows: 4, maxRows: 4}"
+            :style="{width: '100%'}"
+          />
+        </el-form-item>
       </el-row>
       <el-form-item size="large">
         <el-button type="primary" @click="submitForm">提交</el-button>
@@ -153,9 +137,7 @@ export default {
         field111: '',
         field116: [],
         field122: [],
-        field114: undefined,
-        field113: undefined,
-        field112: undefined
+        field114: undefined
       },
       rules: {
         name_input: [{
@@ -180,7 +162,7 @@ export default {
         }],
         field105: [{
           required: true,
-          message: '请输入地址：',
+          message: '请输入地址',
           trigger: 'blur'
         }],
         field110: [{

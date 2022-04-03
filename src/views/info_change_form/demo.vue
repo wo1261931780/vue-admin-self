@@ -29,14 +29,26 @@
         </el-col>
       </el-row>
       <el-row>
-        <el-form-item label="地址" prop="field105">
+        <el-col :span="12">
+          <el-form-item label="注册时间" prop="field105">
+            <el-input
+              v-model="formData.field105"
+              placeholder="请输入注册时间"
+              :maxlength="50"
+              show-word-limit
+              :disabled="true"
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+        <el-form-item label="地址" prop="field143">
           <el-input
-            v-model="formData.field105"
-            type="textarea"
+            v-model="formData.field143"
             placeholder="请输入地址"
             :maxlength="50"
             show-word-limit
-            :autosize="{minRows: 4, maxRows: 4}"
+            clearable
             :style="{width: '100%'}"
           />
         </el-form-item>
@@ -44,20 +56,44 @@
       <el-row>
         <el-col :span="12">
           <el-form-item label="电话" prop="field108">
-            <el-input v-model="formData.field108" placeholder="请输入电话" clearable :style="{width: '100%'}" />
+            <el-input
+              v-model="formData.field108"
+              placeholder="请输入电话"
+              :maxlength="11"
+              show-word-limit
+              clearable
+              :style="{width: '100%'}"
+            />
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="微信" prop="field109">
-            <el-input v-model="formData.field109" placeholder="请输入微信" clearable :style="{width: '100%'}" />
+            <el-input
+              v-model="formData.field109"
+              placeholder="请输入微信"
+              show-word-limit
+              clearable
+              :style="{width: '100%'}"
+            />
           </el-form-item>
         </el-col>
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-form-item label="学校" prop="field111">
+          <el-form-item label="学历" prop="field111">
             <el-select
               v-model="formData.field111"
+              placeholder="请输入学历"
+              filterable
+              clearable
+              :style="{width: '100%'}"
+            />
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="学校" prop="field148">
+            <el-select
+              v-model="formData.field148"
               placeholder="请输入学校"
               filterable
               clearable
@@ -69,26 +105,26 @@
       <el-row>
         <el-col :span="12">
           <el-form-item label="授课等级" prop="field138">
-            <el-radio-group v-model="formData.field138" size="medium">
-              <el-radio
+            <el-checkbox-group v-model="formData.field138" size="medium">
+              <el-checkbox-button
                 v-for="(item, index) in field138Options"
                 :key="index"
                 :label="item.value"
                 :disabled="item.disabled"
-              >{{ item.label }}</el-radio>
-            </el-radio-group>
+              >{{ item.label }}</el-checkbox-button>
+            </el-checkbox-group>
           </el-form-item>
         </el-col>
         <el-col :span="12">
           <el-form-item label="所在年级" prop="field139">
-            <el-radio-group v-model="formData.field139" size="medium">
-              <el-radio
+            <el-checkbox-group v-model="formData.field139" size="medium">
+              <el-checkbox-button
                 v-for="(item, index) in field139Options"
                 :key="index"
                 :label="item.value"
                 :disabled="item.disabled"
-              >{{ item.label }}</el-radio>
-            </el-radio-group>
+              >{{ item.label }}</el-checkbox-button>
+            </el-checkbox-group>
           </el-form-item>
         </el-col>
         <el-form-item label="授课科目" prop="field140">
@@ -104,7 +140,7 @@
       </el-row>
       <el-row>
         <el-col :span="12">
-          <el-form-item label-width="120px" label="是否指定老师" prop="field136">
+          <el-form-item label-width="120px" label="是否排课" prop="field136">
             <el-radio-group v-model="formData.field136" size="medium">
               <el-radio
                 v-for="(item, index) in field136Options"
@@ -116,10 +152,10 @@
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="指定老师" prop="field134">
+          <el-form-item label="名下学生" prop="field134">
             <el-select
               v-model="formData.field134"
-              placeholder="请输入指定老师"
+              placeholder="请输入名下学生"
               filterable
               clearable
               :style="{width: '100%'}"
@@ -139,12 +175,71 @@
             :style="{width: '100%'}"
           />
         </el-form-item>
+        <el-col :span="7">
+          <el-form-item label="" prop="field146">
+            <el-button type="primary" icon="el-icon-search" size="medium"> 查看课程记录 </el-button>
+            <el-button @click="class_manage=true">点击查看绩效</el-button>
+
+          </el-form-item>
+        </el-col>
+        <el-col :span="7">
+          <el-form-item label="" prop="field147">
+            <el-button type="primary" icon="el-icon-search" size="medium"> 修改课时费 </el-button>
+          </el-form-item>
+        </el-col>
       </el-row>
       <el-form-item size="large">
         <el-button type="primary" @click="submitForm">提交</el-button>
         <el-button @click="resetForm">重置</el-button>
       </el-form-item>
     </el-form>
+    <el-dialog
+      title="排课情况"
+      :visible.sync="class_manage"
+    >
+      <el-table
+        :data="teacher_info"
+        style="width:100%"
+        stripe
+        border
+        show-summary="true"
+        height="400px"
+      >
+        <el-table-column label="时间" width="200px" align="center" prop="info_class_time" fixed />
+        <el-table-column
+          label="科目"
+          width="150px"
+          align="center"
+          prop="info_subject"
+          sortable
+          :filters="[{text:'数学',value:'math'},{text:'语文',value:'Chinese'}]"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.info_subject==='math'?'primary':'danger'"
+            >
+              {{ scope.row.info_subject }}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="学生姓名"
+          width="150px"
+          align="center"
+          prop="info_st_name"
+          sortable
+          :filters="[{text:'张三',value:'张三'},{text:'赵四',value:'赵四'}]"
+        >
+          <template slot-scope="scope">
+            <el-tag
+              :type="scope.row.info_st_name==='张三'?'primary':'success'"
+            >
+              {{ scope.row.info_st_name }}
+            </el-tag>
+          </template></el-table-column>
+        <el-table-column label="时长" width="150px" align="center" prop="info_profit" />
+        <el-table-column label="课时" width="150px" align="center" prop="info_profit" />
+      </el-table></el-dialog>
   </div>
 </template>
 <script>
@@ -153,20 +248,31 @@ export default {
   props: [],
   data() {
     return {
+      class_manage: false,
+      teacher_info: [{ info_class_time: '2022年1月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '1.5' },
+        { info_class_time: '2022年8月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '2' },
+        { info_class_time: '2022年2月27日20:40:31', info_subject: 'Chinese', info_st_name: '赵四', info_profit: '1' },
+        { info_class_time: '2022年5月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '2' },
+        { info_class_time: '2022年4月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '1' },
+        { info_class_time: '2021年1月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '2' },
+        { info_class_time: '2022年3月27日20:40:31', info_subject: 'math', info_st_name: '张三', info_profit: '1' }],
       formData: {
         name_input: undefined,
         field127: undefined,
         field105: undefined,
+        field143: undefined,
         field108: undefined,
         field109: undefined,
-        field110: '请选择',
         field111: '',
+        field148: '',
         field138: '',
         field139: '',
         field140: [''],
         field136: [],
         field134: '',
-        field114: undefined
+        field114: undefined,
+        field146: undefined,
+        field147: undefined
       },
       rules: {
         name_input: [{
@@ -180,18 +286,19 @@ export default {
           trigger: 'change'
         }],
         field105: [],
+        field143: [],
         field108: [{
           required: true,
           message: '请输入电话',
           trigger: 'blur'
         }],
         field109: [],
-        field110: [{
+        field111: [{
           required: true,
           message: '请输入学历',
           trigger: 'change'
         }],
-        field111: [{
+        field148: [{
           required: true,
           message: '请输入学校',
           trigger: 'change'
@@ -215,12 +322,12 @@ export default {
         field136: [{
           required: true,
           type: 'array',
-          message: '请至少选择一个是否指定老师',
+          message: '请至少选择一个是否排课',
           trigger: 'change'
         }],
         field134: [{
           required: true,
-          message: '请输入指定老师',
+          message: '请输入名下学生',
           trigger: 'change'
         }],
         field114: [{
