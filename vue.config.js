@@ -37,7 +37,7 @@ module.exports = {
    */
   publicPath: process.env.NODE_ENV === 'production' ? './' : './',
   outputDir: 'dist',
-  assetsDir: './static',
+  assetsDir: 'static',
   // 做几点说明，
   // 首先vue-cli4.40版本中，不需要配置百度中说明的autopath，直接导出即可。
   // 但是在服务器端，还是会出现403资.css" failed (13: Permission denied),源加载失败的问题
