@@ -266,6 +266,17 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/company_web_demo/index.vue'),
+        meta: { title: 'comapnywebdemo', icon: 'form' }
+      }
+    ]
+  },
   // {
   //   path: '/videolistdemo',
   //   component: Layout,
