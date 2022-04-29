@@ -1,0 +1,52 @@
+// （202220408）
+// tabs的样式更改
+// .el-tabs {
+//     overflow: hidden;
+// }
+.el-tabs__content {
+    border-radius:0 0 5px 5px;
+    border: 1px solid #e0e6eb!important;
+    background-color: white;
+    border-top: 0!important;
+}
+.el-tabs__header {
+    border-bottom: 1px solid #e0e6eb!important;
+}
+.el-tabs__item.is-active {
+    background-color: white!important;
+}
+.el-tabs__nav,.el-tabs__item {
+    background-color: #eaeaea!important;
+    margin-left: 0!important;
+    border-radius: 5px 5px 0 0;
+}
+
+.el-tabs__nav {
+    border: 1px solid #e0e6eb!important;
+    border-bottom: none!important;
+    overflow: hidden;
+}
+
+
+// radio-group按钮组
+.el-radio-group {
+    border: 1px solid #e0e6eb;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.el-radio-button__inner {
+    border-radius: 3px;
+    overflow: hidden;
+}
+.el-radio-button {
+    border-left: 1px solid #e0e6eb;
+    margin-left: -1px;
+}
+.el-radio-button:nth-child(0) {
+    border-left: none;
+}
+// .el-tabs__item:nth-child(1) {
+//     border-left: 1px solid #e0e6eb !important;
+// }
+
+// F1F3F4

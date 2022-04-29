@@ -1,334 +1,174 @@
 <template>
-  <div style="padding:10px;">
-    <el-form
-      :inline="true"
-      label-suffix=":"
-      :disabled="isAjax"
-    >
-      <el-form-item label="库表选择">
-        <el-radio-group v-model="crudService">
-          <el-radio-button
-            v-for="(item,index) in crudList"
-            :key="index"
-            :label="item.code"
-          >{{ item.codeValue }}</el-radio-button>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="功能选择">
-        <el-radio-group v-model="queryOnly">
-          <el-radio-button
-            v-for="(item,index) in queryOnlyList"
-            :key="index"
-            :label="item.label"
-          >{{ item.title }}</el-radio-button>
-          <el-radio-button
-            :disabled="crudService!=='master'"
-            label="2"
-          >单表 - 增删改查 - 走流程</el-radio-button>
-        </el-radio-group>
-      </el-form-item>
-      <el-form-item label="筛选">
-        <el-input
-          v-model.trim="keywords"
-          clearable
-          style="width:220px;"
-          placeholder="当前页筛选"
-          @keypress.native.enter="searchAll"
-        >
-          <el-button
-            slot="append"
-            icon="el-icon-search"
-            @click="searchAll"
-          >全部筛选</el-button>
-        </el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button
-          circle
-          icon="el-icon-refresh"
-          @click.native="doSearch"
-        />
-      </el-form-item>
-      <el-form-item>
-        <el-button
-          type="primary"
-          icon="el-icon-plus"
-          circle
-          @click.native="addHandler"
-        />
-      </el-form-item>
-    </el-form>
-    <el-table
-      v-loading="isAjax"
-      :data="tableData.filter((item)=>{
-        return !keywords || item.queryName && item.queryName.toLowerCase().includes(keywords.toLowerCase())||
-          item.chnName && item.chnName.toLowerCase().includes(keywords.toLowerCase())||
-          item.tableName && item.tableName.toLowerCase().includes(keywords.toLowerCase())
-      })"
-      fit
-    >
-      <el-table-column
-        type="index"
-        :index="indexMethod"
-      />
-      <el-table-column
-        prop="queryName"
-        sortable
-        :label="queryOnly==='1'?'查询名称':'CRUD名称'"
-        width="180"
-      />
-      <el-table-column
-        prop="chnName"
-        label="名称"
-        width="180"
-      />
-      <!-- <el-table-column
-        prop=""
-        label="模块"
-        width="180"
-      />
-      <el-table-column
-        prop=""
-        label="类型"
-        width="180"
-      /> -->
-      <el-table-column
-        prop="tableName"
-        label="表名"
-        width="180"
-      />
-      <el-table-column
-        prop="queryContent"
-        label="查询SQL"
-        width="300"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="userName"
-        label="维护人员"
-        sortable
-        width="120"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="remark"
-        label="备注"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        fixed="right"
-        label="操作"
-        width="100"
+  <BaseLayoutEx>
+    <div style="padding:10px">
+      <el-form
+        ref="formModel"
+        :disabled="formModelDisabled"
+        :model="formModelData"
+        :rules="formModelRules"
+        :hide-required-asterisk="true"
+        label-width="125px"
+        label-position="right"
       >
-        <template slot-scope="{row}">
-          <el-button
-            type="text"
-            @click.native="editHandler(row)"
-          >编辑</el-button>
-          &nbsp;&nbsp;
-          <el-button
-            type="text"
-            @click.native="previewHandler(row)"
-          >预览</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-pagination
-      :current-page="page.currPage"
-      :page-size="page.pageSize"
-      :page-sizes="[10,20,50,100, 200, 300, 400,600,1000]"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="totalSize"
-      @size-change="(pageSize)=>{page.pageSize=pageSize;doSearch()}"
-      @current-change="(currPage)=>{page.currPage=currPage;doSearch()}"
-    />
-
-    <el-dialog-ex
-      v-if="addFlag"
-      fullscreen
-      :title="'新建 - '+dialogTitle"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-      append-to-body
-      :visible.sync="addFlag"
-    >
-      <search-setting
-        :crud-service="crudService"
-        :query-only="queryOnly"
-        @refreshList="doSearch"
+        <el-row :gutter="15">
+          <el-col v-if="formModelControl.field101.isShow" :span="12">
+            <el-form-item-ex label="业务情景设定" prop="field101">
+              <el-input
+                v-model="formModelData.field101"
+                placeholder="请输入业务情景设定"
+                show-word-limit
+                :disabled="formModelControl.field101.disabled"
+                clearable
+                :style="{width: '100%'}"
+              />
+            </el-form-item-ex>
+          </el-col>
+          <el-col v-if="formModelControl.field102.isShow" :span="24" :offset="0">
+            <el-divider-ex>when</el-divider-ex>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div class="box">
+        <div class="header">
+          条件
+        </div>
+        <div class="header">
+          变量
+        </div>
+        <div class="header">
+          类型
+        </div>
+        <div class="header">
+          符号
+        </div>
+        <div class="header">
+          另一变量或值
+        </div>
+        <div class="header">
+          操作
+        </div>
+      </div>
+      <div v-for="(item,index) in whenArr" class="box">
+        <div class="column column1">
+          <el-input v-model="item.value1" />
+        </div>
+        <div class="column column2">
+          <el-input v-model="item.value2" />
+        </div>
+        <div class="column column3">
+          <el-input v-model="item.value3" />
+        </div>
+        <div class="column column4">
+          <el-input v-model="item.value4" />
+        </div>
+        <div class="column column5">
+          <el-input v-model="item.value5" />
+        </div>
+        <div class="column column6">
+          <el-button type="primary" icon="el-icon-plus" @click="addWhenArr">增加</el-button>
+          <el-button type="primary" icon="el-icon-minus" @click="delWhenArr(index)">删除</el-button>
+        </div>
+      </div>
+      <el-button style="margin:10px" type="primary" @click="getWhenRes">生成代码</el-button>
+      <el-input
+        v-model="whenRes"
+        type="textarea"
+        placeholder="请输入多行文本"
+        show-word-limit
+        :autosize="{minRows: 2, maxRows: 4}"
       />
-    </el-dialog-ex>
-    <el-dialog-ex
-      v-if="editFlag"
-      fullscreen
-      :title="currentRow.chnName?currentRow.chnName:'编辑 - '+dialogTitle"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-      append-to-body
-      :visible.sync="editFlag"
-    >
-      <search-setting
-        :crud-service="crudService"
-        :query-only="queryOnly"
-        :query-name="queryName"
-        @refreshList="doSearch"
-      />
-    </el-dialog-ex>
-    <el-dialog-ex
-      v-if="previewFlag"
-      fullscreen
-      :title="currentRow.chnName?currentRow.chnName:'预览 - '+dialogTitle"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-      append-to-body
-      :visible.sync="previewFlag"
-    >
-      <search
-        :crud-service="crudService"
-        :query-only="queryOnly"
-        :query-name="queryName"
-      />
-    </el-dialog-ex>
-  </div>
+    </div>
+  </BaseLayoutEx>
 </template>
-<script>
-// import defaultSettings from './settings'
-import comMixin from './com.js'
-export default {
-  name: 'CrudList',
-  components: {},
-  mixins: [comMixin],
-  data() {
-    const queryOnlyList = [
-      {
-        label: '1',
-        title: '多表 - 通用查询'
-      },
-      {
-        label: '0',
-        title: '单表 - 增删改查'
-      }
-    ]
-    return {
-      queryOnlyList,
-      isAjax: false,
-      keywords: '',
-      crudService: undefined,
-      crudList: [],
-      queryOnly: '1',
-      totalSize: 0,
-      currentRow: {},
-      page: {
-        currPage: 1,
-        pageSize: 20
-      },
-      queryName: '',
-      addFlag: false,
-      editFlag: false,
-      previewFlag: false,
-      tableData: []
-    }
-  },
-  computed: {
-    bizApi() {
-      return this.biz.bizApi ? this.biz.bizApi : '$apibiz'
-    },
-    dialogTitle() {
-      let dialogTitle = ''
-      for (let i = 0; i < this.queryOnlyList.length; i++) {
-        if (this.queryOnlyList[i].label === this.queryOnly) {
-          dialogTitle = this.queryOnlyList[i].title
-          break
-        }
-      }
-      return dialogTitle
-    },
-    headers() {
-      return {
-        dataSourceType: this.crudService
-      }
-    }
-  },
-  watch: {
-    'queryOnly': {
-      handler(nVal) {
-        this.doSearch()
-      }
-    },
-    'crudService': {
-      handler(nVal) {
-        this.page.currPage = 1
-        this.doSearch()
-      }
-    }
-  },
-  mounted() {
-    this.initCrudList()
-  },
-  methods: {
-    indexMethod(index) {
-      return 1 + index + this.page.pageSize * (this.page.currPage - 1)
-    },
-    searchAll() {
-      this.page.currPage = 1
-      this.page.pageSize = this.totalSize
-      this.doSearch()
-    },
-    initCrudList() {
-      // this.$apiadmin.post_code_querycodeinfodetail({
-      //   data: {
-      //     codeType: 'dataSourceType'
-      //   }
-      // }).then(({ data }) => {
-      //   this.crudList = data.resultList
-      //   if (this.crudList && this.crudList.length > 0) {
-      //     this.crudService = this.crudList[0].code;
-      //   }
-      // })
-      this.crudList = this.$codeTypeInfo['dataSourceType']
-      if (this.crudList && this.crudList.length > 0) {
-        this.crudService = this.crudList[0].code
-      }
-    },
-    doSearch() {
-      if (this.isAjax) return
-      this.isAjax = true
-      this.addFlag = false
-      this.editFlag = false
-      this.tableData = []
-      this.$apicrud.post_query_selectquery({
-        headers: this.headers,
-        data: {
-          queryOnly: this.queryOnly,
-          crudService: this.crudService
-        },
-        page: this.page
-      }).then(res => {
-        console.log('selectQuery:', res)
-        this.tableData = res.data.resultList
-        this.totalSize = res.data.totalSize
-      }).catch(() => {
 
-      })
-        .finally(() => { this.isAjax = false })
+<script>
+export default {
+  name: 'PubRuleScenario',
+  components: {},
+  props: [],
+  data() {
+    return {
+      whenRes: [],
+      whenArr: [
+        { value1: '', value2: '', value3: '', value4: '', value5: '' }
+      ],
+      formModelDisabled: false,
+      formModelData: {
+        field101: undefined
+      },
+      formModelControl: {
+        field101: {
+          isShowType: 'v-if',
+          isShow: true,
+          disabled: false
+        },
+        field102: {
+          isShowType: 'v-if',
+          isShow: true,
+          disabled: false
+        }
+      },
+      formModelRules: {
+        field101: [{
+          required: false,
+          message: '请输入业务情景设定',
+          trigger: 'blur'
+        }, {
+          required: false,
+          message: '请输入业务情景设定',
+          trigger: 'change'
+        }]
+      }
+    }
+  },
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {
+    addWhenArr() {
+      const obj = { value1: '', value2: '', value3: '', value4: '', value5: '' }
+      this.whenArr.push(obj)
+      console.log(this.whenArr)
     },
-    addHandler() {
-      this.queryName = ''
-      this.addFlag = true
+    delWhenArr(index) {
+      if (this.whenArr.length > 1) {
+        this.whenArr.splice(index, 1)
+      } else {
+        this.$message.warning('无法删除，至少要有一个条件！')
+      }
     },
-    editHandler(row) {
-      this.currentRow = row
-      this.queryName = row.queryName
-      this.editFlag = true
-    },
-    previewHandler(row) {
-      this.currentRow = row
-      this.queryName = row.queryName
-      this.previewFlag = true
+    getWhenRes() {
+      console.log('生成')
     }
   }
 }
 
 </script>
 <style scoped>
+.box {
+    display: flex;
+}
+.header {
+    flex: 1;
+    text-align: center;
+    align-items: center;
+    height: 30px;
+    border: 1px solid #d8dce5;
+    margin-left: -1px;
+    margin-top: -1px;
+    line-height: 30px;
+}
+.column {
+    flex: 1;
+    text-align: center;
+    align-items: center;
+    height: 40px;
+    border: 1px solid #d8dce5;
+    margin-left: -1px;
+    margin-top: -1px;
+    vertical-align: middle;
+    padding: 6px;
+}
+
 </style>

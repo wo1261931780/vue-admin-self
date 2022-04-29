@@ -1,0 +1,259 @@
+/****
+老版本的样式，已废弃 参考最新 tfb-theme.scss
+***/
+// 默认主题
+$required-bg: #ffffe0; //必填 背景色
+$disabled-bg: #fafafa; //保护背景
+$disabled-color: #aaa; //保护颜色
+$input-border-radius: 0; //控件圆角
+$button-border-radius: 0; //控件圆角
+$table-header-bg: #f5f7fa; //表格头背景色 参考 el-table的border-card颜色
+$table-min-height: 200px;
+$el-message-max-width: 800px;
+$el-message-max-height: 400px;
+$form-item-margin-bottom: 5px; //控件底部距离
+
+$required-placeholder-color: transparent; //必填 placeholder 颜色
+$placeholderColor: transparent;
+
+input::-webkit-input-placeholder,
+input.el-input__inner::-webkit-input-placeholder {
+  color: $placeholderColor !important;
+}
+input::-webkit-input-placeholder,
+input.el-input__inner::-webkit-input-placeholder {
+  color: $placeholderColor !important;
+}
+input::-moz-placeholder,
+input.el-input__inner::-moz-placeholder {
+  color: $placeholderColor !important;
+}
+input:-moz-placeholder,
+input.el-input__inner:-moz-placeholder {
+  color: $placeholderColor !important;
+}
+input:-ms-input-placeholder,
+input.el-input__inner:-ms-input-placeholder {
+  color: $placeholderColor !important;
+}
+textarea::-webkit-input-placeholder,
+textarea.el-textarea__inner::-webkit-input-placeholder {
+  color: $placeholderColor !important;
+}
+textarea:-moz-placeholder,
+textarea.el-textarea__inner:-moz-placeholder {
+  color: $placeholderColor !important;
+}
+textarea::-moz-placeholder,
+textarea.el-textarea__inner::-moz-placeholder {
+  color: $placeholderColor !important;
+}
+textarea:-ms-input-placeholder,
+textarea.el-textarea__inner:-ms-input-placeholder {
+  color: $placeholderColor !important;
+}
+
+// 兼容ie的disabled placholder样式
+.el-input.is-disabled .el-input__inner:-ms-input-placeholder,
+.el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder,
+.el-radio.is-disabled .el-radio__inner:-ms-input-placeholder,
+.el-switch.is-disabled .el-switch__inner:-ms-input-placeholder,
+.el-checkbox.is-disabled .el-checkbox__inner:-ms-input-placeholder {
+  color: $placeholderColor !important;
+}
+
+// 兼容ie的required placholder样式
+.is-required .el-input .el-input__inner:-ms-input-placeholder,
+.is-required .el-textarea .el-textarea__inner:-ms-input-placeholder,
+.is-required .el-radio .el-radio__inner:-ms-input-placeholder,
+.is-required .el-switch .el-switch__inner:-ms-input-placeholder,
+.is-required .el-checkbox .el-checkbox__inner:-ms-input-placeholder {
+  color: $required-placeholder-color !important;
+}
+
+// el-dialog 颜色自定义
+.el-dialog__body {
+  padding: 2px 10px;
+}
+.el-dialog__header {
+  color: white;
+  background: #4080c1;
+  padding: 12px 20px;
+}
+.el-dialog__header > .el-dialog__close {
+  color: white;
+  font-weight: bold;
+}
+.el-dialog__headerbtn .el-dialog__close {
+  color: white;
+  font-weight: bold;
+}
+.el-dialog__header > .el-dialog__title {
+  color: white;
+}
+
+//el-dialog 居中中间添加滚动条布局
+.el-dialog__wrapper {
+  position: fixed !important; //danger 兼容ie 滚动到最底部，点击弹窗
+  display: flex;
+  display: -ms-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  -ms-flex-direction: column;
+}
+.el-dialog__wrapper .el-dialog:not(.is-fullscreen) {
+  margin-top: 0 !important;
+}
+.el-dialog__wrapper .el-dialog__title {
+  min-height: 24px;
+  display: inline-block;
+}
+.el-dialog__wrapper .el-dialog:not(.is-fullscreen) .el-dialog__body {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.el-dialog__wrapper .el-dialog__footer {
+  padding: 0;
+  text-align: center;
+}
+.el-dialog__wrapper .el-dialog__headerbtn {
+  top: 12px;
+}
+
+// el-table
+.el-table td {
+  // padding:0 !important;
+}
+
+//el-tabs border-card 去除边框和阴影
+.el-tabs--border-card {
+  border-width: 0 !important;
+  box-shadow: none !important;
+}
+.el-tabs--border-card .el-tabs__item {
+  margin-top: 0px !important;
+}
+.el-tabs--border-card .el-tabs__item.is-active {
+  // margin-top: 0px;
+  border-top: 1px solid #dcdfe6;
+  // box-shadow: 2px 0 5px #ccc;
+}
+.is-required .el-input .el-input__inner,
+.is-required .el-textarea .el-textarea__inner,
+// .is-required .el-radio .el-radio__inner,
+// .is-required .el-checkbox .el-checkbox__inner,
+.is-required .el-switch .el-switch__inner {
+  background-color: $required-bg;
+}
+.is-required .el-input .el-input__count .el-input__count-inner,
+.is-required .el-textarea .el-input__count {
+  background-color: transparent;
+}
+
+//placeholder 颜色 input
+.is-required .el-input input.el-input__inner::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: $required-placeholder-color;
+}
+.is-required .el-input input.el-input__inner:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $required-placeholder-color;
+}
+.is-required .el-input input.el-input__inner::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $required-placeholder-color;
+}
+.is-required .el-input input.el-input__inner:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: $required-placeholder-color;
+}
+//placeholder 颜色 textarea
+.is-required
+  .el-textarea
+  textarea.el-textarea__inner::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: $required-placeholder-color;
+}
+.is-required .el-textarea textarea.el-textarea__inner:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $required-placeholder-color;
+}
+.is-required .el-textarea textarea.el-textarea__inner::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $required-placeholder-color;
+}
+.is-required .el-textarea textarea.el-textarea__inner:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: $required-placeholder-color;
+}
+
+//保护disabled
+.el-input.is-disabled .el-input__inner,
+.el-textarea.is-disabled .el-textarea__inner,
+.el-radio.is-disabled .el-radio__inner,
+.el-switch.is-disabled .el-switch__inner,
+.el-checkbox.is-disabled .el-checkbox__inner {
+  background-color: $disabled-bg !important;
+  color: $disabled-color !important;
+}
+
+.el-input__inner,
+.el-textarea__inner,
+.el-button,
+.el-input-group__append,
+.el-input-group__prepend {
+  border-radius: $input-border-radius !important;
+}
+.el-button.is-circle {
+  border-radius: 50% !important;
+}
+
+.el-table th {
+  background-color: $table-header-bg !important;
+}
+
+.el-form-item {
+  margin-bottom: $form-item-margin-bottom !important;
+}
+
+.el-form-item__error {
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.has-operate-btns .el-tabs__content {
+  padding-right: 50px !important;
+}
+
+.el-table__body-wrapper {
+  /* 表格最低高度 */
+  min-height: $table-min-height;
+}
+
+.el-message {
+  max-height: $el-message-max-height;
+  max-width: $el-message-max-width;
+  overflow: auto !important;
+}
+
+//弹窗message样式覆盖
+.tfb-message-alert-wrapper.el-collapse {
+  border: none;
+  width: 100%;
+  padding-right: 20px;
+}
+.tfb-message-alert-wrapper.el-collapse .el-collapse-item__header {
+  background-color: transparent;
+  border: none;
+  height: auto;
+  line-height: 1.2;
+}
+.tfb-message-alert-wrapper.el-collapse .el-collapse-item__wrap {
+  background-color: transparent;
+  border: none;
+}
+.tfb-message-alert-wrapper.el-collapse .el-collapse-item__content {
+  padding-bottom: 5px;
+  line-height: 1.2;
+}

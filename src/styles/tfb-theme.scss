@@ -1,0 +1,425 @@
+/**
+required 和 disabled 样式同时出现时，
+以disabled样式为准，后者的样式需要放到后面的位置，
+以免被覆盖
+*/
+@import "./tfb-variables.scss";
+input::-webkit-input-placeholder,
+input.el-input__inner::-webkit-input-placeholder {
+  color: $placeholder-color !important;
+}
+input::-webkit-input-placeholder,
+input.el-input__inner::-webkit-input-placeholder {
+  color: $placeholder-color !important;
+}
+input::-moz-placeholder,
+input.el-input__inner::-moz-placeholder {
+  color: $placeholder-color !important;
+}
+input:-moz-placeholder,
+input.el-input__inner:-moz-placeholder {
+  color: $placeholder-color !important;
+}
+input:-ms-input-placeholder,
+input.el-input__inner:-ms-input-placeholder {
+  color: $placeholder-color !important;
+}
+textarea::-webkit-input-placeholder,
+textarea.el-textarea__inner::-webkit-input-placeholder {
+  color: $placeholder-color !important;
+}
+textarea:-moz-placeholder,
+textarea.el-textarea__inner:-moz-placeholder {
+  color: $placeholder-color !important;
+}
+textarea::-moz-placeholder,
+textarea.el-textarea__inner::-moz-placeholder {
+  color: $placeholder-color !important;
+}
+textarea:-ms-input-placeholder,
+textarea.el-textarea__inner:-ms-input-placeholder {
+  color: $placeholder-color !important;
+}
+
+// 兼容ie的required placholder样式
+.is-required .el-input .el-input__inner:-ms-input-placeholder,
+.is-required .el-textarea .el-textarea__inner:-ms-input-placeholder,
+.is-required .el-radio .el-radio__inner:-ms-input-placeholder,
+.is-required .el-switch .el-switch__inner:-ms-input-placeholder,
+.is-required .el-checkbox .el-checkbox__inner:-ms-input-placeholder {
+  color: $placeholder-required-color !important;
+}
+
+.is-required .el-input .el-input-group__append {
+  background-color: $input-required-bg !important;
+}
+
+// 兼容ie的disabled placholder样式
+.el-input.is-disabled .el-input__inner:-ms-input-placeholder,
+.el-textarea.is-disabled .el-textarea__inner:-ms-input-placeholder,
+.el-radio.is-disabled .el-radio__inner:-ms-input-placeholder,
+.el-switch.is-disabled .el-switch__inner:-ms-input-placeholder,
+.el-checkbox.is-disabled .el-checkbox__inner:-ms-input-placeholder {
+  color: $placeholder-color !important;
+}
+
+// 输入框
+.el-input .el-input__inner,
+.el-textarea .el-textarea__inner,
+// .el-radio .el-radio__inner,
+// .el-checkbox .el-checkbox__inner,
+.el-date-editor.el-input__inner,
+.el-date-editor .el-range-input,
+.el-switch .el-switch__inner {
+  background-color: $input-bg;
+}
+
+.el-radio .el-radio__inner,
+.el-checkbox .el-checkbox__inner {
+  border-color: $primary;
+}
+
+.is-required .el-input .el-input__inner,
+.is-required .el-textarea .el-textarea__inner,
+// .is-required .el-radio .el-radio__inner,
+// .is-required .el-checkbox .el-checkbox__inner,
+.is-required .el-switch .el-switch__inner {
+  background-color: $input-required-bg;
+}
+
+// 输入框输入限制背景色
+.el-input .el-input__count .el-input__count-inner,
+.el-textarea .el-input__count {
+  background-color: $input-bg;
+}
+
+.is-required .el-input .el-input__count .el-input__count-inner,
+.is-required .el-textarea .el-input__count {
+  background-color: $input-required-bg;
+}
+
+.is-disabled .el-input .el-input__count .el-input__count-inner,
+.is-disabled .el-textarea .el-input__count {
+  background-color: $input-disabled-bg;
+}
+
+//输入框 placeholder 颜色
+.is-required .el-input input.el-input__inner::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: $placeholder-required-color;
+}
+.is-required .el-input input.el-input__inner:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $placeholder-required-color;
+}
+.is-required .el-input input.el-input__inner::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $placeholder-required-color;
+}
+.is-required .el-input input.el-input__inner:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: $placeholder-required-color;
+}
+//placeholder 颜色 textarea
+.is-required
+  .el-textarea
+  textarea.el-textarea__inner::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: $placeholder-required-color;
+}
+.is-required .el-textarea textarea.el-textarea__inner:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $placeholder-required-color;
+}
+.is-required .el-textarea textarea.el-textarea__inner::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $placeholder-required-color;
+}
+.is-required .el-textarea textarea.el-textarea__inner:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: $placeholder-required-color;
+}
+
+//保护disabled
+.el-input.is-disabled .el-input__inner,
+.el-textarea.is-disabled .el-textarea__inner,
+.el-radio.is-disabled .el-radio__inner,
+.el-switch.is-disabled .el-switch__inner,
+.el-checkbox.is-disabled .el-checkbox__inner {
+  background-color: $input-disabled-bg;
+  color: $input-disabled-color;
+}
+
+.el-input-group__append button.el-button,
+.el-input-group__append div.el-select .el-input__inner,
+.el-input-group__append div.el-select:hover .el-input__inner,
+.el-input-group__prepend button.el-button,
+.el-input-group__prepend div.el-select .el-input__inner,
+.el-input-group__prepend div.el-select:hover .el-input__inner {
+  background-color: $input-bg;
+}
+
+.is-required .el-input-group__append button.el-button,
+.el-input-group__append div.el-select .el-input__inner,
+.el-input-group__append div.el-select:hover .el-input__inner,
+.el-input-group__prepend button.el-button,
+.el-input-group__prepend div.el-select .el-input__inner,
+.el-input-group__prepend div.el-select:hover .el-input__inner {
+  background-color: $input-required-bg;
+}
+
+.is-disabled .el-input-group__append button.el-button,
+.el-input-group__append div.el-select .el-input__inner,
+.el-input-group__append div.el-select:hover .el-input__inner,
+.el-input-group__prepend button.el-button,
+.el-input-group__prepend div.el-select .el-input__inner,
+.el-input-group__prepend div.el-select:hover .el-input__inner {
+  background-color: $input-disabled-bg;
+  cursor: not-allowed;
+}
+
+input {
+  caret-color: black !important;
+}
+
+// el-dialog 颜色自定义
+.el-dialog__body {
+  padding: 8px;
+  background: white;
+}
+.el-dialog__header {
+  color: #333;
+  background: $appBg;
+  padding: 10px 15px;
+  position: relative;
+  transition: all 300ms ease;
+  box-shadow: 0 2px 3px transparent;
+}
+.el-dialog__header:hover {
+  box-shadow: 0 2px 3px #eee;
+}
+.el-dialog__header::after {
+  width: 100%;
+  height: 1px;
+  background: #eee;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  transform: scaleY(0.5);
+  content: "";
+}
+.el-dialog__header > .el-dialog__close {
+  color: #333;
+  font-weight: bold;
+}
+.el-dialog__headerbtn .el-dialog__close {
+  color: #333;
+  font-weight: bold;
+}
+.el-dialog__header > .el-dialog__title {
+  color: #333;
+}
+
+//el-dialog 居中中间添加滚动条布局
+.el-dialog__wrapper {
+  position: fixed !important; //danger 兼容ie 滚动到最底部，点击弹窗
+  display: flex;
+  display: -ms-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  -ms-flex-direction: column;
+}
+.el-dialog__wrapper .el-dialog:not(.is-fullscreen) {
+  margin-top: 0 !important;
+}
+.el-dialog__wrapper .el-dialog__title {
+  min-height: 24px;
+  display: inline-block;
+}
+.el-dialog__wrapper .el-dialog:not(.is-fullscreen) .el-dialog__body {
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.el-dialog__wrapper .el-dialog__footer {
+  padding: 0;
+  text-align: center;
+}
+.el-dialog__wrapper .el-dialog__headerbtn {
+  top: 12px;
+}
+
+.el-tabs--border-card {
+  background: transparent !important;
+  border-width: 0 !important;
+  box-shadow: none !important;
+}
+.el-tabs--border-card > .el-tabs__header .el-tabs__item {
+  margin-top: 0;
+  color: #aaa;
+  background: $input-disabled-bg;
+  border-radius: 5px 5px 0 0;
+  // box-shadow: -2px 0 5px #ddd;
+  height: 32px;
+  line-height: 32px;
+}
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active {
+  // border-top-color: #fff;
+  border-radius: 5px 5px 0 0;
+  background: #fff;
+}
+.el-tabs--border-card
+  > .el-tabs__header
+  .el-tabs__item.is-active
+  + .el-tabs__item {
+  // box-shadow: 2px 0 5px #ccc;
+}
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active:first-child {
+  border-radius: 0 5px 0 0;
+}
+//弹窗的菜单tabs 不需要padding
+.tfb-menu-tool-dialog-wrapper .el-tabs--border-card > .el-tabs__content {
+  padding: 0;
+  background: $appBg;
+}
+// 左侧tabs 样式更新覆盖
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-left,
+.el-tabs--border-card > .el-tabs__header .el-tabs__item.is-active.is-left {
+  border-radius: 0;
+}
+
+// el-table
+.el-table td {
+  // padding:0 !important;
+}
+.el-table th {
+  background-color: $table-header-bg !important;
+}
+
+.el-form-item {
+  margin-bottom: $form-item-margin-bottom !important;
+}
+
+.el-form-item__error {
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.el-table__body-wrapper {
+  /* 表格最低高度 */
+  min-height: $table-min-height;
+}
+
+.el-message {
+  max-height: $el-message-max-height;
+  max-width: $el-message-max-width;
+  overflow: auto !important;
+}
+
+//弹窗message样式覆盖
+.tfb-message-alert-wrapper.el-collapse {
+  border: none;
+  width: 100%;
+  padding-right: 20px;
+}
+.tfb-message-alert-wrapper.el-collapse .el-collapse-item__header {
+  background-color: transparent;
+  border: none;
+  height: auto;
+  line-height: 1.2;
+}
+.tfb-message-alert-wrapper.el-collapse .el-collapse-item__wrap {
+  background-color: transparent;
+  border: none;
+}
+.tfb-message-alert-wrapper.el-collapse .el-collapse-item__content {
+  padding-bottom: 5px;
+  line-height: 1.2;
+}
+
+.el-icon-cricle-check:before {
+  background-color: #fffee3;
+}
+
+// 输入框图标颜色
+.el-select .el-input .el-select__caret,
+.el-input__suffix {
+  color: $blue;
+}
+.el-select .el-input.is-disabled .el-select__caret,
+.is-disabled .el-input__suffix {
+  color: $dark-3;
+}
+// 输入框选中变色
+.el-input__inner:focus {
+  border: 1px solid $blue;
+}
+// 底部业务组件样式
+.btn-bg--default {
+  background-color: $blue-3;
+  color: $blue !important;
+  border: 1px solid $blue;
+}
+.btn-bg--default:hover {
+  background-color: $blue-2 !important;
+  border: 1px solid $blue !important;
+}
+// 线条的背景色
+.el-divider__text.is-left {
+  left: 20px;
+  background-color: #f7f7f7;
+}
+
+// 搜索页面背景色
+.framework-component__wrapper {
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  background-color: #fff;
+}
+.treeBox {
+  // background-color: $dark-5 !important;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+// 全局滚动条颜色
+::-webkit-scrollbar {
+  width: 8px; /*对垂直流动条有效*/
+  height: 8px; /*对水平流动条有效*/
+}
+/*定义滚动条的轨道颜色、内阴影及圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #faf8f8;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-track:hover {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #faf8f8;
+  border-radius: 2px;
+}
+/*定义滑块颜色、内阴影及圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  // background-color: rgba(61, 101, 244, 0.8);
+  background-color: rgba(232, 235, 245, 0.8);
+  opacity: 0.2;
+}
+::-webkit-scrollbar-thumb:hover {
+  border-radius: 7px;
+  background-color: $blue;
+}
+
+// 渐变背景
+.bg-lg {
+  background-image: linear-gradient(-45deg, $light-blue 0%, $blue 100%);
+}
+.bg-primary {
+  background-color: $primary;
+}
+
+.el-divider__text {
+  background-color: #fff !important;
+}

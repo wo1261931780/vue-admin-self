@@ -1,0 +1,51 @@
+/* https://www1.djicdn.com/cms/uploads/150ef84c5f79da0f3cee8788b203e5b9@1x.jpg */
+/* 背景图主题 */
+.tfb-theme__image {
+  .tfb-layout-header,
+  .tfb-layout-tags {
+    background: #fff;
+    color: #333;
+    // box-shadow: 2px 2px 2px rgb(0 21 41 / 8%);
+    box-shadow: 2px 2px 2px rgba(0, 21, 41, 0.08);
+  }
+  .el-menu,
+  .el-menu-item,
+  .el-menu .el-submenu__title {
+    color: #fff;
+  }
+  .el-menu-item.is-active {
+    color: #1890ff;
+  }
+  .el-menu-item:hover,
+  .el-menu .el-submenu__title:hover {
+    background: rgba(24, 144, 255, 0.5);
+  }
+
+  .el-menu--horizontal > .el-submenu.is-active .el-submenu__title {
+    color: #fff;
+  }
+  .el-menu--horizontal .el-submenu:hover,
+  .el-menu--horizontal .el-menu-item:hover,
+  .el-menu--horizontal.el-menu .el-submenu__title:hover {
+    color: rgba(0, 21, 41, 1);
+    background: #fff;
+  }
+
+  .tfb-layout-sider {
+    background-image: url("~@/assets/menu_bg.jpg");
+    color: #fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left top;
+  }
+  .tfb-layout-header {
+    color: #fff;
+    background-image: url("~@/assets/menu_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left top;
+  }
+  .tfb-layout-header-info .el-dropdown {
+    color: #eee;
+  }
+}
