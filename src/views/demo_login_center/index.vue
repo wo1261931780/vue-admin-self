@@ -6,8 +6,8 @@
         <!--        上面模块-->
         <div class="div1">
           <!--          <svg-icon class='leftIconCls' />-->
-          <div class="touxiang"/>
-          <div style="height:6px;"></div>
+          <div class="touxiang" />
+          <div style="height:6px;" />
           <span class="caozuo">操作员操作员…</span>
         </div>
         <div class="div2">
@@ -15,13 +15,13 @@
             <div class="text3">666</div>
             <div class="text1">经办id</div>
           </div>
-          <div class="shugang" style="display: inline-block;"/>
+          <div class="shugang" style="display: inline-block;" />
           <div class="text2" style="display: inline-block;">
             <div class="text3">777</div>
             <div class="text1">积分</div>
           </div>
         </div>
-        <div style="height:10px"></div>
+        <div style="height:10px" />
         <div class="div3">091827504</div>
         <div class="div4">上次登录时间：2022/02/11 06:36</div>
         <!--        <div style="text-align:left">-->
@@ -34,39 +34,39 @@
           <el-button class="leftButton" round size="small">微信银行</el-button>
         </div>
       </el-card>
-      <div style="height:8px"/>
+      <div style="height:8px" />
       <el-card class="leftMenu2">
         <div style="text-align:left">
           <div class="leftbanner">业务提醒</div>
         </div>
         <div class="smallbolck">
-          <svg-icon class="icondemo3" icon-class="收汇"/>
+          <svg-icon class="icondemo3" icon-class="收汇" />
           <div class="innertext3">跨境E站通</div>
         </div>
-        <div style="width:18px;display: inline-block;"/>
+        <div style="width:18px;display: inline-block;" />
         <div class="smallbolck">
-          <svg-icon class="icondemo3" icon-class="收汇"/>
+          <svg-icon class="icondemo3" icon-class="收汇" />
           <div class="innertext3">投资理财</div>
         </div>
-        <div style="width:18px;display: inline-block;"/>
+        <div style="width:18px;display: inline-block;" />
         <div class="smallbolck">
-          <svg-icon class="icondemo3" icon-class="收汇"/>
+          <svg-icon class="icondemo3" icon-class="收汇" />
           <div class="innertext3">票据业务</div>
         </div>
-        <div style="height:20px;"></div>
+        <div style="height:20px;" />
         <div class="smallbolck">
-          <svg-icon class="icondemo3" icon-class="收汇"/>
+          <svg-icon class="icondemo3" icon-class="收汇" />
           <div class="innertext3">其他提醒</div>
         </div>
-        <div style="width:20px;display: inline-block;"/>
+        <div style="width:20px;display: inline-block;" />
         <div class="smallbolck">
-          <svg-icon class="icondemo3" icon-class="收汇"/>
+          <svg-icon class="icondemo3" icon-class="收汇" />
           <div class="innertext3">转账提醒</div>
         </div>
       </el-card>
     </div>
     <!-- </el-aside> -->
-    <div style="padding-left:10px"/>
+    <div style="padding-left:10px" />
     <!--    <el-main style="padding:0px">-->
     <div class="rightblock">
       <!--        常用功能+卡片-->
@@ -74,79 +74,79 @@
         <!--          常用功能-->
         <div style="text-align:left">
           <div class="rightbanner" style="display: inline-block;">常用功能</div>
-          <div style="height:9px"/>
+          <div style="height:9px" />
         </div>
         <!--          所有的卡片-->
         <div>
           <el-card class="rightcard">
             <div class="innerblueblock">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               账户余额查询
             </div>
           </el-card>
           <!--            <div style="height:11px;"/>-->
-          <div style="width:10px;display:inline-block;"/>
+          <div style="width:10px;display:inline-block;" />
           <el-card class="rightcard">
             <div class="innerblueblock" style="background: #FFF9E9;">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               账户明细查询
             </div>
           </el-card>
-          <div style="width:10px;display:inline-block;"/>
+          <div style="width:10px;display:inline-block;" />
           <el-card class="rightcard">
             <div class="innerblueblock" style="background: #FFF3EE;">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               业务凭证打印
             </div>
           </el-card>
-          <div style="width:10px;display:inline-block;"/>
+          <div style="width:10px;display:inline-block;" />
           <el-card class="rightcard">
             <div class="innerblueblock">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               一站式转账
             </div>
           </el-card>
         </div>
-        <div style="height:10px;"></div>
+        <div style="height:10px;" />
         <div>
           <el-card class="rightcard">
             <div class="innerblueblock" style="background: #FFF9E9;">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               智能代发
             </div>
           </el-card>
-          <div style="width:10px;display:inline-block;"/>
+          <div style="width:10px;display:inline-block;" />
           <el-card class="rightcard">
             <div class="innerblueblock" style="background: #FFF3EE;">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               批量转账
             </div>
           </el-card>
-          <div style="width:10px;display:inline-block;"/>
+          <div style="width:10px;display:inline-block;" />
           <el-card class="rightcard">
             <div class="innerblueblock">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               T/T汇出汇款申请
             </div>
           </el-card>
-          <div style="width:10px;display:inline-block;"/>
+          <div style="width:10px;display:inline-block;" />
           <el-card class="rightcard">
             <div class="innerblueblock" style="background: #FFF9E9;">
-              <svg-icon class="icondemo2" icon-class="收汇"/>
+              <svg-icon class="icondemo2" icon-class="收汇" />
             </div>
             <div class="innerbluebtext">
               结汇划转直通车
@@ -156,82 +156,82 @@
         </div>
 
       </div>
-        <div style="height:20px"/>
-        <!--          公告+内部的消息-->
-        <div class="divright2">
-          <div style="text-align:left">
-            <div class="rightbanner" style="display: inline-block;">公告</div>
-            <div class="rightbanner3" style="display: inline-block;">更多公告﹥</div>
-          </div>
-          <div style="height:12px"/>
-          <!--          每条独立公告-->
-          <div class="divright3">
-            <!--            小的图标-->
-            <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;"/>
-            <div style="width:8px;display: inline-block;"/>
-            <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18)
-              关于出口贸易融资业务政策调整
-            </div>
-          </div>
-          <div style="height:8px;"></div>
-          <div class="divright3">
-            <!--            小的图标-->
-            <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;"/>
-            <div style="width:8px;display: inline-block;"/>
-            <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知
-            </div>
-          </div>
-          <div style="height:8px;"></div>
-
-          <div class="divright3">
-            <!--            小的图标-->
-            <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;"/>
-            <div style="width:8px;display: inline-block;"/>
-            <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18) 关于出口
-            </div>
-          </div>
-          <div style="height:8px;"></div>
-
-          <div class="divright3">
-            <!--            小的图标-->
-            <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;"/>
-            <div style="width:8px;display: inline-block;"/>
-            <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18) 关于出口贸易融资业务
-            </div>
-          </div>
-          <div style="height:8px;"></div>
-
-          <div class="divright3">
-            <!--            小的图标-->
-            <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;"/>
-            <div style="width:8px;display: inline-block;"/>
-            <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-
-            </div>
-          </div>
-          <div style="height:8px;"></div>
-
-          <div class="divright3">
-            <!--            小的图标-->
-            <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;"/>
-            <div style="width:8px;display: inline-block;"/>
-            <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整
-            </div>
-          </div>
-          <div style="height:8px;"></div>
-
-          <div class="divright3">
-            <!--            小的图标-->
-            <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;"/>
-            <div style="width:8px;display: inline-block;"/>
-            <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18)
-              关于出口贸易融资业务政策调整的
-            </div>
-          </div>
-          <div style="height:8px"/>
-
+      <div style="height:20px" />
+      <!--          公告+内部的消息-->
+      <div class="divright2">
+        <div style="text-align:left">
+          <div class="rightbanner" style="display: inline-block;">公告</div>
+          <div class="rightbanner3" style="display: inline-block;">更多公告﹥</div>
         </div>
+        <div style="height:12px" />
+        <!--          每条独立公告-->
+        <div class="divright3">
+          <!--            小的图标-->
+          <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;" />
+          <div style="width:8px;display: inline-block;" />
+          <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18)
+            关于出口贸易融资业务政策调整
+          </div>
+        </div>
+        <div style="height:8px;" />
+        <div class="divright3">
+          <!--            小的图标-->
+          <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;" />
+          <div style="width:8px;display: inline-block;" />
+          <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知
+          </div>
+        </div>
+        <div style="height:8px;" />
+
+        <div class="divright3">
+          <!--            小的图标-->
+          <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;" />
+          <div style="width:8px;display: inline-block;" />
+          <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18) 关于出口
+          </div>
+        </div>
+        <div style="height:8px;" />
+
+        <div class="divright3">
+          <!--            小的图标-->
+          <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;" />
+          <div style="width:8px;display: inline-block;" />
+          <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18) 关于出口贸易融资业务
+          </div>
+        </div>
+        <div style="height:8px;" />
+
+        <div class="divright3">
+          <!--            小的图标-->
+          <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;" />
+          <div style="width:8px;display: inline-block;" />
+          <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-
+          </div>
+        </div>
+        <div style="height:8px;" />
+
+        <div class="divright3">
+          <!--            小的图标-->
+          <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;" />
+          <div style="width:8px;display: inline-block;" />
+          <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整
+          </div>
+        </div>
+        <div style="height:8px;" />
+
+        <div class="divright3">
+          <!--            小的图标-->
+          <svg-icon class="icondemo" icon-class="收汇" style="display: inline-block;" />
+          <div style="width:8px;display: inline-block;" />
+          <div class="innertext" style="display: inline-block;">(2020-03-18) 关于出口贸易融资业务政策调整的通知(2020-03-18)
+            关于出口贸易融资业务政策调整的
+          </div>
+        </div>
+        <div style="height:8px" />
 
       </div>
+
+    </div>
     <!--    </el-main>-->
   </el-container>
 </template>
@@ -244,8 +244,8 @@ import exportMenu from './exportMenu.vue'
 import crossBorderFundingMenu from './crossBorderFundingMenu.vue'
 
 export default {
-  components: {rate, importMenu, exportMenu, crossBorderFundingMenu},
   name: 'EbankHome',
+  components: { rate, importMenu, exportMenu, crossBorderFundingMenu },
   data() {
     return {
       userId: '091827504',

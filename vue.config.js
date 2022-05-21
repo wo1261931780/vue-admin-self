@@ -17,16 +17,16 @@ const port = process.env.port || process.env.npm_config_port || 9528 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
-/* vue-cli2的时候才会使用这个
-  build: {
-    index: path.resolve(__dirname, 'dist/index.html'),
-    assetsRoot: path.resolve(__dirname, 'dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: './',
-    productionSourceMap: true
-  },
-  publicPath: './',
-  */
+  /* vue-cli2的时候才会使用这个
+    build: {
+      index: path.resolve(__dirname, 'dist/index.html'),
+      assetsRoot: path.resolve(__dirname, 'dist'),
+      assetsSubDirectory: 'static',
+      assetsPublicPath: './',
+      productionSourceMap: true
+    },
+    publicPath: './',
+    */
 
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
@@ -35,17 +35,10 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: process.env.NODE_ENV === 'production' ? './' : './',
-  outputDir: 'dist',
+  publicPath: './',
+
   assetsDir: 'static',
-  // 做几点说明，
-  // 首先vue-cli4.40版本中，不需要配置百度中说明的autopath，直接导出即可。
-  // 但是在服务器端，还是会出现403资.css" failed (13: Permission denied),源加载失败的问题
-  // 这是由于Nginx没有权限访问资源导致的
-  // 在宝塔中查看报错信息，发现.css" failed (13: Permission denied),
-  // 找到Nginx.conf，修改第一行代码为user root即可解决。
-  lintOnSave: process.env.NODE_ENV === 'development',
-  productionSourceMap: false,
+
   devServer: {
     port: port,
     open: true,
@@ -55,6 +48,7 @@ module.exports = {
     },
     before: require('./mock/mock-server.js')
   },
+
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
@@ -65,6 +59,7 @@ module.exports = {
       }
     }
   },
+
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [
@@ -136,5 +131,12 @@ module.exports = {
           config.optimization.runtimeChunk('single')
         }
       )
-  }
+  },
+
+  css: {
+    modules: true
+  },
+
+  runtimeCompiler: true,
+  productionSourceMap: false
 }

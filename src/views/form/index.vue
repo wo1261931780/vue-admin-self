@@ -50,7 +50,7 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="demo_input_show">
-        <el-input placeholder="please type in"></el-input>
+        <el-input placeholder="please type in" />
       </el-form-item>
       <el-form-item label="Activity form">
         <el-input v-model="form.desc" type="textarea" />
@@ -68,29 +68,29 @@ export default {
   data() {
     return {
       form: {
-        name: "",
-        region: "",
-        date1: "",
-        date2: "",
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
         delivery: false,
         type: [],
-        resource: "",
-        desc: "",
-      },
-    };
+        resource: '',
+        desc: ''
+      }
+    }
   },
   methods: {
     onSubmit() {
-      this.$message("submit!");
+      this.$message('submit!')
     },
     onCancel() {
       this.$message({
-        message: "cancel!",
-        type: "warning",
-      });
-    },
-  },
-};
+        message: 'cancel!',
+        type: 'warning'
+      })
+    }
+  }
+}
 </script>
 
 <style scoped>

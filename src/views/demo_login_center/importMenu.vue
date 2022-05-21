@@ -5,35 +5,35 @@
         <div class="boxText">
           签署合同
         </div>
-        <i class="el-icon-bottom downIcon"></i>
+        <i class="el-icon-bottom downIcon" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
           运输
         </div>
-        <i class="el-icon-bottom downIcon purple"></i>
+        <i class="el-icon-bottom downIcon purple" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box">
         <div class="boxText">
           收货
         </div>
-        <i class="el-icon-bottom downIcon"></i>
+        <i class="el-icon-bottom downIcon" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
           购汇
         </div>
-        <i class="el-icon-bottom downIcon purple"></i>
+        <i class="el-icon-bottom downIcon purple" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box">
         <div class="boxText">
           付款
         </div>
-        <i class="el-icon-bottom downIcon"></i>
+        <i class="el-icon-bottom downIcon" />
       </div>
       <!-- <div class="line"></div>
       <div class="box purpleBG">
@@ -80,8 +80,8 @@
 export default {
   props: {
     menuObj: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   data() {
     return {}
@@ -94,7 +94,7 @@ export default {
         this.$message.warning('暂未开放！')
       }
     }
-  },
+  }
 }
 </script>
 

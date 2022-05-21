@@ -2,17 +2,21 @@
   <div>
     <div v-show="rateType=='即期汇率'">
       <div class="framework-component__wrapper">
-        <el-tabs-ex v-model="activeName"
-                    type="border-card">
-          <bizParRateFxsOur ref="bizParRateFxsOur"/>
+        <el-tabs-ex
+          v-model="activeName"
+          type="border-card"
+        >
+          <bizParRateFxsOur ref="bizParRateFxsOur" />
         </el-tabs-ex>
       </div>
     </div>
     <div v-show="rateType=='远期汇率'">
       <div class="framework-component__wrapper">
-        <el-tabs-ex v-model="activeName1"
-                    type="border-card">
-          <bizParRateFxsOurFw ref="bizParRateFxsOurFw"/>
+        <el-tabs-ex
+          v-model="activeName1"
+          type="border-card"
+        >
+          <bizParRateFxsOurFw ref="bizParRateFxsOurFw" />
         </el-tabs-ex>
       </div>
     </div>
@@ -24,126 +28,126 @@ import bizParRateFxsOurFw from '@/views/app/ebank/ex/prices/bizParRateFxsOurFw.v
 import bizMixin from '@/mixins/biz'
 
 export default {
+  components: { bizParRateFxsOur, bizParRateFxsOurFw },
   mixins: [bizMixin],
-  components: {bizParRateFxsOur, bizParRateFxsOurFw},
   props: {
     rateType: {
-      type: String,
+      type: String
     }
   },
   data() {
     return {
-      activeName: "bizParRateFxsOur",
-      activeName1: "bizParRateFxsOurFw",
+      activeName: 'bizParRateFxsOur',
+      activeName1: 'bizParRateFxsOurFw',
       playAnimation: '',
-      remtCcy: "",
+      remtCcy: '',
       tableData: [],
       farTableData: [],
       tableHeaders: [{
-        prop: "ccyPair",
-        label: "货币对",
+        prop: 'ccyPair',
+        label: '货币对'
       }, {
-        prop: "rateUnit",
-        label: "汇率单位",
+        prop: 'rateUnit',
+        label: '汇率单位'
       }, {
-        prop: "rsp",
-        label: "汇卖价",
+        prop: 'rsp',
+        label: '汇卖价'
       }, {
-        prop: "rpp",
-        label: "汇买价",
+        prop: 'rpp',
+        label: '汇买价'
       }, {
-        prop: "midRate",
-        label: "汇中间价",
+        prop: 'midRate',
+        label: '汇中间价'
       }, {
-        prop: "csp",
-        label: "钞卖价",
+        prop: 'csp',
+        label: '钞卖价'
       }, {
-        prop: "cpp",
-        label: "钞买价",
+        prop: 'cpp',
+        label: '钞买价'
       }, {
-        prop: "updTime",
-        label: "更新时间",
+        prop: 'updTime',
+        label: '更新时间'
       }],
       pairTextMap: {
-        USD: "美元(USD)",
-        JPY: "日元(JPY)",
-        EUR: "欧元(EUR)",
-        GBP: "英镑(GBP)",
-        HKD: "港币(HKD)",
-        CHF: "法郎(CHF)",
-        AUD: "澳元(AUD)"
+        USD: '美元(USD)',
+        JPY: '日元(JPY)',
+        EUR: '欧元(EUR)',
+        GBP: '英镑(GBP)',
+        HKD: '港币(HKD)',
+        CHF: '法郎(CHF)',
+        AUD: '澳元(AUD)'
       },
       page: {
         currPage: 1,
         pageSize: 20,
         totalSize: 0
-      },
+      }
     }
   },
-  watch: {},
   computed: {},
+  watch: {},
   mounted() {
-    this.queryNearRate();
-    this.queryFarRate();
+    this.queryNearRate()
+    this.queryFarRate()
   },
   methods: {
     contentFormatter(row, column) {
-      var value = row[column.prop],
-        formatter = column.formatter || column.options;
-      if (typeof formatter == "function") {
-        value = formatter.call(this, row, column);
+      var value = row[column.prop]
+      var formatter = column.formatter || column.options
+      if (typeof formatter === 'function') {
+        value = formatter.call(this, row, column)
       } else if (Array.isArray(formatter)) {
         for (var index in formatter) {
-          var item = formatter[index];
+          var item = formatter[index]
           if (item && (item.value === value || item.code === value || item.key === value)) {
-            value = item.label || item.codeValue || item.text;
-            break;
+            value = item.label || item.codeValue || item.text
+            break
           }
         }
-      } else if (formatter && typeof formatter == "object") {
-        value = formatter[row[column.prop]] || value;
+      } else if (formatter && typeof formatter === 'object') {
+        value = formatter[row[column.prop]] || value
       }
-      return value;
+      return value
     },
     queryNearRate() {
-      this.playAnimation = "play-refrash-animation";
+      this.playAnimation = 'play-refrash-animation'
       this.$apiadmin.post_rate_getbizparratefxsour({
-        data: {"baseCcy": "CNY", "ccy": this.remtCcy},
+        data: { 'baseCcy': 'CNY', 'ccy': this.remtCcy },
         page: this.page
       }).then((res) => {
-        this.tableData = [];
+        this.tableData = []
         for (var i = 0, data = res.data || []; i < data.length; i++) {
           if (!this.pairTextMap[data[i].ccy]) {
-            continue;
+            continue
           }
-          data[i].ccyPair = data[i].ccy + '/' + data[i].baseCcy;
-          this.tableData.push(data[i]);
+          data[i].ccyPair = data[i].ccy + '/' + data[i].baseCcy
+          this.tableData.push(data[i])
         }
-        this.playAnimation = '';
-      });
+        this.playAnimation = ''
+      })
     },
     queryFarRate() {
       this.$apiadmin.post_rate_getbizparratefxsourfwbypage({
         data: {
           ccyPair: '',
-          crudService: "master",
+          crudService: 'master',
           currPage: 1,
           formData: {},
           params: [],
-          queryName: "pubBizParRateFxsOur"
+          queryName: 'pubBizParRateFxsOur'
         },
         page: this.page
       }).then((res) => {
         for (var i = 0, data = res.data.resultList || []; i < data.length; i++) {
           if (!this.pairTextMap[data[i].ccy]) {
-            continue;
+            continue
           }
-          data[i].ccyPair = data[i].ccy + '/' + data[i].baseCcy;
-          this.farTableData.push(data[i]);
+          data[i].ccyPair = data[i].ccy + '/' + data[i].baseCcy
+          this.farTableData.push(data[i])
         }
-        this.page.totalSize = res.data.totalSize;
-        this.playAnimation = '';
-      });
+        this.page.totalSize = res.data.totalSize
+        this.playAnimation = ''
+      })
     }
   }
 }

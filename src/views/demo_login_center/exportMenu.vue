@@ -5,41 +5,41 @@
         <div class="boxText">
           签署合同
         </div>
-        <i class="el-icon-bottom downIcon"></i>
+        <i class="el-icon-bottom downIcon" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
           备货
         </div>
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box">
         <div class="boxText">
           发货
         </div>
-        <i class="el-icon-bottom downIcon"></i>
+        <i class="el-icon-bottom downIcon" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
           交单
         </div>
-        <i class="el-icon-bottom downIcon purple"></i>
+        <i class="el-icon-bottom downIcon purple" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box">
         <div class="boxText">
           收汇
         </div>
-        <i class="el-icon-bottom downIcon"></i>
+        <i class="el-icon-bottom downIcon" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
           结汇
         </div>
-        <i class="el-icon-bottom downIcon purple"></i>
+        <i class="el-icon-bottom downIcon purple" />
       </div>
     </div>
     <div class="menuBox">
@@ -49,7 +49,7 @@
         <div class="btn100" @click="goMenu('出口信用证/修改通知')">出口信用证/修改通知</div>
         <div class="btn100" @click="goMenu('我要购汇')">远期</div>
       </div>
-      <div class="menuItem"></div>
+      <div class="menuItem" />
       <div class="menuItem">
         <div class="btn50" @click="goMenu('')">极速融资</div>
       </div>
@@ -79,8 +79,8 @@
 export default {
   props: {
     menuObj: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   data() {
     return {}
@@ -93,7 +93,7 @@ export default {
         this.$message.warning('暂未开放！')
       }
     }
-  },
+  }
 }
 </script>
 

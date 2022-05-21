@@ -6,32 +6,32 @@
           筹备
         </div>
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
-          设立<br/>
+          设立<br>
           <span style="fontWeight:400;font-size: 12px;letter-spacing:0px;">（资金流出）</span>
         </div>
-        <i class="el-icon-bottom downIcon purple"></i>
+        <i class="el-icon-bottom downIcon purple" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box">
         <div class="boxText">
-          运营<br/>
+          运营<br>
           <span style="fontWeight:400;font-size: 12px;letter-spacing:0px;">（资金流出）</span>
         </div>
-        <i class="el-icon-bottom downIcon"></i>
+        <i class="el-icon-bottom downIcon" />
       </div>
-      <div class="line"></div>
+      <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
           并购/分红
         </div>
-        <i class="el-icon-bottom downIcon purple"></i>
+        <i class="el-icon-bottom downIcon purple" />
       </div>
     </div>
     <div class="menuBox">
-      <div class="menuItem"></div>
+      <div class="menuItem" />
       <div class="menuItem">
         <div class="btn50 purpleBtn" @click="goMenu('外币汇出汇款')">前期费用汇出</div>
         <div class="btn50 purpleBtn" @click="goMenu('')">订单管理</div>
@@ -65,8 +65,8 @@
 export default {
   props: {
     menuObj: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   data() {
     return {}
@@ -79,7 +79,7 @@ export default {
         this.$message.warning('暂未开放！')
       }
     }
-  },
+  }
 }
 </script>
 
