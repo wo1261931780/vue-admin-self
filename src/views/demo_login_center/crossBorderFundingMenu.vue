@@ -2,15 +2,15 @@
   <div>
     <div class="importMenu">
       <div class="box">
-        <div class="boxText">
-          筹备
-        </div>
+        <div class="boxText">筹备</div>
       </div>
       <div class="line" />
       <div class="box purpleBG">
         <div class="boxText">
           设立<br>
-          <span style="fontWeight:400;font-size: 12px;letter-spacing:0px;">（资金流出）</span>
+          <span
+            style="fontweight: 400; font-size: 12px; letter-spacing: 0px"
+          >（资金流出）</span>
         </div>
         <i class="el-icon-bottom downIcon purple" />
       </div>
@@ -18,15 +18,15 @@
       <div class="box">
         <div class="boxText">
           运营<br>
-          <span style="fontWeight:400;font-size: 12px;letter-spacing:0px;">（资金流出）</span>
+          <span
+            style="fontweight: 400; font-size: 12px; letter-spacing: 0px"
+          >（资金流出）</span>
         </div>
         <i class="el-icon-bottom downIcon" />
       </div>
       <div class="line" />
       <div class="box purpleBG">
-        <div class="boxText">
-          并购/分红
-        </div>
+        <div class="boxText">并购/分红</div>
         <i class="el-icon-bottom downIcon purple" />
       </div>
     </div>
@@ -94,8 +94,8 @@ export default {
   position: relative;
   width: 88px;
   height: 88px;
-  background: #DFE4F9;
-  border: 4px solid #3760FF;
+  background: #dfe4f9;
+  border: 4px solid #3760ff;
   border-radius: 10px;
   text-align: center;
   display: inline-block;
@@ -118,7 +118,7 @@ export default {
   font-size: 14px;
   font-family: PingFang SC;
   font-weight: bold;
-  color: #3760FF;
+  color: #3760ff;
   letter-spacing: 6px;
   font-weight: 500;
   opacity: 1;
@@ -132,7 +132,7 @@ export default {
   left: 50%;
   top: 82px;
   transform: translateX(-50%);
-  color: #DFE4F9;
+  color: #dfe4f9;
 }
 
 .menuBox {
@@ -155,60 +155,62 @@ export default {
   cursor: pointer;
   width: 88px;
   height: 24px;
-  background: #D7DFFF;
+  background: #d7dfff;
   opacity: 1;
   border-radius: 5px;
   font-size: 12px;
   text-align: center;
   align-items: center;
   line-height: 24px;
-  color: #3760FF;
+  color: #3760ff;
   display: inline-block;
   margin-bottom: 4px;
 }
 
-.btn100:hover, .btn50:hover {
-  color: #D7DFFF;
-  background: #3760FF;
+.btn100:hover,
+.btn50:hover {
+  color: #d7dfff;
+  background: #3760ff;
 }
 
 .btn100 {
   cursor: pointer;
   width: 180px;
   height: 24px;
-  background: #D7DFFF;
+  background: #d7dfff;
   opacity: 1;
   border-radius: 5px;
   font-size: 12px;
   text-align: center;
   align-items: center;
   line-height: 24px;
-  color: #3760FF;
+  color: #3760ff;
   display: inline-block;
   margin-bottom: 4px;
 }
 
 .purpleBG {
-  border: 4px solid #FFC428;
-  background: #FFF9E9;
+  border: 4px solid #ffc428;
+  background: #fff9e9;
 }
 
 .purpleBG > .boxText {
-  color: #FFC428;
+  color: #ffc428;
 }
 
 .purple {
-  color: #FFF9E9;
+  color: #fff9e9;
 }
 
 .purpleBtn {
-  background: #FFF9E9;
-  color: #FFC428;
+  background: #fff9e9;
+  color: #ffc428;
 }
 
-.purpleBtn:hover, .purpleBtn:hover {
-  color: #FFF9E9;
-  background: #FFC428;
+.purpleBtn:hover,
+.purpleBtn:hover {
+  color: #fff9e9;
+  background: #ffc428;
 }
 
 .lastItem {
