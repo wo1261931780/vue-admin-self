@@ -1,7 +1,7 @@
 
 ## Introduction
 
-抄作业项目，原项目来自[vue-element-admin](https://panjiachen.github.io/vue-element-admin) 。
+抄作业项目，原项目来自[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 。
 
 
 
