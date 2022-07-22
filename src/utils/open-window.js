@@ -1,5 +1,5 @@
 /**
- *Created by PanJiaChen on 16/11/29.
+ *Created by wo1261931780 on 16/11/29.
  * @param {Sting} url
  * @param {Sting} title
  * @param {Number} w
@@ -22,4 +22,3 @@ export default function openWindow(url, title, w, h) {
     newWindow.focus()
   }
 }
-

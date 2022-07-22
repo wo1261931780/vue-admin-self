@@ -7,4 +7,3 @@
     >Document</a>
   </aside>
 </template>
-

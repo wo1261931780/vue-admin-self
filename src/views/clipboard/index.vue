@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       activeName: 'directly',
-      inputData: 'https://github.com/PanJiaChen/vue-element-admin'
+      inputData: 'https://github.com/wo1261931780/vue-admin-self'
     }
   },
   methods: {
@@ -46,4 +46,3 @@ export default {
   }
 }
 </script>
-
